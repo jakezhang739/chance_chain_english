@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/commentLayout">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/homeback"
+        android:id="@+id/comSpacing"/>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cTou"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignBottom="@+id/cTime"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="21dp"
+        android:src="@drawable/sp" />
+
+    <TextView
+        android:id="@+id/cUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/cTou"
+        android:layout_marginStart="98dp"
+        android:textColor="@color/white"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/cTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/cUser"
+        android:layout_marginTop="62dp"
+        android:textColor="@color/white"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/neiText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/cTou"
+        android:textColor="@color/white"
+        android:layout_marginTop="93dp"
+        android:text="TextView" />
+
+</RelativeLayout>

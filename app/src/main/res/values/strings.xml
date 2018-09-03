@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">ChanceChain</string>
+    <string name="title_activity_authenticator">Chance</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">My Page</string>
+    <string name="title_notifications">Upload Chance</string>
+    <string name="title_activity_home">ChanceHome</string>
+    <string name="title_activity_notification">Upload Chance</string>
+    <string name="title_activity_my">My Page</string>
+    <string name="title_activity_information">About Me</string>
+    <string name="title_activity_change_information">About Me</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_main_screen">Sign in</string>
+    <string name="app_main_screen_title">Cognito Identity</string>
+    <string name="app_main_desc">A sample app to showcase Cognito Identity and the SDK for Android.</string>
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Menu">Menu</string>
+    <string name="uploadTou">Upload Profile Photo</string>
+    <string name="takePic">Take Profile Picture</string>
+    <string name="nickname">Nick Name</string>
+    <string name="name">Name</string>
+    <string name="chanceId">Chance ID</string>
+    <string name="walletAddress">Wallet Address</string>
+    <string name="gender">gender</string>
+    <string name="career">career</string>
+    <string name="resuem">Resume</string>
+    <string name="finish">Complete</string>
+    <string name="confirmAccount">Please Confirm Your Account</string>
+    <string name="enterAccount">Please enter your username and the verification code to finish registration</string>
+    <string name="userName">UserName</string>
+    <string name="verCode">Verification Code</string>
+    <string name="finishRegister">Complete Registration</string>
+
+
+
+
+    <string-array name="currency_name">
+        <item>cc</item>
+        <item>eth</item>
+        <item>btc</item>
+    </string-array>
+
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

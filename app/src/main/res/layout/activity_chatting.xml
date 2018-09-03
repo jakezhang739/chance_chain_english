@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/messageBack"
+    tools:context=".chattingActivity">
+    <ProgressBar
+        android:id="@+id/progressBarchat"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/yellow"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="visible" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tianc"
+        android:id="@+id/liaozhuti">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/liaobeijing"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:id="@+id/tianc"
+        android:layout_above="@+id/liaotian"
+        android:layout_alignParentStart="true"
+        android:background="@color/tiancong"
+        android:visibility="invisible"/>
+
+    <RelativeLayout
+        android:id="@+id/liaotian"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/liaotian"
+        android:visibility="invisible">
+
+        <EditText
+            android:id="@+id/inputMsg"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/msginput"
+            android:inputType="textMultiLine" />
+
+        <ImageView
+            android:id="@+id/fangzhaopian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/inputMsg"
+            android:clickable="true"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/zhaopian" />
+
+        <ImageView
+            android:id="@+id/fasongxiao"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/inputMsg"
+            android:clickable="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/fabu" />
+    </RelativeLayout>
+
+</RelativeLayout>

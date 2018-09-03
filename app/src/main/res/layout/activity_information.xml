@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".InformationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/changeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/resumeInp"
+            android:text="修改信息" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/touxiang"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/sp" />
+        <TextView
+            android:id="@+id/uid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/touxiang"
+            android:layout_below="@+id/touxiang"
+            android:layout_marginTop="89dp"
+            android:text="昵称" />
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/touxiang"
+            android:layout_marginTop="119dp"
+            android:text="姓名" />
+
+        <TextView
+            android:id="@+id/chanceId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/touxiang"
+            android:layout_marginTop="149dp"
+            android:text="机会号" />
+        <TextView
+            android:id="@+id/walletAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/touxiang"
+            android:layout_marginTop="179dp"
+            android:text="钱包地址" />
+
+        <TextView
+            android:id="@+id/sexText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/touxiang"
+            android:layout_marginTop="209dp"
+            android:text="性别" />
+
+        <TextView
+            android:id="@+id/careerTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/touxiang"
+            android:layout_marginTop="239dp"
+            android:text="职业" />
+
+        <TextView
+            android:id="@+id/resumeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/touxiang"
+            android:layout_marginTop="269dp"
+            android:text="个人简介" />
+
+        <TextView
+            android:id="@+id/resumeInp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/touxiang"
+            android:layout_marginTop="299dp"
+            />
+        <TextView
+            android:id="@+id/usridInp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/uid"
+            android:layout_marginLeft="70dp" />
+
+        <TextView
+            android:id="@+id/chanceInp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/usridInp"
+            android:layout_alignTop="@+id/chanceId"
+             />
+
+        <TextView
+            android:id="@+id/addressInp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/usridInp"
+            android:layout_alignTop="@+id/walletAddress"
+             />
+
+        <TextView
+            android:id="@+id/nameInp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/usridInp"
+            android:layout_alignTop="@+id/nameText"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/sexInp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/usridInp"
+            android:layout_alignTop="@+id/sexText"
+             />
+
+        <TextView
+            android:id="@+id/careerInp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/usridInp"
+            android:layout_alignTop="@+id/careerTxt"
+             />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/usridInp"
+            android:layout_marginTop="27dp"
+            android:text="TextView" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

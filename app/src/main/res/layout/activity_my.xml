@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jake.chance_chain.MyActivity"
+    >
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/wodetouxiang"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/sp" />
+
+    <TextView
+        android:id="@+id/wodeUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@+id/wodetouxiang"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/wodeJian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:layout_toRightOf="@+id/wodetouxiang"
+        android:layout_marginLeft="5dp"
+        android:textSize="15sp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/woshengwang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/wodeUser"
+        android:layout_marginEnd="24dp"
+        android:background="@color/yellow"
+        android:text=""
+        android:clickable="true"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/guanzhuNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="125dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/guanzhu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guanzhuNum"
+        android:layout_alignStart="@id/guanzhuNum"
+        android:text="关注" />
+
+    <TextView
+        android:id="@+id/beiGuanNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/guanzhuNum"
+        android:layout_centerHorizontal="true"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/beiGuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/beiGuanNum"
+        android:layout_alignStart="@id/beiGuanNum"
+        android:text="被关注" />
+
+    <TextView
+        android:id="@+id/woFabuNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:layout_alignTop="@id/beiGuanNum"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/woFabu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/woFabuNum"
+        android:layout_below="@+id/woFabuNum"
+        android:text="发布" />
+
+    <TextView
+        android:id="@+id/woSpace1"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/woFabu"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorPrimary"/>
+
+    <ImageView
+        android:id="@+id/woJihui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/woSpace1"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/jihui" />
+
+    <TextView
+        android:id="@+id/woJihuiNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/woJihui"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/woJihui"
+        android:text="我的机会" />
+
+    <ImageView
+        android:id="@+id/woFabuImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/woJihui"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        app:srcCompat="@drawable/wofabu" />
+
+    <TextView
+        android:id="@+id/woFaNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/woFabuImg"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="我的发布" />
+
+    <ImageView
+        android:id="@+id/woRenWu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_alignTop="@+id/woFabuImg"
+        android:clickable="true"
+        app:srcCompat="@drawable/renwu" />
+
+
+    <TextView
+        android:id="@+id/woRenWuNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/woRenWu"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/woRenWu"
+        android:text="我的任务" />
+
+    <TextView
+        android:id="@+id/woSpace2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/woFaNum"
+        android:layout_marginTop="10dp"
+        android:background="@color/homeback" />
+
+    <ImageView
+        android:id="@+id/woQian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/woJihui"
+        android:layout_below="@+id/woSpace2"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/qianbao" />
+
+    <ImageView
+        android:id="@+id/woGuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/woQian"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        app:srcCompat="@drawable/guanzhu" />
+
+    <ImageView
+        android:id="@+id/woXiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/woRenWu"
+        android:layout_alignTop="@+id/woQian"
+        android:clickable="true"
+        app:srcCompat="@drawable/woxiaoxi" />
+    <TextView
+        android:id="@+id/woQianNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/woJihui"
+        android:layout_below="@+id/woQian"
+        android:layout_marginTop="10dp"
+        android:text="我的钱包" />
+
+    <TextView
+        android:id="@+id/woGuanNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/woQianNum"
+        android:layout_centerHorizontal="true"
+        android:text="我的关注" />
+
+    <TextView
+        android:id="@+id/woXiaoNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/woRenWu"
+        android:layout_alignTop="@+id/woQianNum"
+        android:text="我的消息" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/woXiaoNum"
+        android:layout_marginTop="20dp"
+        android:id="@+id/woSpace3"
+        android:background="@color/colorPrimary"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/woSpace3"
+        android:id="@+id/shezhi"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="26dp"
+            android:text="设置"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="50dp"
+            app:srcCompat="@drawable/more" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/shezhi"
+        android:id="@+id/woSpace4"
+        android:background="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/alert1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/woSpace2"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/redcircle"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="invisible" />
+
+
+
+</RelativeLayout>

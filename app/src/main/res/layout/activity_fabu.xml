@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fabuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/faburel"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/wjx"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/yellow"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:text="未进行" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/jxz"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:textColor="@color/yellow"
+            android:gravity="center"
+            android:clickable="true"
+            android:text="进行中"/>
+
+        <TextView
+            android:id="@+id/ywc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="25sp"
+            android:textColor="@color/yellow"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:clickable="true"
+            android:text="已完成" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:id="@+id/tagrel"
+        android:layout_below="@+id/faburel"
+        android:visibility="invisible"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/yellow"
+            android:layout_weight="1"
+            android:id="@+id/tag1"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/yellow"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:id="@+id/tag2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/yellow"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:id="@+id/tag3"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarchat"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/yellow"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="visible" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tagrel"
+        android:id="@+id/scrView">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewLay"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

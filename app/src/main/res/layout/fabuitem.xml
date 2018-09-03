@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/homeback">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        card_view:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/touxiangImg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="11dp"
+                android:clickable="true"
+                android:src="@drawable/sp" />
+
+            <TextView
+                android:id="@+id/userNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/touxiangImg"
+                android:textSize="@dimen/action_bar_text"
+                android:text="TextView" />
+
+
+
+            <TextView
+                android:id="@+id/neirongTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="65dp"
+                android:textColor="@color/white"
+                android:text="TextView" />
+
+
+            <ImageView
+                android:id="@+id/tagView"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/userNameText" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/zhanwaifenxiang2x" />
+
+            <TextView
+                android:id="@+id/timeview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userNameText"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/touxiangImg"
+                android:text="TextView" />
+
+            <GridView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gallery"
+                android:numColumns="4"
+                android:verticalSpacing="5dp"
+                android:horizontalSpacing="5dp"
+                android:layout_centerHorizontal="true"
+                android:stretchMode="columnWidth"
+                android:gravity="center"
+                android:layout_below="@+id/gengduo"
+                >
+            </GridView>
+
+            <ImageView
+                android:id="@+id/gengduo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/neirongTxt"
+                app:srcCompat="@drawable/gengduo" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/comment_card"
+        android:layout_below="@+id/card_view"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginBottom="5dp">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            app:srcCompat="@drawable/zhanneifenxiang2x" />
+
+        <TextView
+            android:id="@+id/fenxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/imageView2"
+            android:gravity="left"
+            android:textSize="25dp"
+            android:text="0" />
+
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/liuyan2x" />
+
+        <TextView
+            android:id="@+id/liuyan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/imageView9"
+            android:textSize="25dp"
+            android:text="0" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:gravity="right"
+            android:layout_toStartOf="@+id/dianzhan"
+            app:srcCompat="@drawable/dianzan2x" />
+
+        <TextView
+            android:id="@+id/dianzhan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp"
+            android:textSize="25dp"
+            android:text="0" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/confirmcard"
+        android:layout_below="@id/comment_card"
+        android:layout_marginTop="2dp"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:id="@+id/spRel"
+            android:background="@drawable/round_corner">
+
+            <Spinner
+                android:id="@+id/select"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/round_corner"
+            android:text="确认"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="125dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/transround"
+            android:textColor="@color/yellow"
+            android:text="取消" />
+
+        <TextView
+            android:id="@+id/confirmtxt"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/round_corner"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:visibility="invisible"
+            android:text="已完成" />
+
+        <TextView
+            android:id="@+id/unConfirmtxt"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/transround"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            android:text="已取消" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_below="@id/confirmcard"
+        android:background="@color/homeback"/>
+
+</RelativeLayout>

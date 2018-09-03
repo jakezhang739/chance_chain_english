@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:isScrollContainer="true"
+    tools:context="com.example.jake.chance_chain.HomeActivity"
+    >
+
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/textRe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark">
+
+                <EditText
+                    android:id="@+id/titletext"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/homeback"
+                    android:hint="输入标题"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:inputType="textMultiLine" />
+
+
+                <EditText
+                    android:id="@+id/neirong"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="90dp"
+                    android:background="@color/homeback"
+                    android:hint="输入内容"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:inputType="textMultiLine" />
+
+                <ImageView
+                    android:id="@+id/getPic"
+                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/neirong"
+                    android:layout_alignEnd="@+id/titletext"
+                    app:srcCompat="@drawable/xiangji" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textRe"
+                android:layout_centerHorizontal="true"
+                android:text="选择标签"
+                android:id="@+id/selectTag"
+                android:textColor="@color/white"
+                android:textSize="@dimen/activity_button_text_size"/>
+
+            <LinearLayout
+                android:id="@+id/tagid"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/selectTag"
+                android:orientation="horizontal"
+                android:background="@color/colorPrimaryDark">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/circleText1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:text="活动"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/action_bar_text"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="@drawable/transparent_circle" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/circleText2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/transparent_circle"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="约吗"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/action_bar_text" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/circleText3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:clickable="true"
+                        android:layout_centerVertical="true"
+                        android:text="任务"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/action_bar_text"
+                        android:gravity="center"
+                        android:background="@drawable/transparent_circle" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/circleText4"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:clickable="true"
+                        android:text="其他"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/action_bar_text"
+                        android:gravity="center"
+                        android:background="@drawable/transparent_circle" />
+
+                </RelativeLayout>
+
+
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tagid"
+                android:layout_marginTop="20dp"
+                android:background="@color/homeback">
+                <RelativeLayout
+                    android:id="@+id/firstedisp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@color/yellow">
+                    <EditText
+                        android:id="@+id/fufei"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="付费金额"
+                        android:layout_toLeftOf="@+id/bizhong"
+                        android:background="@color/yellow"
+                        android:textColorHint="@color/black"
+                        android:inputType="numberDecimal"
+                        />
+
+                    <Spinner
+                        android:id="@+id/bizhong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/seconddip"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/firstedisp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@color/yellow">
+                    <EditText
+                        android:id="@+id/shoufei"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="收费金额"
+                        android:layout_toLeftOf="@+id/bizhong2"
+                        android:background="@color/yellow"
+                        android:textColorHint="@color/black"
+                        android:inputType="numberDecimal"
+                        />
+
+                    <Spinner
+                        android:id="@+id/bizhong2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true" />
+                </RelativeLayout>
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/huoderenshu"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:layout_below="@+id/seconddip"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:background="@color/yellow"
+                    android:hint="可获得该机会的人数"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:inputType="number"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/huoderenshu"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/fabubtn"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="发布"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/activity_button_text_size"
+                    android:background="@color/yellow"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

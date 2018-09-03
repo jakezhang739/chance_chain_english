@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:clickable="true"
+    android:background="@color/white">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ltou"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:id="@+id/ttc"
+        android:background="@color/tiancong"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/ltou"
+        android:layout_marginStart="63dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/ltvalue"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:textColor="@color/xiaozi"
+        android:layout_alignBottom="@+id/ltou"
+        android:layout_alignStart="@+id/name"
+        android:textSize="13sp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/ltime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/ltou"
+        android:layout_marginEnd="21dp"
+        android:textColor="@color/xiaozi"
+        android:textSize="11sp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/alert"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/ltime"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/redcircle"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+</RelativeLayout>
