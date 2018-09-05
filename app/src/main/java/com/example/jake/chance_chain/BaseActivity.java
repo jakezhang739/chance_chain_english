@@ -1,6 +1,7 @@
 package com.example.jake.chance_chain;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
@@ -147,6 +148,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     private double renshu;
     private int viewpage;
     TextView alert1,alert2;
+    String priceType;
     //private HashMap<String, Double> mapping = new HashMap<>();
 
 
@@ -162,7 +164,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         sTransferUtility = helper.getTransferUtility(context);
         uId = helper.getCurrentUserName(context);
         Log.d("like wtf",uId);
-        dynamoDBMapper=AppHelper.getMapper(context);
+        dynamoDBMapper=helper.getMapper(context);
         mDatasImage = new ArrayList<String>(Arrays.asList());
         mDatasText = new ArrayList<String>(Arrays.asList());
         touUri = new ArrayList<String>(Arrays.asList());
@@ -173,7 +175,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         uriList = new ArrayList<Uri>();
         username=helper.getCurrentUserName(context);
         new Thread(LoginRunnable).start();
-        //new Thread(httpRun).start();
+        new Thread(httpRun).start();
 
 
 
@@ -203,8 +205,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             });
 
             TextView userTxt = (TextView) findViewById(R.id.wodeUser);
-            userTxt.setText(AppHelper.getCurrentUserName(context));
-            us = AppHelper.getCurrentUserName(context);
+            userTxt.setText(helper.getCurrentUserName(context));
+            us = helper.getCurrentUserName(context);
             jianText = (TextView) findViewById(R.id.wodeJian);
             shenText = (TextView) findViewById(R.id.woshengwang);
             guanText = (TextView) findViewById(R.id.guanzhuNum);
@@ -253,6 +255,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                     startActivity(intent);
                 }
             });
+            wodeGuan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BaseActivity.this,wodeGuanZHui.class);
+                    startActivity(intent);
+                }
+            });
             Log.d("username","www"+us);
             new Thread(setUpMy).start();
 
@@ -267,7 +276,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             ImageView picView = (ImageView) findViewById(R.id.getPic);
             EditText titleText = (EditText) findViewById(R.id.titletext);
             EditText Neirong = (EditText) findViewById(R.id.neirong);
-            EditText shoufei = (EditText) findViewById(R.id.shoufei);
             EditText fufei = (EditText) findViewById(R.id.fufei);
             EditText ren = (EditText) findViewById(R.id.huoderenshu);
 
@@ -359,21 +367,26 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                     R.array.currency_name, R.layout.item_select);
 
             adapter.setDropDownViewResource(R.layout.drop_down_item);
+            ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                    R.array.type, R.layout.item_select);
+
+            adapter1.setDropDownViewResource(R.layout.drop_down_item);
 
             bi1.setAdapter(adapter);
-            bi2.setAdapter(adapter);
+            bi2.setAdapter(adapter1);
             bi1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     //选择列表项的操作
-                    parent.getItemAtPosition(position);
-                    fufeiInt = position;
+                    txtFuFeiType=parent.getItemAtPosition(position).toString();
+                    txtShoufeiType=parent.getItemAtPosition(position).toString();
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                     //未选中时候的操作
-                    fufeiInt = 0;
+                    txtFuFeiType = "cc";
+                    txtFuFeiType= "cc";
                 }
             });
 
@@ -381,14 +394,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     //选择列表项的操作
-                    parent.getItemAtPosition(position);
-                    shoufeiInt=position;
+                    priceType = parent.getItemAtPosition(position).toString();
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                     //未选中时候的操作
-                    shoufeiInt=0;
+                    priceType="Reward";
 
                 }
             });
@@ -408,45 +420,31 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 @Override
                 public void onClick(View v){
                     if(fufei.getText().length()!=0) {
-                        txtFuFei = fufei.getText().toString();
+                        if(priceType.equals("Reward")) {
+                            txtFuFei = fufei.getText().toString();
+                            txtShoufei="0";
+                        }
+                        else {
+                            txtShoufei = fufei.getText().toString();
+                            txtFuFei="0";
+                        }
                     }
                     else{
                         txtFuFei="0";
-                    }
-                    switch (fufeiInt){
-                        case 0: txtFuFeiType="cc";break;
-                        case 1: txtFuFeiType="eth";break;
-                        case 2: txtFuFeiType="btc";break;
-                    }
-                    if(shoufei.getText().length()!=0) {
-                        txtShoufei = shoufei.getText().toString();
-                    }
-                    else{
                         txtShoufei="0";
                     }
-
-                    switch (shoufeiInt){
-                        case 0:txtShoufeiType = "cc";break;
-                        case 1:txtShoufeiType="eth";break;
-                        case 2:txtShoufeiType="btc";break;
-                    }
-                    if(!txtShoufei.equals("0")&&!txtFuFei.equals("0")){
-                        Toast.makeText(context,"不能同时填写收费金额和付费金额",Toast.LENGTH_LONG).show();
-
-                    }
-
-                    else if(titleText.length()==0){
-                        Log.d("wtftt"," shou "+ shoufei+" fu " + fufei);
-                        Toast.makeText(context,"请输入标题",Toast.LENGTH_LONG).show();
+                    if(titleText.length()==0){
+                        Log.d("wtftt"," shou fu " + fufei);
+                        Toast.makeText(context,"Please Enter Title",Toast.LENGTH_LONG).show();
                     }
                     else if(Neirong.length()==0){
-                        Toast.makeText(context,"请输入内容",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"Please Enter Content",Toast.LENGTH_LONG).show();
                     }
                     else if(clickFlag==0){
-                        Toast.makeText(context,"请选择标签",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"Please Choose Label",Toast.LENGTH_LONG).show();
                     }
                     else if(ren.getText().length()==0){
-                        Toast.makeText(context,"请输入该机会的人数限制",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"Please Chance Size",Toast.LENGTH_LONG).show();
                     }
                     else {
                         textTilte = titleText.getText().toString();
@@ -454,7 +452,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                         renshu=Double.parseDouble(ren.getText().toString());
                         titleText.setText("");
                         Neirong.setText("");
-                        shoufei.setText("");
                         fufei.setText("");
                         ren.setText("");
                         new Thread(uploadRunnable).start();
@@ -565,13 +562,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             if(userPoolDO.getShengWang()==null){
                 Message msg =new Message();
                 msg.what=3;
-                msg.obj="声望：0";
+                msg.obj="Reputation：0";
                 pHandler.sendMessage(msg);
             }
             else {
                 Message msg =new Message();
                 msg.what=3;
-                String str = "声望： ";
+                String str = "Reputation： ";
                 str+=userPoolDO.getShengWang();
                 msg.obj=str;
                 pHandler.sendMessage(msg);
@@ -621,10 +618,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         @Override
         public void handleMessage(Message msg){
             switch (msg.what){
-                case 1:Toast.makeText(context,"已上传发布",Toast.LENGTH_LONG).show();break;
-                case 2:Toast.makeText(context,"可用金额不足",Toast.LENGTH_LONG).show();break;
-                case 3:Toast.makeText(context,"首次发布奖励Candy100个",Toast.LENGTH_LONG).show();;break;
-                case 4:Toast.makeText(context,"今日首次发布奖励Candy10个",Toast.LENGTH_LONG).show();;break;
+                case 1:Toast.makeText(context,"Uploaded",Toast.LENGTH_LONG).show();break;
+                case 2:Toast.makeText(context,"Available funds not enough",Toast.LENGTH_LONG).show();break;
+                case 3:Toast.makeText(context,"First upload, you have gotten 100 Candy",Toast.LENGTH_LONG).show();;break;
+                case 4:Toast.makeText(context,"First upload today, you have gotten 10 Candy",Toast.LENGTH_LONG).show();;break;
             }
 
         }
@@ -646,7 +643,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 List<String> pictureSet = new ArrayList<>();
                 for (int i = 0; i < uriList.size(); i++) {
                     try {
-                        String path = AppHelper.getPath(uriList.get(i), context);
+                        String path = helper.getPath(uriList.get(i), context);
                         File file = new File(path);
                         Log.d("uyu", "" + ChanceId);
                         observer =
@@ -972,14 +969,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         public void handleMessage(Message msg){
             int selector = msg.what;
             switch (selector){
-                case 0:Toast.makeText(context,"首次登录，奖励机会Candy100个",Toast.LENGTH_LONG).show();break;
-                case 1:Toast.makeText(context,"连续一天登录，奖励机会Candy5个",Toast.LENGTH_LONG).show();break;
-                case 2:Toast.makeText(context,"连续二天登录，奖励机会Candy10个",Toast.LENGTH_LONG).show();break;
-                case 3:Toast.makeText(context,"连续三天登录，奖励机会Candy15个",Toast.LENGTH_LONG).show();break;
-                case 4:Toast.makeText(context,"连续四天登录，奖励机会Candy30个",Toast.LENGTH_LONG).show();break;
-                case 5:Toast.makeText(context,"连续五天登录，奖励机会Candy40个",Toast.LENGTH_LONG).show();break;
-                case 6:Toast.makeText(context,"连续六天登录，奖励机会Candy50个",Toast.LENGTH_LONG).show();break;
-                case 7:Toast.makeText(context,"连续七天登录，奖励声望积分一个",Toast.LENGTH_LONG).show();break;
+                case 0:Toast.makeText(context,"Fist Login，you have gotten 100 Candy",Toast.LENGTH_LONG).show();break;
+                case 1:Toast.makeText(context,"Consecutive Login in one day，you have gotten 5 Candy",Toast.LENGTH_LONG).show();break;
+                case 2:Toast.makeText(context,"Consecutive Login in two days，you have gotten 10 Candy",Toast.LENGTH_LONG).show();break;
+                case 3:Toast.makeText(context,"Consecutive Login in three days，you have gotten 15 Candy",Toast.LENGTH_LONG).show();break;
+                case 4:Toast.makeText(context,"Consecutive Login in four days，you have gotten 30 Candy",Toast.LENGTH_LONG).show();break;
+                case 5:Toast.makeText(context,"Consecutive Login in five days，you have gotten 40 Candy",Toast.LENGTH_LONG).show();break;
+                case 6:Toast.makeText(context,"Consecutive Login in six days，you have gotten 50 Candy",Toast.LENGTH_LONG).show();break;
+                case 7:Toast.makeText(context,"Consecutive Login in seven days，you have gotten 1 Reputation",Toast.LENGTH_LONG).show();break;
             }
 
         }
@@ -1028,7 +1025,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     Runnable httpRun = new Runnable() {
         @Override
         public void run() {
-            try {
+            UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class, username);
+            if (userPoolDO.getWalletAddress() == null) {
+                try {
 //                String url = "http://192.168.31.244:8000";
 //                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
 //                        new Response.Listener<String>() {
@@ -1041,39 +1040,57 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 //                    @Override
 //                    public void onErrorResponse(VolleyError error) {
 //                        Log.d("ds","That didn't work!");
+//                    192.168.0.20:8000
 //                    }
 //                });
-                URL url = new URL("http://192.168.0.20:8000/getaccount");
-                HttpURLConnection myConnection =
-                        (HttpURLConnection) url.openConnection();
-                myConnection.setRequestProperty("Content-type","application/json");
-                myConnection.setRequestMethod("POST");
-                myConnection.setDoInput(true);
-                myConnection.setDoOutput(true);
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("cd","0x5f4B72ca6740532210f9a7BEA162825099138372");
-                Log.d("json",jsonObject.toString());
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(myConnection.getOutputStream()));
-                writer.write(jsonObject.toString());
-                writer.flush();
-                myConnection.connect();
+                    String ipA;
+                    SharedPreferences ipAdr = getSharedPreferences("ipaddress",0);
+                    ipA = ipAdr.getString("address","wrong");
+                    Log.d("isuccess",ipA);
+                    if(!ipA.equals("wrong")) {
+                        URL url = new URL("http://"+ipA+"/createaccount");
+                        HttpURLConnection myConnection =
+                                (HttpURLConnection) url.openConnection();
+                        myConnection.setRequestProperty("Content-type", "application/json");
+                        myConnection.setRequestMethod("POST");
+                        myConnection.setDoInput(true);
+                        myConnection.setDoOutput(true);
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("pw", "pass");
+                        Log.d("json", jsonObject.toString());
+                        BufferedWriter writer = new BufferedWriter(
+                                new OutputStreamWriter(myConnection.getOutputStream()));
+                        writer.write(jsonObject.toString());
+                        writer.flush();
+                        myConnection.connect();
 
-                if(myConnection.getResponseCode()==200){
-                    Log.d("isucces","yes"+String.valueOf(myConnection.getResponseCode()));
-                }
-                else{
-                    Log.d("isucces","no"+String.valueOf(myConnection.getResponseCode()));
-                }
-                InputStream responseBody = myConnection.getInputStream();
+                        if (myConnection.getResponseCode() == 200) {
+                            Log.d("isucces", "yes" + String.valueOf(myConnection.getResponseCode()));
+                            InputStream responseBody = myConnection.getInputStream();
 
-                InputStreamReader responseBodyReader =
-                        new InputStreamReader(responseBody);
-                JsonReader jsonReader = new JsonReader(responseBodyReader);
-                jsonReader.beginObject();
-                while (jsonReader.hasNext()){
+                            InputStreamReader responseBodyReader =
+                                    new InputStreamReader(responseBody);
+                            JsonReader jsonReader = new JsonReader(responseBodyReader);
+                            jsonReader.beginObject();
+                            String addr = "";
+                            while (jsonReader.hasNext()) {
+                                String name = jsonReader.nextName();
+                                if (name.equals("pw")) {
+                                    Log.d("isuccess", jsonReader.nextString());
+                                } else if (name.equals("wddress")) {
+                                    addr = jsonReader.nextString();
+                                    userPoolDO.setWalletAddress(addr);
+                                    Log.d("waddress", addr);
+                                } else if (name.equals("cb")) {
+                                    Log.d("isuccess", String.valueOf(jsonReader.nextDouble()));
+                                }
 
-                }
+                            }
+                            userPoolDO.setWalletAddress(addr);
+                            dynamoDBMapper.save(userPoolDO);
+                        } else {
+                            Log.d("isucces", "no" + String.valueOf(myConnection.getResponseCode()));
+                        }
 
 //                String line;
 //                String response="";
@@ -1084,12 +1101,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
 //                Log.d("trythisshiit",response);
 
+                    }
+                } catch (Exception e) {
+                    Log.d("isucces", e.toString());
 
-            }catch (Exception e){
-                Log.d("isucces",e.toString());
+                }
 
             }
-
         }
     };
 

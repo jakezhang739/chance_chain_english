@@ -24,22 +24,22 @@
             android:layout_height="match_parent"
             android:id="@+id/jxz"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="@color/yellow"
             android:gravity="center"
             android:clickable="true"
-            android:text="进行中的机会"/>
+            android:text="Chance in Process"/>
 
         <TextView
             android:id="@+id/ywc"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="@color/yellow"
             android:layout_weight="1"
             android:gravity="center"
             android:clickable="true"
-            android:text="已确认的机会" />
+            android:text="Completed Chance" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

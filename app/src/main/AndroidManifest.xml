@@ -15,7 +15,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -61,31 +61,31 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="登录机会链" />
+            android:label="Login" />
         <activity
             android:name=".signUpActivity"
-            android:label="注册">
+            android:label="Register">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
         <activity
             android:name=".forgotPassword"
-            android:label="忘记密码">
+            android:label="Forgot Password">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
         <activity
             android:name=".confirmUser"
-            android:label="确认用户">
+            android:label="Confirm User">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".signUpActivity" />
         </activity>
         <activity
             android:name=".ContentActivity"
-            android:label="机会">
+            android:label="Chance">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -96,7 +96,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".settingActivity"
-            android:label="设置">
+            android:label="Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyActivity" />
@@ -104,7 +104,7 @@
         <activity android:name=".MessageActivity" />
         <activity
             android:name=".HisActivity"
-            android:label="他的主页">
+            android:label="His Page">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -116,7 +116,10 @@
         <activity android:name=".myWallet" />
         <activity android:name=".fabuActivity" />
         <activity android:name=".wodejihui" />
-        <activity android:name=".wodeGuanZHui"></activity>
+        <activity android:name=".wodeGuanZHui" />
+        <activity android:name=".shareContent" />
+        <activity android:name=".exchange" />
+        <activity android:name=".hisfollow"></activity>
     </application>
 
 </manifest>

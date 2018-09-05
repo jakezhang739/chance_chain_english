@@ -19,9 +19,9 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="98dp"
-            android:text="恭喜！\n你已获得机会"
+            android:text="Congratulations！\nYou have gotten this Chance"
             android:textColor="@color/ziyanse"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -31,11 +31,12 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="64dp"
-            android:text="我的机会"
+            android:text="Go to my chance"
             android:textColor="@color/xiaoziyanse"
             android:clickable="true"
             android:onClick="gotomyChance"
-            android:textSize="20sp" />
+            android:textStyle="italic"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/textView5"

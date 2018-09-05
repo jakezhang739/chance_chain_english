@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="输入以下信息完成注册"
+        android:text="Enter following message to complete registration"
         android:textColor="@color/yellow"
         android:id="@+id/textViewRegMessage"
         android:layout_alignParentTop="true"
@@ -44,7 +44,7 @@
         android:textColor="@color/yellow"
         android:layout_below="@+id/textViewRegUserIdLabel"
         android:layout_centerHorizontal="true"
-        android:hint="用户名"
+        android:hint="Username"
         android:text=""
         android:textColorHint="@color/yellow"
         android:inputType="textPersonName"/>
@@ -79,7 +79,7 @@
         android:id="@+id/editTextRegUserPassword"
         android:layout_below="@+id/textViewRegUserPasswordLabel"
         android:layout_centerHorizontal="true"
-        android:hint="密码"
+        android:hint="Password"
         android:textColorHint="@color/yellow"
         android:inputType="textPassword"
         android:backgroundTint="@color/yellow"
@@ -114,7 +114,7 @@
         android:id="@+id/editTextRegGivenName"
         android:layout_below="@+id/textViewRegGivenNameLabel"
         android:layout_centerHorizontal="true"
-        android:hint="请再次输入密码"
+        android:hint="Please enter password again"
         android:inputType="textPassword"
         android:textColorHint="@color/yellow"
         android:backgroundTint="@color/yellow"
@@ -149,7 +149,7 @@
         android:id="@+id/editTextRegEmail"
         android:layout_below="@id/textViewRegEmailLabel"
         android:layout_centerHorizontal="true"
-        android:hint="电子邮箱"
+        android:hint="Email"
         android:textColor="@color/yellow"
         android:textColorHint="@color/yellow"
         android:backgroundTint="@color/yellow"
@@ -176,41 +176,17 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textViewRegEmailMessage" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_text_padding"
-        android:paddingRight="@dimen/activity_text_padding"
-        android:id="@+id/editTextRegPhone"
-        android:layout_below="@id/textViewRegPhoneLabel"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/yellow"
-        android:textColor="@color/yellow"
-        android:hint="电话号码"
-        android:textColorHint="@color/yellow"
-        android:inputType="phone"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/activity_text_padding"
-        android:text=" "
-        android:textColor="@color/alert"
-        android:id="@+id/textViewRegPhoneMessage"
-        android:layout_below="@id/editTextRegPhone"
-        android:layout_centerHorizontal="true" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_intra_group_separation"
-        android:layout_below="@id/textViewRegPhoneMessage"
+        android:layout_below="@id/textViewRegPhoneLabel"
         android:id="@+id/space_about_2" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_button_height"
-        android:text="完成注册"
+        android:text="Complete registration"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="@dimen/activity_button_text_size"

@@ -112,6 +112,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="16dp"
+                android:clickable="true"
                 app:srcCompat="@drawable/zhanneifenxiang2x" />
 
             <TextView
@@ -131,6 +132,7 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
+            android:clickable="true"
             app:srcCompat="@drawable/liuyan2x" />
 
         <TextView
@@ -148,6 +150,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:gravity="right"
+            android:clickable="true"
             android:layout_toStartOf="@+id/dianzhan"
             app:srcCompat="@drawable/dianzan2x" />
         <ImageView
@@ -157,6 +160,7 @@
             android:layout_alignParentTop="true"
             android:tint="@color/yellow"
             android:gravity="right"
+            android:clickable="true"
             android:visibility="invisible"
             android:layout_toStartOf="@+id/dianzhan"
             app:srcCompat="@drawable/dianzan2x" />

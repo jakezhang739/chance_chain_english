@@ -19,7 +19,7 @@
             android:layout_marginLeft="150dp"
             android:layout_alignParentStart="true"
             android:layout_below="@id/resumeInp"
-            android:text="修改信息" />
+            android:text="Change infomation" />
 
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -37,7 +37,7 @@
             android:layout_alignStart="@+id/touxiang"
             android:layout_below="@+id/touxiang"
             android:layout_marginTop="89dp"
-            android:text="昵称" />
+            android:text="Nicknam" />
 
         <TextView
             android:id="@+id/nameText"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="119dp"
-            android:text="姓名" />
+            android:text="Name" />
 
         <TextView
             android:id="@+id/chanceId"
@@ -54,7 +54,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="149dp"
-            android:text="机会号" />
+            android:text="Chance ID" />
         <TextView
             android:id="@+id/walletAddress"
             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="179dp"
-            android:text="钱包地址" />
+            android:text="Wallet Address" />
 
         <TextView
             android:id="@+id/sexText"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="209dp"
-            android:text="性别" />
+            android:text="Gender" />
 
         <TextView
             android:id="@+id/careerTxt"
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="239dp"
-            android:text="职业" />
+            android:text="Career" />
 
         <TextView
             android:id="@+id/resumeTxt"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="269dp"
-            android:text="个人简介" />
+            android:text="Resume" />
 
         <TextView
             android:id="@+id/resumeInp"

@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="82dp"
+        android:layout_marginEnd="102dp"
         app:srcCompat="@drawable/yiguanzhu" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="23dp"
-        android:text="已关注"
+        android:text="Followed"
         android:textColor="@color/yellow"
         android:textSize="17sp" />
 </RelativeLayout>

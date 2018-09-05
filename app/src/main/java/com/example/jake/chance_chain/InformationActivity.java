@@ -23,6 +23,7 @@ public class InformationActivity extends AppCompatActivity {
     private ImageView toImage;
     Context context;
     private String uId;
+    AppHelper helper = new AppHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class InformationActivity extends AppCompatActivity {
         Button changeBtn = (Button) findViewById(R.id.changeBtn);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         context=getApplication().getApplicationContext();
-        uId = AppHelper.getCurrentUserName(context);
+        uId = helper.getCurrentUserName(context);
         nickView = (TextView) findViewById(R.id.usridInp);
         nameView = (TextView) findViewById(R.id.nameInp);
         chanceView = (TextView) findViewById(R.id.chanceInp);
@@ -41,7 +42,7 @@ public class InformationActivity extends AppCompatActivity {
         resumeView = (TextView) findViewById(R.id.resumeInp);
         toImage = (ImageView) findViewById(R.id.touxiang);
 
-        dynamoDBMapper=AppHelper.getMapper(context);
+        dynamoDBMapper=helper.getMapper(context);
 
 
         Log.d("wtf","uu"+dynamoDBMapper.toString());

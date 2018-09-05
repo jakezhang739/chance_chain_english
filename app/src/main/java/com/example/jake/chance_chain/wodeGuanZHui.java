@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,11 +21,11 @@ import com.squareup.picasso.Picasso;
 public class wodeGuanZHui extends AppCompatActivity {
 
     DynamoDBMapper mapper;
-    AppHelper helper = new AppHelper();
     Context context;
     LinearLayout beijing;
-    String myUsr;
     ProgressBar progressBar;
+    String myUsr;
+    AppHelper helper = new AppHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +34,15 @@ public class wodeGuanZHui extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(R.layout.chatbar);
+        context = getApplicationContext().getApplicationContext();
+        beijing = (LinearLayout) findViewById(R.id.woguanzhu);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         TextView titlteText = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        titlteText.setText("我的关注");
+        titlteText.setText("My follow");
         progressBar = (ProgressBar) findViewById(R.id.progressBarchat);
         myUsr = helper.getCurrentUserName(context);
         mapper = helper.getMapper(context);
-        new Thread(guanRun).run();
+        new Thread(guanRun).start();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,16 +68,25 @@ public class wodeGuanZHui extends AppCompatActivity {
     Runnable guanRun = new Runnable() {
         @Override
         public void run() {
-            UserPoolDO userPoolDO = mapper.load(UserPoolDO.class,myUsr);
-            Message msg = new Message();
-            for(int i =0; i <userPoolDO.getGuanZhu().size();i++){
-                msg.what=1;
-                msg.obj=userPoolDO.getGuanZhu().get(i);
+            UserPoolDO userPoolDO = mapper.load(UserPoolDO.class, myUsr);
+            Log.d("wtf",userPoolDO.getGuanZhu().toString());
+            if (userPoolDO.getGuanZhu() == null) {
+                Message msg = new Message();
+                msg.what = 2;
                 handler.sendMessage(msg);
-            }
-            msg.what=2;
-            handler.sendMessage(msg);
+            } else {
+                Log.d("wtf",userPoolDO.getGuanZhu().toString());
+                for (int i = 0; i <userPoolDO.getGuanZhu().size(); i++) {
+                    Message msg = new Message();
+                    msg.what = 1;
+                    msg.obj = userPoolDO.getGuanZhu().get(i);
+                    handler.sendMessage(msg);
+                }
+                Message msg = new Message();
+                msg.what = 2;
+                handler.sendMessage(msg);
 
+            }
         }
     };
 
@@ -95,5 +107,6 @@ public class wodeGuanZHui extends AppCompatActivity {
 
             }
         });
+        beijing.addView(layout1);
     }
 }

@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 public class myWallet extends AppCompatActivity {
 
     Context context;
-    TextView currency,available;
+    TextView currency,available,eth,ccb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class myWallet extends AppCompatActivity {
         actionBar.setCustomView(R.layout.chatbar);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        title.setText("我的钱包");
+        title.setText("My Wallet");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,13 +38,16 @@ public class myWallet extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        TextView guanli = (TextView) findViewById(R.id.textView11);
-        currency = (TextView) findViewById(R.id.textView12);
-        available = (TextView) findViewById(R.id.textView16);
-        guanli.setOnClickListener(new View.OnClickListener() {
+        currency = (TextView) findViewById(R.id.totalFunds);
+        available = (TextView) findViewById(R.id.AvailFunds);
+        eth = (TextView) findViewById(R.id.totaleth);
+        ccb = (TextView) findViewById(R.id.totalbi);
+        Button exBtn = (Button) findViewById(R.id.button6);
+        exBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(myWallet.this,exchange.class);
+                startActivity(intent);
             }
         });
 
@@ -52,10 +56,11 @@ public class myWallet extends AppCompatActivity {
     Handler setupHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == 1) {
-                currency.setText("总资产: " + msg.obj.toString()+" cc");
-            } else {
-                available.setText("可用资产 "+msg.obj.toString()+" cc");
+            switch (msg.what){
+                case 1:currency.setText("Total Funds: " + msg.obj.toString());break;
+                case 2:available.setText("Available Funds "+msg.obj.toString());break;
+                case 3:ccb.setText("Total Funds: " + msg.obj.toString());break;
+                case 4:eth.setText("Total Funds: " + msg.obj.toString());break;
             }
         }
     };
@@ -86,6 +91,14 @@ public class myWallet extends AppCompatActivity {
             }
             setupHandler.sendMessage(msg1);
 
+            Message msg2 = new Message();
+            msg2.what=3;
+            msg2.obj = userPoolDO.getChancecoin();
+            setupHandler.sendMessage(msg2);
+            Message msg3 = new Message();
+            msg3.what = 4;
+            msg3.obj = userPoolDO.getEtherum();
+            setupHandler.sendMessage(msg3);
 
         }
     };

@@ -16,19 +16,23 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView2"
         android:textColor="@color/yellow"
+        android:textSize="25sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="31dp"
-        android:text="确认您的帐号" />
+        android:text="Confirm your account" />
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="79dp"
+        android:textSize="15sp"
         android:textColor="@color/yellow"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="请输入你的用户名和我们向您提供的验证码以完成注册" />
+        android:text="Please enter your username and the verification code we provided to complete your account" />
 
     <EditText
         android:id="@+id/editText"
@@ -39,7 +43,8 @@
         android:layout_marginTop="132dp"
         android:backgroundTint="@color/yellow"
         android:ems="10"
-        android:hint="用户名"
+        android:hint="Username"
+        android:textSize="20sp"
         android:textColor="@color/yellow"
         android:inputType="text"
         android:textColorHint="@color/yellow" />
@@ -50,11 +55,12 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:ems="10"
+        android:textSize="20sp"
         android:textColor="@color/yellow"
         android:backgroundTint="@color/yellow"
         android:inputType="textPassword"
         android:textColorHint="@color/yellow"
-        android:hint="验证码" />
+        android:hint="@string/verCode" />
 
     <Button
         android:id="@+id/button2"
@@ -65,5 +71,5 @@
         android:layout_marginBottom="114dp"
         android:background="@drawable/button_selector"
         android:textColor="@color/black"
-        android:text="完成注册" />
+        android:text="Complete Registration" />
 </RelativeLayout>

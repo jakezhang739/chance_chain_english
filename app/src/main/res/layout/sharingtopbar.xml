@@ -11,9 +11,9 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="15dp"
-        android:text="取消"
+        android:text="Cancel"
         android:textColor="@color/yellow"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:clickable="true"/>
 
     <Button
@@ -26,18 +26,18 @@
         android:layout_marginEnd="15dp"
         android:background="@color/yellow"
         android:textColor="@color/black"
-        android:text="转发"
-        android:textSize="20sp"/>
+        android:text="Share"
+        android:textSize="13sp"/>
 
     <TextView
         android:id="@+id/sharingTitle"
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center_vertical"
         android:gravity="center_horizontal"
-        android:text="转发机会"
+        android:text="Share Chance"
         android:textColor="@color/yellow"
-        android:textSize="25sp"/>
+        android:textSize="20sp"/>
 
 </RelativeLayout>

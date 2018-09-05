@@ -7,106 +7,151 @@
     android:layout_height="match_parent"
     tools:context=".myWallet">
 
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/qianbaobeijing" />
-
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_below="@id/imageView14"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/qianbaobeijing" />
-
-    <TextView
-        android:id="@+id/textView9"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="126dp"
+        android:id="@+id/jihuicandy"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="机会链钱包"
-        android:textSize="20sp"
-        android:textColor="@color/black" />
+        android:layout_alignParentTop="true">
 
-    <TextView
-        android:id="@+id/textView11"
+        <ImageView
+            android:id="@+id/jihuiImage"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/jihuilian" />
+
+        <TextView
+            android:id="@+id/ccCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/AvailFunds"
+            android:text="Candy"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/totalFunds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/AvailFunds"
+            android:layout_marginBottom="13dp"
+            android:text="Total Asset: 0"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/AvailFunds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="40dp"
+            android:text="Available Funds: 0"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/jihuibi"
+        android:layout_height="126dp"
+        android:layout_below="@id/jihuicandy"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/biImage"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/qitahuobi" />
+
+        <TextView
+            android:id="@+id/bichance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:text="ChanceChain Coin"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/totalbi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bichance"
+            android:layout_centerVertical="true"
+            android:text="Total Asset: 0"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/ethqian"
+        android:layout_height="126dp"
+        android:layout_below="@id/jihuibi"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/ethiamge"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/tangguo" />
+
+        <TextView
+            android:id="@+id/ethchance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:text="Ethernum"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/totaleth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/ethchance"
+            android:layout_centerVertical="true"
+            android:text="Total Asset: 0"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView14"
-        android:layout_marginTop="135dp"
-        android:text="管理钱包"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:background="@color/yellow"
+        android:text="Exhange" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:layout_alignBottom="@+id/textView11"
-        android:layout_alignStart="@+id/textView9"
-        android:text="总资产: 0" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView9"
-        android:layout_marginTop="215dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:text="其它货币钱包" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textView15"
-        android:layout_marginEnd="42dp"
-        android:text="管理钱包"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView9"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="320dp"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-    />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView11"
-        android:layout_marginBottom="-135dp"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:layout_toEndOf="@+id/textView15"
-        android:text="可用资产： 0" />
-
-/>
 
 </RelativeLayout>

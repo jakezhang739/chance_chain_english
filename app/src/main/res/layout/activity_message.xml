@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imageView4"
             android:gravity="center_vertical"
-            android:text="机会秘书"
+            android:text="Chance Secretary"
             android:textSize="25sp" />
 
         <ImageView
@@ -71,7 +71,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imageView11"
             android:gravity="center_vertical"
-            android:text="机会广播"
+            android:text="Chance Broadcast"
             android:textSize="25sp" />
 
         <ImageView
@@ -130,7 +130,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imageView12"
             android:gravity="center_vertical"
-            android:text="我的私信"
+            android:text="Message"
             android:textSize="25sp" />
 
 
@@ -186,7 +186,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imageView13"
             android:gravity="center_vertical"
-            android:text="我的评价"
+            android:text="My Review"
             android:textSize="25sp" />
 
         <TextView

@@ -41,7 +41,7 @@ public class confirmUser extends AppCompatActivity implements AWSLoginHandler{
 
     @Override
     public void onRegisterConfirmed() {
-        Toast.makeText(confirmUser.this, "认证成功", Toast.LENGTH_LONG).show();
+        Toast.makeText(confirmUser.this, "Successful Confirmed", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(confirmUser.this, LoginActivity.class);
         new Thread(CreateNewUser).start();
         startActivity(intent);

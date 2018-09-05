@@ -40,6 +40,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
 public class ContentActivity extends AppCompatActivity {
     private chanceClass chanceC;
     DynamoDBMapper dynamoDBMapper;
@@ -70,7 +71,7 @@ public class ContentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_content);
         context = getApplication().getApplicationContext();
         curUsername = helper.getCurrentUserName(context);
-        dynamoDBMapper=AppHelper.getMapper(context);
+        dynamoDBMapper=helper.getMapper(context);
         LinearLayout imgLay = (LinearLayout) findViewById(R.id.imgLayout);
         chanceC = (chanceClass) getIntent().getParcelableExtra("cc");
         shareNum = chanceC.shared;
@@ -82,14 +83,14 @@ public class ContentActivity extends AppCompatActivity {
         ftype = chanceC.fType;
         jineTxt = (TextView) findViewById(R.id.jine);
         renshu = (TextView) findViewById(R.id.renshu);
-        if(!shoufei.equals("0")) {
-            jineTxt.setText("收费金额： " + shoufei + stype);
+        if(chanceC.shoufei==0.0) {
+            jineTxt.setText("Reward： " + fufei + " "+stype);
         }
-        if(!fufei.equals("0")) {
-            jineTxt.setText("付费金额： " + fufei + ftype);
+        else{
+            jineTxt.setText("Toll： " + shoufei + " "+stype);
         }
         int rNum = (int) chanceC.renshu;
-        renshu.setText("还剩"+String.valueOf(rNum)+"人能获得该机会");
+        renshu.setText(" Chance left: "+String.valueOf(rNum));
         touImg = (ImageView) findViewById(R.id.contentTou);
         uName = (TextView) findViewById(R.id.contentUid);
         uTime = (TextView) findViewById(R.id.contentTime);
@@ -114,7 +115,7 @@ public class ContentActivity extends AppCompatActivity {
         uName.setText(chanceC.userid);
         Log.d("uptime",String.valueOf(chanceC.uploadTime));
 
-        uTime.setText(displayTime(String.valueOf((long) chanceC.uploadTime)));
+        uTime.setText(helper.displayTime(String.valueOf((long) chanceC.uploadTime)));
         nText.setText(chanceC.txtNeirong);
         if(chanceC.imageSet.size()!=0){
             strList = chanceC.imageSet;
@@ -153,7 +154,6 @@ public class ContentActivity extends AppCompatActivity {
         fLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(shareThread).start();
                 Intent intent = new Intent(ContentActivity.this,sharingActivity.class);
                 intent.putExtra("link",chanceC);
                 startActivity(intent);
@@ -218,12 +218,12 @@ public class ContentActivity extends AppCompatActivity {
 
         if(chanceC.gottenId.contains(curUsername)){
             getButton.setVisibility(View.INVISIBLE);
-            showText.setText("您已获得该机会");
+            showText.setText("Chance already taken");
             showText.setVisibility(View.VISIBLE);
         }
         else if(chanceC.renshu<1){
             getButton.setVisibility(View.INVISIBLE);
-            showText.setText("机会已被拿完");
+            showText.setText("No chance left");
             showText.setVisibility(View.VISIBLE);
         }
         else {
@@ -358,28 +358,6 @@ public class ContentActivity extends AppCompatActivity {
 
     };
 
-    Runnable shareThread = new Runnable() {
-        @Override
-        public void run() {
-            ChanceWithValueDO cc = dynamoDBMapper.load(ChanceWithValueDO.class,chanceC.cId);
-            int cS;
-            if(cc.getShared()!=null) {
-                cS = cc.getShared().intValue()+1;
-                cc.setShared((double) cS);
-            }
-            else {
-                cS = 1;
-                cc.setShared((double) cS);
-            }
-            Message msg = new Message();
-            chanceC.shared=cS;
-            msg.what=1;
-            msg.obj=cS;
-            handler.sendMessage(msg);
-            dynamoDBMapper.save(cc);
-
-        }
-    };
 
     Runnable liuThread = new Runnable() {
         @Override
@@ -467,35 +445,5 @@ public class ContentActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String displayTime(String thatTime){
-        Date currentTime = Calendar.getInstance().getTime();
-        String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-        int hr1,hr2,min1,min2;
-        String sameday1,sameday2;
-        sameday1=thatTime.substring(0,8);
-        sameday2=dateString.substring(0,8);
-        hr1=Integer.parseInt(thatTime.substring(8,10));
-        hr2=Integer.parseInt(dateString.substring(8,10));
-        min1=Integer.parseInt(thatTime.substring(10,12));
-        min2=Integer.parseInt(dateString.substring(10,12));
-        if(!sameday1.equals(sameday2)){
-            Log.d("same ",sameday1 + " " + sameday2);
-            return sameday1.substring(0,4)+"年"+sameday1.substring(4,6)+'月'+sameday1.substring(6,8)+"号";
-        }
-        else if(hr1!=hr2){
-            Log.d("hr ",hr1+" "+hr2);
-            return String.valueOf(hr2-hr1)+"小时前";
-        }
-        else if(min1!=min2){
-            Log.d("min ", min1+" "+min2);
-            return String.valueOf(min2-min1)+"分钟前";
-        }
-        else{
-            return "刚刚";
-        }
-
-
-
-    }
 
 }

@@ -179,6 +179,18 @@
             android:layout_toStartOf="@+id/dianzhan"
             app:srcCompat="@drawable/dianzan2x" />
 
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:tint="@color/yellow"
+            android:gravity="right"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:layout_toStartOf="@+id/dianzhan"
+            app:srcCompat="@drawable/dianzan2x" />
+
         <TextView
             android:id="@+id/dianzhan"
             android:layout_width="wrap_content"

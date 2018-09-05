@@ -30,7 +30,7 @@ public class MessageActivity extends AppCompatActivity {
         RelativeLayout sixin = (RelativeLayout) findViewById(R.id.merel3);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        title.setText("我的消息");
+        title.setText("My Message");
         TextView unreadTag = (TextView) findViewById(R.id.sixinRead);
         if(unread>0){
             unreadTag.setVisibility(View.VISIBLE);

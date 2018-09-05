@@ -18,7 +18,7 @@
         android:layout_height="35dp"
         android:gravity="center_vertical"
         android:textSize="25sp"
-        android:text="个人信息" />
+        android:text="My Information" />
 
         <ImageView
             android:id="@+id/more1"
@@ -48,7 +48,7 @@
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:layout_alignParentStart="true"
-            android:text="偏好设置" />
+            android:text="Personalize" />
 
         <ImageView
             android:id="@+id/more2"
@@ -86,7 +86,7 @@
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:layout_alignParentStart="true"
-            android:text="清除缓存" />
+            android:text="Empty cache" />
 
 
         <TextView
@@ -117,7 +117,7 @@
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:layout_alignParentStart="true"
-            android:text="夜间模式" />
+            android:text="Night Mode" />
 
         <TextView
             android:layout_width="match_parent"
@@ -148,7 +148,7 @@
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:layout_alignParentStart="true"
-            android:text="账号安全" />
+            android:text="Account Security" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="3dp"
@@ -178,7 +178,7 @@
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:layout_alignParentStart="true"
-            android:text="隐私" />
+            android:text="Privacy" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="3dp"
@@ -208,7 +208,7 @@
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:layout_alignParentStart="true"
-            android:text="语言" />
+            android:text="Language" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="3dp"
@@ -217,77 +217,41 @@
             android:background="@color/homeback"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rel8"
-        android:clickable="true"
-        android:layout_below="@+id/rel7">
-        <ImageView
-            android:id="@+id/more8"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/guanyuwomen"
-            android:layout_marginEnd="17dp"
-            app:srcCompat="@drawable/more" />
-        <TextView
-            android:id="@+id/guanyuwomen"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:gravity="center_vertical"
-            android:textSize="25sp"
-            android:layout_alignParentStart="true"
-            android:text="关于我们" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@+id/guanyuwomen"
-            android:id="@+id/shezhiSpace8"
-            android:background="@color/homeback"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rel9"
-        android:clickable="true"
-        android:layout_below="@+id/rel8">
-        <ImageView
-            android:id="@+id/more9"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="17dp"
-            android:layout_alignBottom="@+id/xiaozhushou"
-            app:srcCompat="@drawable/more" />
-        <TextView
-            android:id="@+id/xiaozhushou"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:gravity="center_vertical"
-            android:textSize="25sp"
-            android:layout_alignParentStart="true"
-            android:text="小助手" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@+id/xiaozhushou"
-            android:id="@+id/shezhiSpace9"
-            android:background="@color/homeback"/>
-
-    </RelativeLayout>
-
 
     <Button
         android:id="@+id/logoutBtn"
-        android:layout_width="match_parent"
+        android:layout_width="296dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="81dp"
+        android:layout_marginBottom="41dp"
         android:background="@color/warning"
         android:text="退出"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="181dp"
+        android:background="@color/homeback"
+        android:textSize="20sp"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:hint="IP address" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="167dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="111dp"
+        android:background="@color/yellow"
+        android:text="Confirm IP address"
+        android:textColor="@color/black" />
 </RelativeLayout>

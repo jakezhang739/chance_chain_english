@@ -36,12 +36,14 @@
     <string name="finishRegister">Complete Registration</string>
 
 
-
-
     <string-array name="currency_name">
         <item>cc</item>
         <item>eth</item>
-        <item>btc</item>
+    </string-array>
+
+    <string-array name="type">
+        <item>Reward</item>
+        <item>Toll</item>
     </string-array>
 
 

@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.content.ContentUris;
 
@@ -37,38 +38,38 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import java.net.URISyntaxException;
 import java.util.*;
 
-import static com.amazonaws.regions.Regions.US_EAST_1;
+import  static com.amazonaws.regions.Regions.US_EAST_1;
 
 
 public class AppHelper {
-    private static final String TAG = "AppHelper";
+    private  final String TAG = "AppHelper";
 
-    public static final String fbId = "1007699982736676";
+    public  final String fbId = "1007699982736676";
 
-    private static AppHelper appHelper;
-    private static CognitoUserPool userPool;
-    private static CognitoUser user;
-    private static AmazonS3Client sS3Client;
-    private static TransferUtility sTransferUtility;
-    public static final String BUCKET_NAME = "chance-userfiles-mobilehub-653619147";
-    private static CognitoUserAttributes userAttributes;
-    private static final String userPoolId = "us-east-1:8ea6ccf7-195c-4c3f-a228-dce153794dbd";
+    private  AppHelper appHelper;
+    private  CognitoUserPool userPool;
+    private  CognitoUser user;
+    private  AmazonS3Client sS3Client;
+    private  TransferUtility sTransferUtility;
+    public  final String BUCKET_NAME = "chance-userfiles-mobilehub-653619147";
+    private  CognitoUserAttributes userAttributes;
+    private  final String userPoolId = "us-east-1:8ea6ccf7-195c-4c3f-a228-dce153794dbd";
 
-    private static final String clientId = "1topa7t6d5nspmikm8tpbdp7bt";
+    private  final String clientId = "1topa7t6d5nspmikm8tpbdp7bt";
 
-    private static final String clientSecret = "18ijf5nnejosukdfgu2u0208ko63opah0c804ef88thq89pusq58";
+    private  final String clientSecret = "18ijf5nnejosukdfgu2u0208ko63opah0c804ef88thq89pusq58";
 
-    private static final Regions cognitoRegion = US_EAST_1;
-    public static final String BUCKET_REGION = "us-east-1";
-    private static CognitoUserSession currSession;
-    private static CognitoUserDetails userDetails;
+    private  final Regions cognitoRegion = US_EAST_1;
+    public  final String BUCKET_REGION = "us-east-1";
+    private  CognitoUserSession currSession;
+    private  CognitoUserDetails userDetails;
     public int number=0;
 
 
-    private static CognitoCachingCredentialsProvider sCredProvider;
-    private static final Map userMap = new HashMap();
+    private  CognitoCachingCredentialsProvider sCredProvider;
+    private  final Map userMap = new HashMap();
 
-    private static CognitoCachingCredentialsProvider getCredProvider(Context context) {
+    private  CognitoCachingCredentialsProvider getCredProvider(Context context) {
         if (sCredProvider == null) {
             sCredProvider = new CognitoCachingCredentialsProvider(
                     context.getApplicationContext(),
@@ -84,7 +85,7 @@ public class AppHelper {
         return number;
     }
 
-    public static String getCurrentUserName(Context context) {
+    public  String getCurrentUserName(Context context) {
 
         if (appHelper == null) {
             appHelper = new AppHelper();
@@ -98,7 +99,7 @@ public class AppHelper {
 
 
 
-    public static CognitoUserPool getCurrentUserPool(Context context) {
+    public  CognitoUserPool getCurrentUserPool(Context context) {
 
         if (appHelper == null) {
             appHelper = new AppHelper();
@@ -108,7 +109,7 @@ public class AppHelper {
 
     }
 
-    public static AmazonS3Client getS3Client(Context context) {
+    public  AmazonS3Client getS3Client(Context context) {
         if (sS3Client == null) {
             sS3Client = new AmazonS3Client(getCredProvider(context.getApplicationContext()));
             sS3Client.setRegion(Region.getRegion(Regions.fromName(BUCKET_REGION)));
@@ -128,7 +129,7 @@ public class AppHelper {
         return sTransferUtility;
     }
 
-    public static DynamoDBMapper getMapper(Context context){
+    public  DynamoDBMapper getMapper(Context context){
         CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(context, userPoolId, cognitoRegion);
         AmazonDynamoDBClient dbclient = new AmazonDynamoDBClient(credentialsProvider);
         DynamoDBMapper mapper = DynamoDBMapper.builder()
@@ -138,7 +139,7 @@ public class AppHelper {
         return mapper;
     }
 
-    public static AmazonDynamoDBClient getClient(Context context){
+    public  AmazonDynamoDBClient getClient(Context context){
         CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(context, userPoolId, cognitoRegion);
         AmazonDynamoDBClient dbclient = new AmazonDynamoDBClient(credentialsProvider);
         return dbclient;
@@ -162,7 +163,7 @@ public class AppHelper {
 
 
     @SuppressLint("NewApi")
-    public static String getPath(Uri uri,Context context) throws URISyntaxException {
+    public  String getPath(Uri uri,Context context) throws URISyntaxException {
         final boolean needToCheckUri = Build.VERSION.SDK_INT >= 19;
         String selection = null;
         String[] selectionArgs = null;
@@ -214,7 +215,7 @@ public class AppHelper {
         return null;
     }
 
-    public static boolean isExternalStorageDocument(Uri uri) {
+    public  boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
@@ -222,7 +223,7 @@ public class AppHelper {
      * @param uri The Uri to check.
      * @return Whether the Uri authority is DownloadsProvider.
      */
-    public static boolean isDownloadsDocument(Uri uri) {
+    public  boolean isDownloadsDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
@@ -230,8 +231,39 @@ public class AppHelper {
      * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
      */
-    public static boolean isMediaDocument(Uri uri) {
+    public  boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    public  String displayTime(String thatTime){
+        Date currentTime = Calendar.getInstance().getTime();
+        String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+        int hr1,hr2,min1,min2;
+        String sameday1,sameday2;
+        sameday1=thatTime.substring(0,8);
+        sameday2=dateString.substring(0,8);
+        hr1=Integer.parseInt(thatTime.substring(8,10));
+        hr2=Integer.parseInt(dateString.substring(8,10));
+        min1=Integer.parseInt(thatTime.substring(10,12));
+        min2=Integer.parseInt(dateString.substring(10,12));
+        if(!sameday1.equals(sameday2)){
+            Log.d("same ",sameday1 + " " + sameday2);
+            return sameday1.substring(0,4)+"/"+sameday1.substring(4,6)+'/'+sameday1.substring(6,8);
+        }
+        else if(hr1!=hr2){
+            Log.d("hr ",hr1+" "+hr2);
+            return String.valueOf(hr2-hr1)+"hours ago";
+        }
+        else if(min1!=min2){
+            Log.d("min ", min1+" "+min2);
+            return String.valueOf(min2-min1)+"minutes ago";
+        }
+        else{
+            return "刚刚";
+        }
+
+
+
     }
 
 

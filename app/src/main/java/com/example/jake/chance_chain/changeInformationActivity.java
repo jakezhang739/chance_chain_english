@@ -58,7 +58,7 @@ public class changeInformationActivity extends AppCompatActivity {
     String pFlag="";
     TransferObserver observer;
     TransferListener listener;
-    AppHelper helper;
+    AppHelper helper=new AppHelper();
     private String uId,nickName,name,chance,wallet,gender,career,resume;
     DynamoDBMapper dynamoDBMapper;
     @Override
@@ -67,9 +67,8 @@ public class changeInformationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_information);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         context=getApplication().getApplicationContext();
-        helper = new AppHelper();
         sTransferUtility = helper.getTransferUtility(context);
-        uId = AppHelper.getCurrentUserName(context);
+        uId = helper.getCurrentUserName(context);
         Button finishBtn = (Button) findViewById(R.id.finishBtn);
         cameraBtn = (Button) findViewById(R.id.touBtn);
         picBtn = (Button) findViewById(R.id.touBtn2);
@@ -80,7 +79,7 @@ public class changeInformationActivity extends AppCompatActivity {
         genderView = (EditText) findViewById(R.id.inpSex);
         careerView = (EditText) findViewById(R.id.inpCareer);
         resumeView = (EditText) findViewById(R.id.inpRes);
-        dynamoDBMapper=AppHelper.getMapper(context);
+        dynamoDBMapper=helper.getMapper(context);
         Log.d("see text",""+nickName);
         finishBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -193,7 +192,7 @@ public class changeInformationActivity extends AppCompatActivity {
             return;
         }
         File file = new File(filePath);
-        TransferObserver observer = sTransferUtility.upload(helper.BUCKET_NAME, AppHelper.getCurrentUserName(context)+".png",
+        TransferObserver observer = sTransferUtility.upload(helper.BUCKET_NAME, helper.getCurrentUserName(context)+".png",
                 file);
         /*
          * Note that usually we set the transfer listener after initializing the
@@ -248,10 +247,10 @@ public class changeInformationActivity extends AppCompatActivity {
         final UserPoolDO userInf = new UserPoolDO();
         if(pFlag=="yes") {
             try {
-                path = AppHelper.getPath(galUri, context);
+                path = helper.getPath(galUri, context);
                 File file = new File(path);
                 observer =
-                        sTransferUtility.upload(helper.BUCKET_NAME, AppHelper.getCurrentUserName(context) + ".png", file);
+                        sTransferUtility.upload(helper.BUCKET_NAME, helper.getCurrentUserName(context) + ".png", file);
                 observer.setTransferListener(new TransferListener() {
                     @Override
                     public void onError(int id, Exception e) {
@@ -269,7 +268,7 @@ public class changeInformationActivity extends AppCompatActivity {
                         Log.d("onState", "onStateChanged: " + id + ", " + newState);
                     }
                 });
-                userInf.setProfilePic("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+AppHelper.getCurrentUserName(context)+".png");
+                userInf.setProfilePic("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+helper.getCurrentUserName(context)+".png");
                 //beginUpload(path);
                 Log.d("gaodshit", "upload" + file.getName());
             } catch (URISyntaxException e) {

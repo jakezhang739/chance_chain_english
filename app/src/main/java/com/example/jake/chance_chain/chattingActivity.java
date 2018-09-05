@@ -42,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class chattingActivity extends AppCompatActivity {
     LinearLayout beijing;
     EditText getInput;
@@ -135,7 +136,7 @@ public class chattingActivity extends AppCompatActivity {
     public void onAddTime(String time) {
         View layout1 = LayoutInflater.from(this).inflate(R.layout.timetag, beijing, false);
         TextView myMsg = (TextView) layout1.findViewById(R.id.timetag);
-            myMsg.setText(displayTime(time));
+            myMsg.setText(helper.displayTime(time));
             beijing.addView(layout1);
 
         Log.d("beijing", String.valueOf(beijing.getChildCount()) + Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/" + "sd" + ".png"));
@@ -254,6 +255,7 @@ public class chattingActivity extends AppCompatActivity {
         @Override
         public void run() {
                     int flag=0;
+                    AppHelper helper = new AppHelper();
 
                     int size=0;
                     ChattingListDO chattingListDO;
@@ -272,7 +274,7 @@ public class chattingActivity extends AppCompatActivity {
                                     msg.what = 1;
                                     msg.obj = chattingListDO.getChattingTime().get(i);
                                     Log.d("gettime1 ", chattingListDO.getChattingTime().get(i));
-                                    Log.d("gettime ", displayTime(chattingListDO.getChattingTime().get(i)));
+                                    Log.d("gettime ", helper.displayTime(chattingListDO.getChattingTime().get(i)));
                                     addHandler.sendMessage(msg);
                                 }
                                 Log.d("srlist ",chattingListDO.getSrList().get(i));
@@ -312,7 +314,7 @@ public class chattingActivity extends AppCompatActivity {
                         Message msg = new Message();
                         msg.what = 1;
                         msg.obj = chattingListDO.getChattingTime().get(i);
-                        Log.d("gettime ", displayTime(chattingListDO.getChattingTime().get(i)));
+                        Log.d("gettime ", helper.displayTime(chattingListDO.getChattingTime().get(i)));
                         Log.d("gettime1 ", chattingListDO.getChattingTime().get(i));
                         addHandler.sendMessage(msg);
                     }
@@ -381,7 +383,7 @@ public class chattingActivity extends AppCompatActivity {
                          msg.what = 1;
                          msg.obj = chattingListDO.getChattingTime().get(i);
                          addHandler.sendMessage(msg);
-                         Log.d("gettime ",displayTime(chattingListDO.getChattingTime().get(i)));
+                         Log.d("gettime ", helper.displayTime(chattingListDO.getChattingTime().get(i)));
                          Log.d("gettime1 ", chattingListDO.getChattingTime().get(i));
                      }
                      else if(Double.parseDouble(chattingListDO.getChattingTime().get(i)) - Double.parseDouble(chattingListDO.getChattingTime().get(i-1)) >1000){
@@ -389,7 +391,7 @@ public class chattingActivity extends AppCompatActivity {
                              msg.what = 1;
                              msg.obj = chattingListDO.getChattingTime().get(i);
                              addHandler.sendMessage(msg);
-                             Log.d("gettime ",displayTime(chattingListDO.getChattingTime().get(i)));
+                             Log.d("gettime ", helper.displayTime(chattingListDO.getChattingTime().get(i)));
                              Log.d("gettime1 ", chattingListDO.getChattingTime().get(i));
                          }
                          Log.d("srlist ",chattingListDO.getSrList().get(i));
@@ -425,14 +427,14 @@ public class chattingActivity extends AppCompatActivity {
                              msg.what = 1;
                              msg.obj = chattingListDO.getChattingTime().get(i);
                              addHandler.sendMessage(msg);
-                             Log.d("gettime ",displayTime(chattingListDO.getChattingTime().get(i)));
+                             Log.d("gettime ", helper.displayTime(chattingListDO.getChattingTime().get(i)));
                              Log.d("gettime1 ", chattingListDO.getChattingTime().get(i));
                          }
                         else if(Double.parseDouble(chattingListDO.getChattingTime().get(i)) - Double.parseDouble(chattingListDO.getChattingTime().get(i-1)) >1000){
                              Message msg = new Message();
                              msg.what = 1;
                              msg.obj = chattingListDO.getChattingTime().get(i);
-                            Log.d("gettime ", displayTime(chattingListDO.getChattingTime().get(i)));
+                            Log.d("gettime ", helper.displayTime(chattingListDO.getChattingTime().get(i)));
                             Log.d("gettime1 ", chattingListDO.getChattingTime().get(i));
                              addHandler.sendMessage(msg);
                          }
@@ -489,36 +491,7 @@ public class chattingActivity extends AppCompatActivity {
         }
     };
 
-    public String displayTime(String thatTime){
-        Date currentTime = Calendar.getInstance().getTime();
-        String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-        int hr1,hr2,min1,min2;
-        String sameday1,sameday2;
-        sameday1=thatTime.substring(0,8);
-        sameday2=dateString.substring(0,8);
-        hr1=Integer.parseInt(thatTime.substring(8,10));
-        hr2=Integer.parseInt(dateString.substring(8,10));
-        min1=Integer.parseInt(thatTime.substring(10,12));
-        min2=Integer.parseInt(dateString.substring(10,12));
-        if(!sameday1.equals(sameday2)){
-            Log.d("same ",sameday1 + " " + sameday2);
-            return sameday1.substring(0,4)+"年"+sameday1.substring(4,6)+'月'+sameday1.substring(6,8)+"号";
-        }
-        else if(hr1!=hr2){
-            Log.d("hr ",hr1+" "+hr2);
-            return String.valueOf(hr2-hr1)+"小时前";
-        }
-        else if(min1!=min2){
-            Log.d("min ", min1+" "+min2);
-            return String.valueOf(min2-min1)+"分钟前";
-        }
-        else{
-            return "刚刚";
-        }
 
-
-
-    }
 
 
 }

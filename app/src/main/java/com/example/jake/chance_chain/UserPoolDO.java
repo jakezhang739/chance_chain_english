@@ -26,8 +26,9 @@ public class UserPoolDO {
     private Double _availableWallet=0.0;
     private List<String> _beiGuanZhu;
     private Double _candyCurrency=0.0;
+    private Double _chancecoin=0.0;
     private Double _consecutiveLogin=0.0;
-    private Double _cryptoCurrency=0.0;
+    private Double _etherum=0.0;
     private Double _frozenwallet=0.0;
     private List<String> _gottenList;
     private List<String> _guanZhu;
@@ -137,6 +138,14 @@ public class UserPoolDO {
     public void setCandyCurrency(final Double _candyCurrency) {
         this._candyCurrency = _candyCurrency;
     }
+    @DynamoDBAttribute(attributeName = "chancecoin")
+    public Double getChancecoin() {
+        return _chancecoin;
+    }
+
+    public void setChancecoin(final Double _chancecoin) {
+        this._chancecoin = _chancecoin;
+    }
     @DynamoDBAttribute(attributeName = "consecutiveLogin")
     public Double getConsecutiveLogin() {
         return _consecutiveLogin;
@@ -145,13 +154,13 @@ public class UserPoolDO {
     public void setConsecutiveLogin(final Double _consecutiveLogin) {
         this._consecutiveLogin = _consecutiveLogin;
     }
-    @DynamoDBAttribute(attributeName = "cryptoCurrency")
-    public Double getCryptoCurrency() {
-        return _cryptoCurrency;
+    @DynamoDBAttribute(attributeName = "etherum")
+    public Double getEtherum() {
+        return _etherum;
     }
 
-    public void setCryptoCurrency(final Double _cryptoCurrency) {
-        this._cryptoCurrency = _cryptoCurrency;
+    public void setEtherum(final Double _etherum) {
+        this._etherum = _etherum;
     }
     @DynamoDBAttribute(attributeName = "frozenwallet")
     public Double getFrozenwallet() {

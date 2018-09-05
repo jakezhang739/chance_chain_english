@@ -34,6 +34,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
 public class liuyan extends AppCompatActivity {
 
     LinearLayout stuff;
@@ -56,7 +57,7 @@ public class liuyan extends AppCompatActivity {
         myUsr = helper.getCurrentUserName(context);
         mapper = helper.getMapper(context);
         TextView titlebar = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        titlebar.setText("消息");
+        titlebar.setText("Message");
         ImageView backImg = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         new Thread(setup).start();
         backImg.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +102,7 @@ public class liuyan extends AppCompatActivity {
             unread.setVisibility(View.INVISIBLE);
         }
         TextView utime = (TextView) layout1.findViewById(R.id.ltime);
-        utime.setText(displayTime(time));
+        utime.setText(helper.displayTime(time));
         Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/" + username + ".png").placeholder(R.drawable.splash).into(wotou);
         layout1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,34 +161,5 @@ public class liuyan extends AppCompatActivity {
 
     };
 
-    public String displayTime(String thatTime){
-        Date currentTime = Calendar.getInstance().getTime();
-        String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-        int hr1,hr2,min1,min2;
-        String sameday1,sameday2;
-        sameday1=thatTime.substring(0,8);
-        sameday2=dateString.substring(0,8);
-        hr1=Integer.parseInt(thatTime.substring(8,10));
-        hr2=Integer.parseInt(dateString.substring(8,10));
-        min1=Integer.parseInt(thatTime.substring(10,12));
-        min2=Integer.parseInt(dateString.substring(10,12));
-        if(!sameday1.equals(sameday2)){
-            Log.d("same ",sameday1 + " " + sameday2);
-            return sameday1.substring(0,4)+"年"+sameday1.substring(4,6)+'月'+sameday1.substring(6,8)+"号";
-        }
-        else if(hr1!=hr2){
-            Log.d("hr ",hr1+" "+hr2);
-            return String.valueOf(hr2-hr1)+"小时前";
-        }
-        else if(min1!=min2){
-            Log.d("min ", min1+" "+min2);
-            return String.valueOf(min2-min1)+"分钟前";
-        }
-        else{
-            return "刚刚";
-        }
 
-
-
-    }
 }

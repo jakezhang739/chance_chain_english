@@ -45,20 +45,19 @@ public class HisFragment extends Fragment {
     String userName;
     AppHelper helper = new AppHelper();
     static {
-        ClassicsHeader.REFRESH_HEADER_PULLING = "下拉可以刷新";
-        ClassicsHeader.REFRESH_HEADER_REFRESHING = "正在刷新...";
-        ClassicsHeader.REFRESH_HEADER_LOADING = "正在加载...";
-        ClassicsHeader.REFRESH_HEADER_RELEASE = "释放立即刷新";
-        ClassicsHeader.REFRESH_HEADER_FINISH = "刷新完成";
-        ClassicsHeader.REFRESH_HEADER_FAILED = "刷新失败";
-        ClassicsHeader.REFRESH_HEADER_SECONDARY = "释放进入二楼";
-        ClassicsFooter.REFRESH_FOOTER_PULLING = "上拉加载更多";
-        ClassicsFooter.REFRESH_FOOTER_RELEASE = "释放立即加载";
-        ClassicsFooter.REFRESH_FOOTER_REFRESHING = "正在刷新...";
-        ClassicsFooter.REFRESH_FOOTER_LOADING = "正在加载...";
-        ClassicsFooter.REFRESH_FOOTER_FINISH = "加载完成";
-        ClassicsFooter.REFRESH_FOOTER_FAILED = "加载失败";
-        ClassicsFooter.REFRESH_FOOTER_NOTHING = "没有更多数据了";
+        ClassicsHeader.REFRESH_HEADER_PULLING = "Pull down to refresh";
+        ClassicsHeader.REFRESH_HEADER_REFRESHING = "Refreshing...";
+        ClassicsHeader.REFRESH_HEADER_LOADING = "Loading...";
+        ClassicsHeader.REFRESH_HEADER_RELEASE = "Release to refresh";
+        ClassicsHeader.REFRESH_HEADER_FINISH = "Refreshing completed";
+        ClassicsHeader.REFRESH_HEADER_FAILED = "Refreshing failed";
+        ClassicsFooter.REFRESH_FOOTER_PULLING = "Pull up to load more";
+        ClassicsFooter.REFRESH_FOOTER_RELEASE = "Relese to load more";
+        ClassicsFooter.REFRESH_FOOTER_REFRESHING = "Refreshing...";
+        ClassicsFooter.REFRESH_FOOTER_LOADING = "Loading...";
+        ClassicsFooter.REFRESH_FOOTER_FINISH = "Loading success";
+        ClassicsFooter.REFRESH_FOOTER_FAILED = "Loading fail";
+        ClassicsFooter.REFRESH_FOOTER_NOTHING = "No more data";
     }
 
     @Override
@@ -68,7 +67,7 @@ public class HisFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         Log.d("frag","yoyoyoyoyooyoyo");
-        dynamoDBMapper = AppHelper.getMapper(getContext());
+        dynamoDBMapper = helper.getMapper(getContext());
 
 
 

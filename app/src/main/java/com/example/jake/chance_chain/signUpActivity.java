@@ -23,18 +23,17 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
         username = (EditText) findViewById(R.id.editTextRegUserId);
         EditText pass = (EditText) findViewById(R.id.editTextRegUserPassword);
         EditText rePass = (EditText) findViewById(R.id.editTextRegGivenName);
-        EditText phone = (EditText) findViewById(R.id.editTextRegPhone);
         Email = (EditText) findViewById(R.id.editTextRegEmail);
         finishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("wtf","1 "+pass.getText().toString()+" 2 "+rePass.getText().toString());
-                if(username.length() == 0 || pass.length()==0 || rePass.length() == 0 || phone.length()==0 || Email.length() == 0){
-                    Toast.makeText(signUpActivity.this,"请完成所有信息",Toast.LENGTH_LONG).show();
+                if(username.length() == 0 || pass.length()==0 || rePass.length() == 0 || Email.length() == 0){
+                    Toast.makeText(signUpActivity.this,"Please enter all the information",Toast.LENGTH_LONG).show();
                 }
 
                else if(!pass.getText().toString().equals(rePass.getText().toString())){
-                    Toast.makeText(signUpActivity.this,"两次密码不一样请重新输入",Toast.LENGTH_LONG).show();
+                    Toast.makeText(signUpActivity.this,"Password doesn't match please enter again",Toast.LENGTH_LONG).show();
                 }
                 else {
                     registerAction();
@@ -66,13 +65,12 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
     @Override
     public void onFailure(int process, Exception exception) {
 
-        Toast.makeText(signUpActivity.this, "注册信息错误，请重新填写", Toast.LENGTH_LONG).show();
+        Toast.makeText(signUpActivity.this, "Something is wrong，please fill again", Toast.LENGTH_LONG).show();
 
     }
     private void registerAction() {
         EditText username = (EditText) findViewById(R.id.editTextRegUserId);
         EditText pass = (EditText) findViewById(R.id.editTextRegUserPassword);
-        EditText phone = (EditText) findViewById(R.id.editTextRegPhone);
         EditText Email = (EditText) findViewById(R.id.editTextRegEmail);
 
         // do sign in and handles on interface

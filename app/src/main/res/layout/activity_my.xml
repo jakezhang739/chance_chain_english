@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/guanzhuNum"
         android:layout_alignStart="@id/guanzhuNum"
-        android:text="关注" />
+        android:text="Follow" />
 
     <TextView
         android:id="@+id/beiGuanNum"
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/beiGuanNum"
         android:layout_alignStart="@id/beiGuanNum"
-        android:text="被关注" />
+        android:text="Followed By" />
 
     <TextView
         android:id="@+id/woFabuNum"
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/woFabuNum"
         android:layout_below="@+id/woFabuNum"
-        android:text="发布" />
+        android:text="Upload" />
 
     <TextView
         android:id="@+id/woSpace1"
@@ -140,7 +140,7 @@
         android:layout_alignStart="@+id/woJihui"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/woJihui"
-        android:text="我的机会" />
+        android:text="My Chance" />
 
     <ImageView
         android:id="@+id/woFabuImg"
@@ -158,7 +158,7 @@
         android:layout_below="@+id/woFabuImg"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="我的发布" />
+        android:text="My Upload" />
 
     <ImageView
         android:id="@+id/woRenWu"
@@ -178,7 +178,7 @@
         android:layout_alignStart="@+id/woRenWu"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/woRenWu"
-        android:text="我的任务" />
+        android:text="My Mission" />
 
     <TextView
         android:id="@+id/woSpace2"
@@ -222,7 +222,7 @@
         android:layout_alignStart="@+id/woJihui"
         android:layout_below="@+id/woQian"
         android:layout_marginTop="10dp"
-        android:text="我的钱包" />
+        android:text="My Wallet" />
 
     <TextView
         android:id="@+id/woGuanNum"
@@ -230,7 +230,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/woQianNum"
         android:layout_centerHorizontal="true"
-        android:text="我的关注" />
+        android:text="My Follow" />
 
     <TextView
         android:id="@+id/woXiaoNum"
@@ -238,7 +238,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/woRenWu"
         android:layout_alignTop="@+id/woQianNum"
-        android:text="我的消息" />
+        android:text="My Message" />
 
     <TextView
         android:layout_width="match_parent"
@@ -264,7 +264,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="26dp"
-            android:text="设置"
+            android:text="Settings"
             android:textColor="@color/white"
             android:textSize="25sp" />
 

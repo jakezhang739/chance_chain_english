@@ -69,7 +69,7 @@ public class fabuActivity extends AppCompatActivity {
         taglayout = (LinearLayout) findViewById(R.id.tagrel);
         beijing = (LinearLayout) findViewById(R.id.viewLay);
         progressBar = (ProgressBar) findViewById(R.id.progressBarchat);
-        titlteText.setText("我的发布");
+        titlteText.setText("My Upload");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,7 +168,7 @@ public class fabuActivity extends AppCompatActivity {
         dianzhan = (TextView) layout1.findViewById(R.id.dianzhan);
         mTxt.setText(cList.txtTitle);
         uidTxt.setText(cList.userid);
-        String display = displayTime(String.valueOf((long) cList.uploadTime));
+        String display = helper.displayTime(String.valueOf((long) cList.uploadTime));
         timeTxt.setText(display);
         switch ((int) cList.tag) {
             case 1:
@@ -251,7 +251,7 @@ public class fabuActivity extends AppCompatActivity {
         //selUsr.setPrompt(cList.completeList.get(0).toString());
         mTxt.setText(cList.txtTitle);
         uidTxt.setText(cList.userid);
-        String display = displayTime(String.valueOf((long) cList.uploadTime));
+        String display = helper.displayTime(String.valueOf((long) cList.uploadTime));
         timeTxt.setText(display);
         selUsr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -363,7 +363,7 @@ public class fabuActivity extends AppCompatActivity {
         //zselUsr.setPrompt(cList.completeList.get(0).toString());
         mTxt.setText(cList.txtTitle);
         uidTxt.setText(cList.userid);
-        String display = displayTime(String.valueOf((long) cList.uploadTime));
+        String display = helper.displayTime(String.valueOf((long) cList.uploadTime));
         timeTxt.setText(display);
         selUsr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -524,7 +524,7 @@ public class fabuActivity extends AppCompatActivity {
     Handler confHand = new Handler(){
         @Override
         public void handleMessage(Message msg){
-            Toast.makeText(context,"首次交易，奖励Candy100个",Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"First trade，you have gotten 100 Candy",Toast.LENGTH_LONG).show();
 
         }
     };
@@ -773,36 +773,7 @@ public class fabuActivity extends AppCompatActivity {
 
     }
 
-    private String displayTime(String thatTime){
-        Date currentTime = Calendar.getInstance().getTime();
-        String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-        int hr1,hr2,min1,min2;
-        String sameday1,sameday2;
-        sameday1=thatTime.substring(0,8);
-        sameday2=dateString.substring(0,8);
-        hr1=Integer.parseInt(thatTime.substring(8,10));
-        hr2=Integer.parseInt(dateString.substring(8,10));
-        min1=Integer.parseInt(thatTime.substring(10,12));
-        min2=Integer.parseInt(dateString.substring(10,12));
-        if(!sameday1.equals(sameday2)){
-            Log.d("same ",sameday1 + " " + sameday2);
-            return sameday1.substring(0,4)+"年"+sameday1.substring(4,6)+'月'+sameday1.substring(6,8)+"号";
-        }
-        else if(hr1!=hr2){
-            Log.d("hr ",hr1+" "+hr2);
-            return String.valueOf(hr2-hr1)+"小时前";
-        }
-        else if(min1!=min2){
-            Log.d("min ", min1+" "+min2);
-            return String.valueOf(min2-min1)+"分钟前";
-        }
-        else{
-            return "刚刚";
-        }
 
-
-
-    }
 
 
 }

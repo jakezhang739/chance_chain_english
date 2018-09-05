@@ -30,6 +30,7 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+
 public class GalleryAdapter extends
         RecyclerView.Adapter<GalleryAdapter.ViewHolder>
 {
@@ -41,6 +42,7 @@ public class GalleryAdapter extends
     private DynamoDBMapper dynamoDBMapper;
     private AppHelper helper = new AppHelper();
     private String myUser;
+    private int thisChance;
 
 
 
@@ -50,6 +52,7 @@ public class GalleryAdapter extends
         this.cList = cc;
         this.mContext = context;
         this.cid = "";
+        this.thisChance=0;
         this.dynamoDBMapper = helper.getMapper(context);
         this.myUser = helper.getCurrentUserName(context);
 
@@ -66,7 +69,7 @@ public class GalleryAdapter extends
             super(arg0);
         }
 
-        ImageView uImg,tagView,moreContent,fent;
+        ImageView uImg,tagView,moreContent,fent,zhuanfa,pingPic,likePic,likedPic;
         TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr;
         GridView mGridview;
         RelativeLayout link;
@@ -112,6 +115,10 @@ public class GalleryAdapter extends
             viewHolder.pingjia = (TextView) view.findViewById(R.id.liuyan);
             viewHolder.fenxiang = (TextView) view.findViewById(R.id.fenxiang);
             viewHolder.dianzhan = (TextView) view.findViewById(R.id.dianzhan);
+            viewHolder.zhuanfa = (ImageView) view.findViewById(R.id.imageView2);
+            viewHolder.pingPic = (ImageView) view.findViewById(R.id.imageView9);
+            viewHolder.likePic = (ImageView) view.findViewById(R.id.imageView10);
+            viewHolder.likedPic = (ImageView) view.findViewById(R.id.imageView11);
 
             Log.d("gallery adapter","v "+String.valueOf(i));
         }
@@ -131,6 +138,10 @@ public class GalleryAdapter extends
             viewHolder.dianzhan = (TextView) view.findViewById(R.id.dianzhan);
             viewHolder.link = (RelativeLayout) view.findViewById(R.id.shareLink);
             viewHolder.loading = (ProgressBar) view.findViewById(R.id.waitingbar);
+            viewHolder.pingPic = (ImageView) view.findViewById(R.id.imageView9);
+            viewHolder.zhuanfa = (ImageView) view.findViewById(R.id.imageView2);
+            viewHolder.likePic = (ImageView) view.findViewById(R.id.imageView10);
+            viewHolder.likedPic = (ImageView) view.findViewById(R.id.imageView11);
         }
 
 
@@ -147,7 +158,7 @@ public class GalleryAdapter extends
         if(cList.get(i).shareLink.size()==0) {
             viewHolder.mTxt.setText(cList.get(i).txtTitle);
             viewHolder.uidTxt.setText(cList.get(i).userid);
-            String display = displayTime(String.valueOf((long) cList.get(i).uploadTime));
+            String display = helper.displayTime(String.valueOf((long) cList.get(i).uploadTime));
             viewHolder.timeTxt.setText(display);
             switch ((int) cList.get(i).tag) {
                 case 1:
@@ -185,6 +196,58 @@ public class GalleryAdapter extends
                 viewHolder.fenxiang.setText(String.valueOf(cList.get(i).shared));
             }
 
+            if(cList.get(i).liked.contains(myUser)){
+                viewHolder.likePic.setVisibility(View.INVISIBLE);
+                viewHolder.likedPic.setVisibility(View.VISIBLE);
+            }
+            else{
+                viewHolder.likePic.setVisibility(View.VISIBLE);
+                viewHolder.likedPic.setVisibility(View.INVISIBLE);
+            }
+
+            viewHolder.zhuanfa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(),sharingActivity.class);
+                    intent.putExtra("link",cList.get(i));
+                    v.getContext().startActivity(intent);
+
+                }
+            });
+            viewHolder.pingPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), ContentActivity.class);
+                    intent.putExtra("cc", cList.get(i));
+                    intent.putExtra("comment","true");
+                    v.getContext().startActivity(intent);
+
+                }
+            });
+            viewHolder.likedPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    thisChance=i;
+                    cList.get(i).liked.remove(myUser);
+                    viewHolder.likePic.setVisibility(View.VISIBLE);
+                    viewHolder.likedPic.setVisibility(View.INVISIBLE);
+                    viewHolder.dianzhan.setText(String.valueOf(cList.get(i).liked.size()));
+                    new Thread(dissRunnable).start();
+
+                }
+            });
+            viewHolder.likePic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    thisChance=i;
+                    cList.get(i).liked.add(myUser);
+                    viewHolder.likePic.setVisibility(View.INVISIBLE);
+                    viewHolder.likedPic.setVisibility(View.VISIBLE);
+                    viewHolder.dianzhan.setText(String.valueOf(cList.get(i).liked.size()));
+                    new Thread(likeRunnable).start();
+                }
+            });
+
             viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -215,7 +278,7 @@ public class GalleryAdapter extends
         else{
             viewHolder.mTxt.setText(cList.get(i).txtTitle);
             viewHolder.uidTxt.setText(cList.get(i).userid);
-            String display = displayTime(String.valueOf((long) cList.get(i).uploadTime));
+            String display = helper.displayTime(String.valueOf((long) cList.get(i).uploadTime));
             viewHolder.timeTxt.setText(display);
             viewHolder.pingjia.setText(String.valueOf(cList.get(i).cNumber));
             if (cList.get(i).liked.size() != 0) {
@@ -256,6 +319,49 @@ public class GalleryAdapter extends
                     cid = cList.get(i).shareLink.get(0);
                     viewHolder.loading.setVisibility(View.VISIBLE);
                     new Thread(shareLink).start();
+                }
+            });
+
+            viewHolder.zhuanfa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(),sharingActivity.class);
+                    intent.putExtra("link",cList.get(i));
+                    v.getContext().startActivity(intent);
+
+                }
+            });
+            viewHolder.pingPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), ContentActivity.class);
+                    intent.putExtra("cc", cList.get(i));
+                    intent.putExtra("comment","true");
+                    v.getContext().startActivity(intent);
+
+                }
+            });
+            viewHolder.likedPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    thisChance=i;
+                    cList.get(i).liked.remove(myUser);
+                    viewHolder.likePic.setVisibility(View.VISIBLE);
+                    viewHolder.likedPic.setVisibility(View.INVISIBLE);
+                    viewHolder.dianzhan.setText(String.valueOf(cList.get(i).liked.size()));
+                    new Thread(dissRunnable).start();
+
+                }
+            });
+            viewHolder.likePic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    thisChance=i;
+                    cList.get(i).liked.add(myUser);
+                    viewHolder.likePic.setVisibility(View.INVISIBLE);
+                    viewHolder.likedPic.setVisibility(View.VISIBLE);
+                    viewHolder.dianzhan.setText(String.valueOf(cList.get(i).liked.size()));
+                    new Thread(likeRunnable).start();
                 }
             });
         }
@@ -323,36 +429,30 @@ public class GalleryAdapter extends
         }
     };
 
-    private String displayTime(String thatTime){
-        Date currentTime = Calendar.getInstance().getTime();
-        String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-        int hr1,hr2,min1,min2;
-        String sameday1,sameday2;
-        sameday1=thatTime.substring(0,8);
-        sameday2=dateString.substring(0,8);
-        hr1=Integer.parseInt(thatTime.substring(8,10));
-        hr2=Integer.parseInt(dateString.substring(8,10));
-        min1=Integer.parseInt(thatTime.substring(10,12));
-        min2=Integer.parseInt(dateString.substring(10,12));
-        if(!sameday1.equals(sameday2)){
-            Log.d("same ",sameday1 + " " + sameday2);
-            return sameday1.substring(0,4)+"年"+sameday1.substring(4,6)+'月'+sameday1.substring(6,8)+"号";
-        }
-        else if(hr1!=hr2){
-            Log.d("hr ",hr1+" "+hr2);
-            return String.valueOf(hr2-hr1)+"小时前";
-        }
-        else if(min1!=min2){
-            Log.d("min ", min1+" "+min2);
-            return String.valueOf(min2-min1)+"分钟前";
-        }
-        else{
-            return "刚刚";
-        }
 
 
 
-    }
+    Runnable likeRunnable = new Runnable() {
+        @Override
+        public void run() {
+            ChanceWithValueDO chanceWithValueDO = dynamoDBMapper.load(ChanceWithValueDO.class,cList.get(thisChance).cId);
+            chanceWithValueDO.setLiked(cList.get(thisChance).liked);
+            dynamoDBMapper.save(chanceWithValueDO);
+
+        }
+    };
+
+    Runnable dissRunnable = new Runnable() {
+        @Override
+        public void run() {
+            ChanceWithValueDO chanceWithValueDO = dynamoDBMapper.load(ChanceWithValueDO.class,cList.get(thisChance).cId);
+            chanceWithValueDO.setLiked(cList.get(thisChance).liked);
+            dynamoDBMapper.save(chanceWithValueDO);
+
+        }
+    };
+
+
 
 
 }

@@ -85,11 +85,11 @@ public class sharingActivity extends AppCompatActivity {
       @Override
       public void handleMessage(Message msg){
           if(msg.what==1){
-              Toast.makeText(context,"首次转发，奖励Candy100个",Toast.LENGTH_LONG).show();
+              Toast.makeText(context,"First share，you have gotten 100 Candy",Toast.LENGTH_LONG).show();
 
           }
           else if(msg.what==2){
-              Toast.makeText(context,"今日首次转发，奖励Candy10个",Toast.LENGTH_LONG).show();
+              Toast.makeText(context,"First share today，you have gotten 10 Candy",Toast.LENGTH_LONG).show();
 
           }
       }
@@ -98,14 +98,20 @@ public class sharingActivity extends AppCompatActivity {
     Runnable sharingRunnable = new Runnable() {
         @Override
         public void run() {
+            ChanceWithValueDO lastChance = dynamoDBMapper.load(ChanceWithValueDO.class,chC.cId);
+            if(lastChance.getShared()!=null){
+                lastChance.setShared(lastChance.getShared()+1);
+            }
+            else {
+                lastChance.setShared(1.0);
+            }
+            dynamoDBMapper.save(lastChance);
             int cSize = helper.returnChanceeSize(dynamoDBMapper)+1;
             final ChanceWithValueDO chanceWithValueDO = new ChanceWithValueDO();
             UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class,userId);
             Date currentTime = Calendar.getInstance().getTime();
             String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-            if(userPoolDO.getProfilePic()!=null){
-                chanceWithValueDO.setProfilePicture(userPoolDO.getProfilePic());
-            }
+            List<String> temp = new ArrayList<>();
             Message msg = new Message();
             if(userPoolDO.getLastZhuan()==null){
                 userPoolDO.setLastZhuan(dateString);
@@ -138,10 +144,21 @@ public class sharingActivity extends AppCompatActivity {
             chanceWithValueDO.setFuFei(0.0);
             chanceWithValueDO.setFuFeiType("cc");
             chanceWithValueDO.setTag(1.0);
-            chanceWithValueDO.setText("s");
+            chanceWithValueDO.setText(fengTxt);
             chanceWithValueDO.setRenShu(1.0);
             chanceWithValueDO.setTime(Double.parseDouble(dateString));
             chanceWithValueDO.setTitle(fengTxt);
+            if(userPoolDO.getChanceIdList()!=null){
+                temp.add(String.valueOf(cSize));
+                userPoolDO.setChanceIdList(temp);
+            }
+            else {
+                temp=userPoolDO.getChanceIdList();
+                userPoolDO.setChanceIdList(temp);
+            }
+            if(userPoolDO.getProfilePic()!=null){
+                chanceWithValueDO.setProfilePicture(userPoolDO.getProfilePic());
+            }
             dynamoDBMapper.save(chanceWithValueDO);
             dynamoDBMapper.save(userPoolDO);
         }
