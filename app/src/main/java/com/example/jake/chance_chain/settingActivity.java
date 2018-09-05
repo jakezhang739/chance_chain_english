@@ -49,7 +49,7 @@ public class settingActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = ipAdr.edit();
                 editor.putString("address",iptext.getText().toString());
                 editor.commit();
-                Toast.makeText(getApplicationContext(),"Your IP address is "+iptext.getText().toString()+"right now",Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(),"Your IP address is "+iptext.getText().toString()+"right now",Toast.LENGTH_LONG).show();
 
             }
         });

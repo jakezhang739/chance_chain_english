@@ -2,6 +2,7 @@ package com.example.jake.chance_chain;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
@@ -24,6 +25,7 @@ public class myWallet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_wallet);
         context = getApplicationContext().getApplicationContext();
+        new Thread(getaccount).start();
         new Thread(setup).start();
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -62,6 +64,18 @@ public class myWallet extends AppCompatActivity {
                 case 3:ccb.setText("Total Funds: " + msg.obj.toString());break;
                 case 4:eth.setText("Total Funds: " + msg.obj.toString());break;
             }
+        }
+    };
+
+    Runnable getaccount = new Runnable() {
+        @Override
+        public void run() {
+            AppHelper helper = new AppHelper();
+            DynamoDBMapper mapper = helper.getMapper(context);
+            String user = helper.getCurrentUserName(context);
+            SharedPreferences preferences = getSharedPreferences("ipaddress",0);
+            helper.getaccount(preferences,mapper,user);
+
         }
     };
 

@@ -569,7 +569,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 Message msg =new Message();
                 msg.what=3;
                 String str = "Reputation： ";
-                str+=userPoolDO.getShengWang();
+                int sheng = userPoolDO.getShengWang().intValue();
+                str+=String.valueOf(sheng);
                 msg.obj=str;
                 pHandler.sendMessage(msg);
             }
@@ -1025,89 +1026,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     Runnable httpRun = new Runnable() {
         @Override
         public void run() {
-            UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class, username);
-            if (userPoolDO.getWalletAddress() == null) {
-                try {
-//                String url = "http://192.168.31.244:8000";
-//                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                        new Response.Listener<String>() {
-//                            @Override
-//                            public void onResponse(String response) {
-//                                // Display the first 500 characters of the response string.
-//                                Log.d("thisfckingtag","Response is: "+ response.substring(0,500));
-//                            }
-//                        }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Log.d("ds","That didn't work!");
-//                    192.168.0.20:8000
-//                    }
-//                });
-                    String ipA;
-                    SharedPreferences ipAdr = getSharedPreferences("ipaddress",0);
-                    ipA = ipAdr.getString("address","wrong");
-                    Log.d("isuccess",ipA);
-                    if(!ipA.equals("wrong")) {
-                        URL url = new URL("http://"+ipA+"/createaccount");
-                        HttpURLConnection myConnection =
-                                (HttpURLConnection) url.openConnection();
-                        myConnection.setRequestProperty("Content-type", "application/json");
-                        myConnection.setRequestMethod("POST");
-                        myConnection.setDoInput(true);
-                        myConnection.setDoOutput(true);
-                        JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("pw", "pass");
-                        Log.d("json", jsonObject.toString());
-                        BufferedWriter writer = new BufferedWriter(
-                                new OutputStreamWriter(myConnection.getOutputStream()));
-                        writer.write(jsonObject.toString());
-                        writer.flush();
-                        myConnection.connect();
-
-                        if (myConnection.getResponseCode() == 200) {
-                            Log.d("isucces", "yes" + String.valueOf(myConnection.getResponseCode()));
-                            InputStream responseBody = myConnection.getInputStream();
-
-                            InputStreamReader responseBodyReader =
-                                    new InputStreamReader(responseBody);
-                            JsonReader jsonReader = new JsonReader(responseBodyReader);
-                            jsonReader.beginObject();
-                            String addr = "";
-                            while (jsonReader.hasNext()) {
-                                String name = jsonReader.nextName();
-                                if (name.equals("pw")) {
-                                    Log.d("isuccess", jsonReader.nextString());
-                                } else if (name.equals("wddress")) {
-                                    addr = jsonReader.nextString();
-                                    userPoolDO.setWalletAddress(addr);
-                                    Log.d("waddress", addr);
-                                } else if (name.equals("cb")) {
-                                    Log.d("isuccess", String.valueOf(jsonReader.nextDouble()));
-                                }
-
-                            }
-                            userPoolDO.setWalletAddress(addr);
-                            dynamoDBMapper.save(userPoolDO);
-                        } else {
-                            Log.d("isucces", "no" + String.valueOf(myConnection.getResponseCode()));
-                        }
-
-//                String line;
-//                String response="";
-//                BufferedReader br=new BufferedReader(new InputStreamReader(myConnection.getInputStream()));
-//                while ((line=br.readLine()) != null) {
-//                    response+=line;
-//                }
-
-//                Log.d("trythisshiit",response);
-
-                    }
-                } catch (Exception e) {
-                    Log.d("isucces", e.toString());
-
-                }
-
-            }
+            SharedPreferences preferences = getSharedPreferences("ipaddress",0);
+            helper.createAccount(preferences,dynamoDBMapper,username);
         }
     };
 

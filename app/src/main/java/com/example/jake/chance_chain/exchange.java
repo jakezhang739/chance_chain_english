@@ -1,6 +1,10 @@
 package com.example.jake.chance_chain;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,22 +16,34 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 
 import org.w3c.dom.Text;
 
 public class exchange extends AppCompatActivity {
     Double candy,ccb;
+    Context context;
+    DynamoDBMapper mapper;
+    SharedPreferences preferences;
+    AppHelper helper = new AppHelper();
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange);
+        context = getApplicationContext().getApplicationContext();
+        preferences = getSharedPreferences("ipaddress",0);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(R.layout.chatbar);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
         title.setText("Exhange Wallet");
+        mapper = helper.getMapper(context);
+        userID = helper.getCurrentUserName(context);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +97,8 @@ public class exchange extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 ccbView.setVisibility(View.VISIBLE);
-                ccbView.setText(s);
+                Double amount = Double.parseDouble(s.toString());
+                ccbView.setText(String.valueOf(amount/100));
             }
 
             @Override
@@ -107,5 +124,95 @@ public class exchange extends AppCompatActivity {
 
             }
         });
+        excBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                candy = Double.parseDouble(candyText.getText().toString())/100;
+                candyImg.setVisibility(View.VISIBLE);
+                candyText.setVisibility(View.INVISIBLE);
+                ccbImg.setVisibility(View.VISIBLE);
+                ccbView.setVisibility(View.INVISIBLE);
+                new Thread(exchange).start();
+
+            }
+        });
+        topBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ccb = Double.parseDouble(ccbText.getText().toString());
+                ccbNext.setVisibility(View.VISIBLE);
+                ethView.setVisibility(View.INVISIBLE);
+                ethImg.setVisibility(View.VISIBLE);
+                ccbText.setVisibility(View.INVISIBLE);
+                new Thread(topup).start();
+
+            }
+        });
     }
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            switch (msg.what){
+                case 1: Toast.makeText(context,"Transfer CC successful, the hash is "+msg.obj.toString(),Toast.LENGTH_LONG).show();break;
+                case 2: Toast.makeText(context,"Transfer CC failed",Toast.LENGTH_LONG).show();break;
+                case 3: Toast.makeText(context,"Transfer eth successful, the hash is "+msg.obj.toString(),Toast.LENGTH_LONG).show();break;
+                case 4: Toast.makeText(context,"Transfer eth failed",Toast.LENGTH_LONG).show();break;
+            }
+
+        }
+    };
+
+    Runnable exchange = new Runnable() {
+        @Override
+        public void run() {
+            Message msg = new Message();
+            String hascode;
+            UserPoolDO userPoolDO = mapper.load(UserPoolDO.class,userID);
+            if(userPoolDO.getWalletAddress()!=null) {
+                hascode = helper.transfercc(preferences, mapper, userID,candy,userPoolDO.getWalletAddress());
+                if(hascode.equals("error")){
+                    msg.what=2;
+                    handler.sendMessage(msg);
+                }
+                else {
+                    msg.what = 1;
+                    msg.obj = hascode;
+                    handler.sendMessage(msg);
+                }
+            }
+            else{
+                msg.what=2;
+                handler.sendMessage(msg);
+            }
+            mapper.save(userPoolDO);
+
+        }
+    };
+
+    Runnable topup = new Runnable() {
+        @Override
+        public void run() {
+            String hascode;
+            Message msg = new Message();
+            UserPoolDO userPoolDO = mapper.load(UserPoolDO.class,userID);
+            if(userPoolDO.getWalletAddress()!=null) {
+                hascode = helper.transfereth(preferences, mapper, userID,candy,userPoolDO.getWalletAddress());
+                if(hascode.equals("error")){
+                    msg.what=4;
+                    handler.sendMessage(msg);
+                }
+                else {
+                    msg.what = 3;
+                    msg.obj = hascode;
+                    handler.sendMessage(msg);
+                }
+            }
+            else{
+                msg.what=4;
+                handler.sendMessage(msg);
+            }
+            mapper.save(userPoolDO);
+        }
+    };
 }

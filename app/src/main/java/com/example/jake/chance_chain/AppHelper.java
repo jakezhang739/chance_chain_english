@@ -3,6 +3,7 @@ package com.example.jake.chance_chain;
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
+import android.util.JsonReader;
 import android.util.Log;
 import android.content.ContentUris;
 
@@ -35,7 +37,15 @@ import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.amazonaws.services.s3.AmazonS3Client;
 
+import org.json.JSONObject;
+
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 import  static com.amazonaws.regions.Regions.US_EAST_1;
@@ -264,6 +274,292 @@ public class AppHelper {
 
 
 
+    }
+
+    public void getaccount(SharedPreferences ipAdr,DynamoDBMapper dynamoDBMapper, String username){
+        UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class, username);
+            try {
+//                String url = "http://192.168.31.244:8000";
+//                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//                                // Display the first 500 characters of the response string.
+//                                Log.d("thisfckingtag","Response is: "+ response.substring(0,500));
+//                            }
+//                        }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.d("ds","That didn't work!");
+//                    192.168.0.20:8000
+//                    }
+//                });
+                String ipA;
+                ipA = ipAdr.getString("address","wrong");
+                Log.d("isuccess",ipA);
+                if(!ipA.equals("wrong")) {
+                    URL url = new URL("http://"+ipA+"/getaccount");
+                    HttpURLConnection myConnection =
+                            (HttpURLConnection) url.openConnection();
+                    myConnection.setRequestProperty("Content-type", "application/json");
+                    myConnection.setRequestMethod("POST");
+                    myConnection.setDoInput(true);
+                    myConnection.setDoOutput(true);
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("cd", userPoolDO.getWalletAddress());
+                    Log.d("json", jsonObject.toString());
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(myConnection.getOutputStream()));
+                    writer.write(jsonObject.toString());
+                    writer.flush();
+                    myConnection.connect();
+
+                    if (myConnection.getResponseCode() == 200) {
+                        Log.d("isucces", "yes" + String.valueOf(myConnection.getResponseCode()));
+                        InputStream responseBody = myConnection.getInputStream();
+
+                        InputStreamReader responseBodyReader =
+                                new InputStreamReader(responseBody);
+                        JsonReader jsonReader = new JsonReader(responseBodyReader);
+                        jsonReader.beginObject();
+                        String addr = "";
+                        while (jsonReader.hasNext()) {
+                            String name = jsonReader.nextName();
+                            if (name.equals("cd")) {
+                                Log.d("isuccess", jsonReader.nextString());
+                            } else if (name.equals("ccb")) {
+                                Double ccb = jsonReader.nextDouble();
+                                userPoolDO.setChancecoin(ccb);
+                                Log.d("waddress", addr);
+                            } else if (name.equals("ethb")) {
+                                Double eth = jsonReader.nextDouble();
+                                userPoolDO.setEtherum(eth);
+                                //Log.d("isuccess", String.valueOf(jsonReader.nextDouble()));
+                            }
+
+                        }
+                        userPoolDO.setWalletAddress(addr);
+                        dynamoDBMapper.save(userPoolDO);
+                    } else {
+                        Log.d("isucces", "no" + String.valueOf(myConnection.getResponseCode()));
+                    }
+
+//                String line;
+//                String response="";
+//                BufferedReader br=new BufferedReader(new InputStreamReader(myConnection.getInputStream()));
+//                while ((line=br.readLine()) != null) {
+//                    response+=line;
+//                }
+
+//                Log.d("trythisshiit",response);
+
+                }
+            } catch (Exception e) {
+                Log.d("isucces", e.toString());
+
+            }
+
+
+    }
+
+    public void createAccount(SharedPreferences ipAdr,DynamoDBMapper dynamoDBMapper, String username){
+        UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class, username);
+        if (userPoolDO.getWalletAddress() == null) {
+            try {
+//                String url = "http://192.168.31.244:8000";
+//                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//                                // Display the first 500 characters of the response string.
+//                                Log.d("thisfckingtag","Response is: "+ response.substring(0,500));
+//                            }
+//                        }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.d("ds","That didn't work!");
+//                    192.168.0.20:8000
+//                    }
+//                });
+                String ipA;
+                ipA = ipAdr.getString("address","wrong");
+                Log.d("isuccess",ipA);
+                if(!ipA.equals("wrong")) {
+                    URL url = new URL("http://"+ipA+"/createaccount");
+                    HttpURLConnection myConnection =
+                            (HttpURLConnection) url.openConnection();
+                    myConnection.setRequestProperty("Content-type", "application/json");
+                    myConnection.setRequestMethod("POST");
+                    myConnection.setDoInput(true);
+                    myConnection.setDoOutput(true);
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("pw", "pass");
+                    Log.d("json", jsonObject.toString());
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(myConnection.getOutputStream()));
+                    writer.write(jsonObject.toString());
+                    writer.flush();
+                    myConnection.connect();
+
+                    if (myConnection.getResponseCode() == 200) {
+                        Log.d("isucces", "yes" + String.valueOf(myConnection.getResponseCode()));
+                        InputStream responseBody = myConnection.getInputStream();
+
+                        InputStreamReader responseBodyReader =
+                                new InputStreamReader(responseBody);
+                        JsonReader jsonReader = new JsonReader(responseBodyReader);
+                        jsonReader.beginObject();
+                        String addr = "";
+                        while (jsonReader.hasNext()) {
+                            String name = jsonReader.nextName();
+                            if (name.equals("pw")) {
+                                Log.d("isuccess", jsonReader.nextString());
+                            } else if (name.equals("wddress")) {
+                                addr = jsonReader.nextString();
+                                userPoolDO.setWalletAddress(addr);
+                                Log.d("waddress", addr);
+                            } else if (name.equals("cb")) {
+                                Log.d("isuccess", String.valueOf(jsonReader.nextDouble()));
+                            }
+
+                        }
+                        userPoolDO.setWalletAddress(addr);
+                        dynamoDBMapper.save(userPoolDO);
+                    } else {
+                        Log.d("isucces", "no" + String.valueOf(myConnection.getResponseCode()));
+                    }
+
+//                String line;
+//                String response="";
+//                BufferedReader br=new BufferedReader(new InputStreamReader(myConnection.getInputStream()));
+//                while ((line=br.readLine()) != null) {
+//                    response+=line;
+//                }
+
+//                Log.d("trythisshiit",response);
+
+                }
+            } catch (Exception e) {
+                Log.d("isucces", e.toString());
+
+            }
+
+        }
+    }
+
+    public String transfercc(SharedPreferences ipAdr,DynamoDBMapper dynamoDBMapper, String username,double amount,String address){
+        UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class, username);
+            try {
+                String ipA;
+                ipA = ipAdr.getString("address","wrong");
+                Log.d("isuccess",ipA);
+                if(!ipA.equals("wrong")) {
+                    URL url = new URL("http://"+ipA+"/transfercc");
+                    HttpURLConnection myConnection =
+                            (HttpURLConnection) url.openConnection();
+                    myConnection.setRequestProperty("Content-type", "application/json");
+                    myConnection.setRequestMethod("POST");
+                    myConnection.setDoInput(true);
+                    myConnection.setDoOutput(true);
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("reciever", address);
+                    jsonObject.put("amount",amount);
+                    Log.d("json", jsonObject.toString());
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(myConnection.getOutputStream()));
+                    writer.write(jsonObject.toString());
+                    writer.flush();
+                    myConnection.connect();
+
+                    if (myConnection.getResponseCode() == 200) {
+                        Log.d("isucces", "yes" + String.valueOf(myConnection.getResponseCode()));
+                        InputStream responseBody = myConnection.getInputStream();
+
+                        InputStreamReader responseBodyReader =
+                                new InputStreamReader(responseBody);
+                        Log.d("isuccess",responseBody.toString());
+                        userPoolDO.setEtherum(userPoolDO.getEtherum()+amount);
+                        dynamoDBMapper.save(userPoolDO);
+                        JsonReader jsonReader = new JsonReader(responseBodyReader);
+                        return jsonReader.toString();
+                    } else {
+                        Log.d("isucces", "no" + String.valueOf(myConnection.getResponseCode()));
+                    }
+
+//                String line;
+//                String response="";
+//                BufferedReader br=new BufferedReader(new InputStreamReader(myConnection.getInputStream()));
+//                while ((line=br.readLine()) != null) {
+//                    response+=line;
+//                }
+
+//                Log.d("trythisshiit",response);
+
+                }
+            } catch (Exception e) {
+                Log.d("isucces", e.toString());
+
+            }
+            return "error";
+    }
+
+    public String transfereth(SharedPreferences ipAdr,DynamoDBMapper dynamoDBMapper, String username,double amount,String address){
+        UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class, username);
+        try {
+            String ipA;
+            ipA = ipAdr.getString("address","wrong");
+            Log.d("isuccess",ipA);
+            if(!ipA.equals("wrong")) {
+                URL url = new URL("http://"+ipA+"/transfereth");
+                HttpURLConnection myConnection =
+                        (HttpURLConnection) url.openConnection();
+                myConnection.setRequestProperty("Content-type", "application/json");
+                myConnection.setRequestMethod("POST");
+                myConnection.setDoInput(true);
+                myConnection.setDoOutput(true);
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("spender", address);
+                jsonObject.put("pass","pass");
+                jsonObject.put("amount",amount);
+                Log.d("json", jsonObject.toString());
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(myConnection.getOutputStream()));
+                writer.write(jsonObject.toString());
+                writer.flush();
+                myConnection.connect();
+
+                if (myConnection.getResponseCode() == 200) {
+                    Log.d("isucces", "yes" + String.valueOf(myConnection.getResponseCode()));
+                    InputStream responseBody = myConnection.getInputStream();
+
+                    InputStreamReader responseBodyReader =
+                            new InputStreamReader(responseBody);
+                    Log.d("isuccess",responseBody.toString());
+                    userPoolDO.setChancecoin(userPoolDO.getChancecoin()+amount);
+//                    userPoolDO
+                    dynamoDBMapper.save(userPoolDO);
+                    JsonReader jsonReader = new JsonReader(responseBodyReader);
+                    return jsonReader.toString();
+
+                } else {
+                    Log.d("isucces", "no" + String.valueOf(myConnection.getResponseCode()));
+                }
+
+//                String line;
+//                String response="";
+//                BufferedReader br=new BufferedReader(new InputStreamReader(myConnection.getInputStream()));
+//                while ((line=br.readLine()) != null) {
+//                    response+=line;
+//                }
+
+//                Log.d("trythisshiit",response);
+
+            }
+        } catch (Exception e) {
+            Log.d("isucces", e.toString());
+
+        }
+        return "error";
     }
 
 

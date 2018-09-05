@@ -109,7 +109,7 @@
                         android:layout_centerVertical="true"
                         android:text="Activity"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:gravity="center"
                         android:clickable="true"
                         android:background="@drawable/transparent_circle" />
@@ -130,7 +130,7 @@
                         android:gravity="center"
                         android:text="Dates"
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -147,7 +147,7 @@
                         android:layout_centerVertical="true"
                         android:text="Missions"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:gravity="center"
                         android:background="@drawable/transparent_circle" />
                 </RelativeLayout>

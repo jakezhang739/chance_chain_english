@@ -199,7 +199,8 @@ public class HisActivity extends AppCompatActivity {
                 Message msg =new Message();
                 msg.what=3;
                 String str = "Reputation： ";
-                str+=userPoolDO.getShengWang();
+                int sheng = userPoolDO.getShengWang().intValue();
+                str+=String.valueOf(sheng);
                 msg.obj=str;
                 pHandler.sendMessage(msg);
             }
