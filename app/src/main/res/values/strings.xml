@@ -37,13 +37,14 @@
 
 
     <string-array name="currency_name">
+        <item>Candy</item>
         <item>cc</item>
         <item>eth</item>
     </string-array>
 
     <string-array name="type">
-        <item>Reward</item>
-        <item>Toll</item>
+        <item>Pay</item>
+        <item>Ask</item>
     </string-array>
 
 

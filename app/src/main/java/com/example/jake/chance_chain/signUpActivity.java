@@ -35,6 +35,9 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
                else if(!pass.getText().toString().equals(rePass.getText().toString())){
                     Toast.makeText(signUpActivity.this,"Password doesn't match please enter again",Toast.LENGTH_LONG).show();
                 }
+                else if(pass.getText().toString().length()<8){
+                    Toast.makeText(signUpActivity.this,"Password be longer than eight characters",Toast.LENGTH_LONG).show();
+                }
                 else {
                     registerAction();
                 }

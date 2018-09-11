@@ -71,11 +71,22 @@
                 <ImageView
                     android:id="@+id/getPic"
                     android:clickable="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignBottom="@+id/neirong"
                     android:layout_alignEnd="@+id/titletext"
                     app:srcCompat="@drawable/xiangji" />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/neirong"
+                    android:id="@+id/imageScroll">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:id="@+id/lineScroll"></LinearLayout>
+                </ScrollView>
             </RelativeLayout>
 
             <TextView
@@ -83,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textRe"
                 android:layout_centerHorizontal="true"
-                android:text="Label"
+                android:text="Tag"
                 android:id="@+id/selectTag"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
@@ -91,7 +102,7 @@
             <LinearLayout
                 android:id="@+id/tagid"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/selectTag"
                 android:orientation="horizontal"
@@ -99,13 +110,13 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center">
                     <TextView
                         android:id="@+id/circleText1"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="Activity"
                         android:textColor="@color/white"
@@ -117,13 +128,13 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center">
                     <TextView
                         android:id="@+id/circleText2"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:background="@drawable/transparent_circle"
                         android:clickable="true"
@@ -136,13 +147,13 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center">
                     <TextView
                         android:id="@+id/circleText3"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:clickable="true"
                         android:layout_centerVertical="true"
                         android:text="Missions"
@@ -154,18 +165,18 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center">
                     <TextView
                         android:id="@+id/circleText4"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:clickable="true"
                         android:text="Other"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:gravity="center"
                         android:background="@drawable/transparent_circle" />
 
@@ -226,7 +237,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_centerHorizontal="true"
                     android:background="@color/yellow"
-                    android:hint="Chance available to take"
+                    android:hint="Quantity"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
@@ -242,7 +253,7 @@
                     android:layout_marginRight="20dp"
                     android:text="Upload"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/activity_button_text_size"
+                    android:textSize="15sp"
                     android:background="@color/yellow"/>
 
             </RelativeLayout>

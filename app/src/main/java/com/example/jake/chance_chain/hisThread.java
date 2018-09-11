@@ -35,33 +35,32 @@ public class hisThread extends Thread {
         }
         else{
             totChance=userPoolDO.getChanceIdList().size()-1;
-        }
-        Log.d("thread", "fg"+String.valueOf(totChance));
-        Log.d("just try222", "come on "+helper.returnChanceeSize(dynamoDBMapper));
+            Log.d("thread", "fg"+String.valueOf(totChance));
+            Log.d("just try222", "come on "+helper.returnChanceeSize(dynamoDBMapper));
 
-        if(totChance >= 10){
-            for(int i = totChance;i>=totChance-9;i--){
-                putStuffin(userPoolDO.getChanceIdList().get(i));
+            if(totChance >= 10){
+                for(int i = totChance;i>=totChance-9;i--){
+                    putStuffin(userPoolDO.getChanceIdList().get(i));
 
+                }
             }
-        }
-        else{
-            for(int i = totChance;i>=0;i--){
-                putStuffin(userPoolDO.getChanceIdList().get(i));
+            else{
+                for(int i = totChance;i>=0;i--){
+                    putStuffin(userPoolDO.getChanceIdList().get(i));
 
+                }
             }
+            ;
+
+
+            Log.d("thread", "fg"+"sdf");
+
+
+
+            Log.d("thread", "fg"+"sd123f");
+
         }
-        ;
-
-
-        Log.d("thread", "fg"+"sdf");
-
-
-
-        Log.d("thread", "fg"+"sd123f");
-
         hisActivity.setHistFragment(cList,ft);
-
 
         //设置布局管理器
 

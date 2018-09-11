@@ -54,11 +54,17 @@
                 android:text="TextView" />
 
 
-            <ImageView
+            <TextView
                 android:id="@+id/tagView"
                 android:layout_width="wrap_content"
-                android:layout_height="22dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/round_corner"
                 android:layout_toEndOf="@+id/userNameText" />
 
             <ImageView

@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/beiGuanNum"
         android:layout_alignStart="@id/beiGuanNum"
-        android:text="Followed By" />
+        android:text="Follower" />
 
     <TextView
         android:id="@+id/woFabuNum"
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/woFabuNum"
         android:layout_below="@+id/woFabuNum"
-        android:text="Upload" />
+        android:text="Post" />
 
     <TextView
         android:id="@+id/woSpace1"
@@ -139,6 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/woJihui"
         android:layout_marginTop="10dp"
+        android:textSize="12sp"
         android:layout_below="@+id/woJihui"
         android:text="My Chance" />
 
@@ -157,8 +158,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/woFabuImg"
         android:layout_marginTop="10dp"
+        android:textSize="12sp"
         android:layout_centerHorizontal="true"
-        android:text="My Upload" />
+        android:text="My Post" />
 
     <ImageView
         android:id="@+id/woRenWu"
@@ -175,10 +177,10 @@
         android:id="@+id/woRenWuNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/woRenWu"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/woRenWu"
-        android:text="My Mission" />
+        android:layout_alignEnd="@+id/woRenWu"
+        android:layout_alignTop="@+id/woJihuiNum"
+        android:text="My Mission"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/woSpace2"
@@ -204,6 +206,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/woQian"
         android:layout_centerHorizontal="true"
+        android:textSize="12sp"
         android:clickable="true"
         app:srcCompat="@drawable/guanzhu" />
 
@@ -222,6 +225,7 @@
         android:layout_alignStart="@+id/woJihui"
         android:layout_below="@+id/woQian"
         android:layout_marginTop="10dp"
+        android:textSize="12sp"
         android:text="My Wallet" />
 
     <TextView
@@ -230,15 +234,17 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/woQianNum"
         android:layout_centerHorizontal="true"
+        android:textSize="12sp"
         android:text="My Follow" />
 
     <TextView
         android:id="@+id/woXiaoNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/woRenWu"
+        android:layout_alignEnd="@+id/woRenWu"
         android:layout_alignTop="@+id/woQianNum"
-        android:text="My Message" />
+        android:text="My Message"
+        android:textSize="12sp" />
 
     <TextView
         android:layout_width="match_parent"

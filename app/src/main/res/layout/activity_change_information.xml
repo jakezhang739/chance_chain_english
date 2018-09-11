@@ -13,17 +13,19 @@
             android:id="@+id/touBtn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/finishBtn"
+            android:layout_alignParentEnd="true"
+            android:textSize="15sp"
             android:layout_alignParentTop="true"
-            android:text="@string/uploadTou" />
+            android:text="Upload picture" />
 
         <Button
         android:id="@+id/touBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:textSize="15sp"
         android:layout_alignParentTop="true"
-        android:text="@string/takePic"/>
+        android:text="Take picutre"/>
 
 
     <EditText
@@ -56,23 +58,13 @@
         android:inputType="text"
         android:text="@string/chanceId" />
 
-    <EditText
-        android:id="@+id/inpWallet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/inpChance"
-        android:textColor="@color/white"
-        android:ems="10"
-        android:inputType="text"
-        android:text="@string/walletAddress" />
 
         <EditText
             android:id="@+id/inpSex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/inpWallet"
+            android:layout_below="@+id/inpChance"
             android:textColor="@color/white"
             android:inputType="text"
             android:text="@string/gender" />

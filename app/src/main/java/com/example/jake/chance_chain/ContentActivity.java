@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,13 +84,41 @@ public class ContentActivity extends AppCompatActivity {
         ftype = chanceC.fType;
         jineTxt = (TextView) findViewById(R.id.jine);
         renshu = (TextView) findViewById(R.id.renshu);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(R.layout.tiltlebar);
+        ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
+        TextView titlteText = (TextView) actionBar.getCustomView().findViewById(R.id.title);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+        titlteText.setText(chanceC.txtTitle);
         if(chanceC.shoufei==0.0) {
-            jineTxt.setText("Reward： " + fufei + " "+stype);
+            jineTxt.setText("Pay： " + fufei + " "+stype);
         }
         else{
-            jineTxt.setText("Toll： " + shoufei + " "+stype);
+            jineTxt.setText("Ask： " + shoufei + " "+stype);
         }
         int rNum = (int) chanceC.renshu;
+        TextView tagView = (TextView) findViewById(R.id.tagView);
+        switch ((int) chanceC.tag) {
+            case 1:
+                tagView.setText("Activity");
+                break;
+            case 2:
+                tagView.setText("Dates");
+                break;
+            case 3:
+                tagView.setText("Missions");
+                break;
+            case 4:
+                tagView.setText("Other");
+                break;
+        }
         renshu.setText(" Chance left: "+String.valueOf(rNum));
         touImg = (ImageView) findViewById(R.id.contentTou);
         uName = (TextView) findViewById(R.id.contentUid);
@@ -149,6 +178,15 @@ public class ContentActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mAdapter= new CommentAdapter(context,chanceC.commentList);
         mRecyclerView.setAdapter(mAdapter);
+
+        touImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContentActivity.this,HisActivity.class);
+                intent.putExtra("userName",chanceC.userid);
+                startActivity(intent);
+            }
+        });
 
 
         fLay.setOnClickListener(new View.OnClickListener() {
@@ -441,6 +479,7 @@ public class ContentActivity extends AppCompatActivity {
     };
 
     public void gotomyChance(View v){
+        popupdismiss(v);
         Intent intent = new Intent(v.getContext(),wodejihui.class);
         startActivity(intent);
     }

@@ -69,7 +69,7 @@ public class wodeGuanZHui extends AppCompatActivity {
         @Override
         public void run() {
             UserPoolDO userPoolDO = mapper.load(UserPoolDO.class, myUsr);
-            Log.d("wtf",userPoolDO.getGuanZhu().toString());
+            //Log.d("wtf",userPoolDO.getGuanZhu().toString());
             if (userPoolDO.getGuanZhu() == null) {
                 Message msg = new Message();
                 msg.what = 2;

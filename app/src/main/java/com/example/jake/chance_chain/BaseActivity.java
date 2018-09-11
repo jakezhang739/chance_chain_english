@@ -2,6 +2,9 @@ package com.example.jake.chance_chain;
 
 import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
@@ -35,8 +38,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.ArraySet;
+import android.util.Base64;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,6 +49,7 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -93,6 +99,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -176,6 +184,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         username=helper.getCurrentUserName(context);
         new Thread(LoginRunnable).start();
         new Thread(httpRun).start();
+
+
 
 
 
@@ -385,8 +395,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                     //未选中时候的操作
-                    txtFuFeiType = "cc";
-                    txtFuFeiType= "cc";
+                    txtFuFeiType = "Candy";
+                    txtFuFeiType= "Candy";
                 }
             });
 
@@ -420,7 +430,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 @Override
                 public void onClick(View v){
                     if(fufei.getText().length()!=0) {
-                        if(priceType.equals("Reward")) {
+                        if(priceType.equals("Pay")) {
                             txtFuFei = fufei.getText().toString();
                             txtShoufei="0";
                         }
@@ -455,6 +465,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                         fufei.setText("");
                         ren.setText("");
                         new Thread(uploadRunnable).start();
+
                     }
 
 
@@ -619,7 +630,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         @Override
         public void handleMessage(Message msg){
             switch (msg.what){
-                case 1:Toast.makeText(context,"Uploaded",Toast.LENGTH_LONG).show();break;
+                case 1:Toast.makeText(context,"Uploaded",Toast.LENGTH_LONG).show();Intent intent = new Intent(BaseActivity.this,HomeActivity.class);
+                    startActivity(intent);break;
                 case 2:Toast.makeText(context,"Available funds not enough",Toast.LENGTH_LONG).show();break;
                 case 3:Toast.makeText(context,"First upload, you have gotten 100 Candy",Toast.LENGTH_LONG).show();;break;
                 case 4:Toast.makeText(context,"First upload today, you have gotten 10 Candy",Toast.LENGTH_LONG).show();;break;
@@ -635,7 +647,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             int cSize = helper.returnChanceeSize(dynamoDBMapper) + 1;
             final ChanceWithValueDO chanceWithValueDO = new ChanceWithValueDO();
             UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class, username);
-            double fee = Double.parseDouble(txtFuFei);
+            double fee = Double.parseDouble(txtFuFei)*renshu;
             Log.d("thisshiit",userPoolDO.getAvailableWallet().toString()+username);
             if (userPoolDO.getAvailableWallet() >= fee) {
                 Log.d("th11isshiit",userPoolDO.getAvailableWallet().toString()+username);
@@ -679,9 +691,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 if (pictureSet.size() != 0) {
                     chanceWithValueDO.setPictures(pictureSet);
                 }
-                List<String> idList;
+                List<String> idList=new ArrayList<>();
                 if (userPoolDO.getChanceIdList() == null) {
-                    idList = new ArrayList<>();
                     Message msg1 = new Message();
                     msg1.what=3;
                     uploadHandler.sendMessage(msg1);
@@ -705,7 +716,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 userPoolDO.setLastFabu(dateString);
                 chanceWithValueDO.setUsername(username);
                 chanceWithValueDO.setId(String.valueOf(cSize));
-                chanceWithValueDO.setFuFei(fee);
+                chanceWithValueDO.setFuFei(Double.parseDouble(txtFuFei));
                 chanceWithValueDO.setFuFeiType(txtFuFeiType);
                 chanceWithValueDO.setShouFei(Double.parseDouble(txtShoufei));
                 chanceWithValueDO.setShouFeiType(txtShoufeiType);
@@ -739,11 +750,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         Log.d("get code","reque" + requestCode + " resu " + resultCode);
 
         if(requestCode == Define.ALBUM_REQUEST_CODE){
+            if(resultCode == 0){
 
-            uriList=data.getParcelableArrayListExtra(Define.INTENT_PATH);
-
-
-        }
+            }
+            else {
+                uriList = data.getParcelableArrayListExtra(Define.INTENT_PATH);
+                for(int i=0;i<uriList.size();i++){
+                    LinearLayout layout = (LinearLayout) findViewById(R.id.lineScroll);
+                    onAddImage(layout,uriList.get(i));
+                }
+            }
+            }
     }
 
     // Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
@@ -900,6 +917,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             String loginTime = DateFormat.format("yyyyMMddHHmmss", new Date(currentLoginTime.getTime())).toString();
             UserPoolDO userPoolDO = dynamoDBMapper.load(UserPoolDO.class,uId);
             Message msg = new Message();
+            //Log.d("sameshiit1",String.valueOf(sameDay(userPoolDO.getLastLogin())));
             if(userPoolDO.getLastLogin()==null){
                 userPoolDO.setLastLogin(loginTime);
                 userPoolDO.setCandyCurrency(100.0);
@@ -908,55 +926,70 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 loginHandler.sendMessage(msg);
             }
             else if(sameDay(userPoolDO.getLastLogin())!=0) {
-                userPoolDO.setLastLogin(loginTime);
+                Log.d("sameshiit2",String.valueOf(sameDay(userPoolDO.getLastLogin())));
                 int cLogin = userPoolDO.getConsecutiveLogin().intValue();
+                Log.d("sameshiit3",String.valueOf(cLogin));
+                int value;
                 if (sameDay(userPoolDO.getLastLogin()) == 1) {
                     switch (cLogin) {
-                        default:
-                            break;
-                        case 1:
+                        case 0:
                             userPoolDO.setCandyCurrency(userPoolDO.getCandyCurrency() + 5);
                             userPoolDO.setAvailableWallet(userPoolDO.getAvailableWallet() + 5);
                             msg.what = 1;
                             loginHandler.sendMessage(msg);
+                            value = cLogin + 1;
+                            Log.d("sameshiit",String.valueOf(value));
+                            userPoolDO.setConsecutiveLogin((double)value);
                             break;
-                        case 2:
+                        case 1:
                             userPoolDO.setCandyCurrency(userPoolDO.getCandyCurrency() + 10);
                             userPoolDO.setAvailableWallet(userPoolDO.getAvailableWallet() + 10);
                             msg.what = 2;
                             loginHandler.sendMessage(msg);
+                            value = cLogin + 1;
+                            userPoolDO.setConsecutiveLogin((double)value);
                             break;
-                        case 3:
+                        case 2:
                             userPoolDO.setCandyCurrency(userPoolDO.getCandyCurrency() + 15);
                             userPoolDO.setAvailableWallet(userPoolDO.getAvailableWallet() + 15);
                             msg.what = 3;
                             loginHandler.sendMessage(msg);
+                            value = cLogin + 1;
+                            userPoolDO.setConsecutiveLogin((double)value);
                             break;
-                        case 4:
+                        case 3:
                             userPoolDO.setCandyCurrency(userPoolDO.getCandyCurrency() + 30);
                             userPoolDO.setAvailableWallet(userPoolDO.getAvailableWallet() + 30);
                             msg.what = 4;
+                            value = cLogin + 1;
+                            userPoolDO.setConsecutiveLogin((double)value);
                             loginHandler.sendMessage(msg);
                             break;
-                        case 5:
+                        case 4:
                             userPoolDO.setCandyCurrency(userPoolDO.getCandyCurrency() + 40);
                             userPoolDO.setAvailableWallet(userPoolDO.getAvailableWallet() + 40);
                             msg.what = 5;
+                            value = cLogin + 1;
+                            userPoolDO.setConsecutiveLogin((double)value);
                             loginHandler.sendMessage(msg);
                             break;
-                        case 6:
+                        case 5:
                             userPoolDO.setCandyCurrency(userPoolDO.getCandyCurrency() + 50);
                             userPoolDO.setAvailableWallet(userPoolDO.getAvailableWallet() + 50);
                             msg.what = 1;
+                            value = cLogin + 1;
+                            userPoolDO.setConsecutiveLogin((double)value);
                             loginHandler.sendMessage(msg);
                             break;
-                        case 7:
+                        case 6:
                             userPoolDO.setShengWang(userPoolDO.getShengWang() + 1);
                             msg.what = 7;
                             loginHandler.sendMessage(msg);
+                            value = cLogin + 1;
+                            userPoolDO.setConsecutiveLogin((double)value);
                             break;
                     }
-                    userPoolDO.setConsecutiveLogin((double) cLogin + 1);
+                    userPoolDO.setLastLogin(loginTime);
                 }
             }
 
@@ -1031,16 +1064,25 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         }
     };
 
+    public void onAddImage(LinearLayout horLay, Uri uri){
+        View layout1 = LayoutInflater.from(this).inflate(R.layout.addimageview, horLay, false);
+        ImageView img = layout1.findViewById(R.id.imageView22);
+        Picasso.get().load(uri).resize(40,40).into(img);
+        horLay.addView(layout1);
+
+    };
+
     private int sameDay(String thatTime){
         Date currentTime = Calendar.getInstance().getTime();
         String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
         String sameday1,sameday2;
         sameday1=thatTime.substring(0,8);
         sameday2=dateString.substring(0,8);
-        int dayDif = Integer.parseInt(sameday1)-Integer.parseInt(sameday2);
+        int dayDif = Integer.parseInt(sameday2)-Integer.parseInt(sameday1);
         return  dayDif;
 
     }
+
 
 
 }

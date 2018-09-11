@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/fabu"
-        android:title="@string/title_notifications" />
+        android:title="Post" />
 
     <item
         android:id="@+id/navigation_dashboard"

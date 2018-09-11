@@ -148,8 +148,8 @@ public class fabuActivity extends AppCompatActivity {
     };
 
     public void onAddView(chanceClass cList){
-        ImageView uImg,tagView,moreContent,fent;
-        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr;
+        ImageView uImg,moreContent,fent;
+        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr,tagView;
         GridView mGridview;
         RelativeLayout link;
         ProgressBar loading;
@@ -159,7 +159,7 @@ public class fabuActivity extends AppCompatActivity {
         uImg=(ImageView) layout1.findViewById(R.id.touxiangImg);
         uidTxt=(TextView) layout1.findViewById(R.id.userNameText);
         timeTxt=(TextView) layout1.findViewById(R.id.timeview);
-        tagView=(ImageView) layout1.findViewById(R.id.tagView);
+        tagView=(TextView) layout1.findViewById(R.id.tagView);
         mGridview = (GridView) layout1.findViewById(R.id.gallery);
         moreContent = (ImageView) layout1.findViewById(R.id.gengduo);
         cardView = (CardView) layout1.findViewById(R.id.card_view);
@@ -172,16 +172,16 @@ public class fabuActivity extends AppCompatActivity {
         timeTxt.setText(display);
         switch ((int) cList.tag) {
             case 1:
-                tagView.setImageResource(R.drawable.huodong);
+                tagView.setText("Activity");
                 break;
             case 2:
-                tagView.setImageResource(R.drawable.yuema);
+                tagView.setText("Dates");
                 break;
             case 3:
-                tagView.setImageResource(R.drawable.remwu);
+                tagView.setText("Missions");
                 break;
             case 4:
-                tagView.setImageResource(R.drawable.qita);
+                tagView.setText("Other");
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));
@@ -221,17 +221,17 @@ public class fabuActivity extends AppCompatActivity {
 
 
     public void onAddJingXing(chanceClass cList){
-        View layout1 = LayoutInflater.from(this).inflate(R.layout.fabuitem, beijing, false);
-        ImageView uImg,tagView,moreContent;
-        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,confTxt,unconfTxt;
+        View layout1 = LayoutInflater.from(this).inflate(R.layout.inprocess, beijing, false);
+        ImageView uImg,moreContent;
+        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,confTxt,unconfTxt,tagView;
         GridView mGridview;
         CardView cardView;
-        Button confirmBtn,cancelBtn;
+        Button confirmBtn,cancelBtn,seeProfile;
         mTxt=(TextView) layout1.findViewById(R.id.neirongTxt);
         uImg=(ImageView) layout1.findViewById(R.id.touxiangImg);
         uidTxt=(TextView) layout1.findViewById(R.id.userNameText);
         timeTxt=(TextView) layout1.findViewById(R.id.timeview);
-        tagView=(ImageView) layout1.findViewById(R.id.tagView);
+        tagView=(TextView) layout1.findViewById(R.id.tagView);
         mGridview = (GridView) layout1.findViewById(R.id.gallery);
         moreContent = (ImageView) layout1.findViewById(R.id.gengduo);
         confTxt = (TextView) layout1.findViewById(R.id.confirmtxt);
@@ -240,9 +240,8 @@ public class fabuActivity extends AppCompatActivity {
         pingjia = (TextView) layout1.findViewById(R.id.liuyan);
         fenxiang = (TextView) layout1.findViewById(R.id.fenxiang);
         dianzhan = (TextView) layout1.findViewById(R.id.dianzhan);
-        confirmBtn = (Button) layout1.findViewById(R.id.button4);
         cancelBtn = (Button) layout1.findViewById(R.id.button5);
-        confirmBtn.setVisibility(View.INVISIBLE);
+        seeProfile = (Button) layout1.findViewById(R.id.button4);
         Spinner selUsr = (Spinner) layout1.findViewById(R.id.select);
         Log.d("fabuactivityjinxing",cList.gottenId.toString());
         ArrayAdapter<String> adapter =new ArrayAdapter<String>(this,R.layout.item_select,cList.gottenId);
@@ -270,8 +269,15 @@ public class fabuActivity extends AppCompatActivity {
                         Log.d("fabuactivityjinxing",selectedUser);
                         onForfeit cancel = new onForfeit(selectedUser,tempCid);
                         new Thread(cancel).start();
-                        confirmBtn.setVisibility(View.INVISIBLE);
                         cancelBtn.setVisibility(View.INVISIBLE);
+                    }
+                });
+                seeProfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(fabuActivity.this,HisActivity.class);
+                        intent.putExtra("userName", selectedUser);
+                        startActivity(intent);
                     }
                 });
             }
@@ -283,16 +289,16 @@ public class fabuActivity extends AppCompatActivity {
         });
         switch ((int) cList.tag) {
             case 1:
-                tagView.setImageResource(R.drawable.huodong);
+                tagView.setText("Activity");
                 break;
             case 2:
-                tagView.setImageResource(R.drawable.yuema);
+                tagView.setText("Dates");
                 break;
             case 3:
-                tagView.setImageResource(R.drawable.remwu);
+                tagView.setText("Missions");
                 break;
             case 4:
-                tagView.setImageResource(R.drawable.qita);
+                tagView.setText("Other");
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));
@@ -334,8 +340,8 @@ public class fabuActivity extends AppCompatActivity {
 
     public void onAddWanCheng(chanceClass cList){
         View layout1 = LayoutInflater.from(this).inflate(R.layout.fabuitem, beijing, false);
-        ImageView uImg,tagView,moreContent;
-        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,confTxt,unconfTxt;
+        ImageView uImg,moreContent;
+        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,confTxt,unconfTxt,tagView;
         GridView mGridview;
         CardView cardView;
         Button confirmBtn,cancelBtn;
@@ -343,7 +349,7 @@ public class fabuActivity extends AppCompatActivity {
         uImg=(ImageView) layout1.findViewById(R.id.touxiangImg);
         uidTxt=(TextView) layout1.findViewById(R.id.userNameText);
         timeTxt=(TextView) layout1.findViewById(R.id.timeview);
-        tagView=(ImageView) layout1.findViewById(R.id.tagView);
+        tagView=(TextView) layout1.findViewById(R.id.tagView);
         mGridview = (GridView) layout1.findViewById(R.id.gallery);
         moreContent = (ImageView) layout1.findViewById(R.id.gengduo);
         confTxt = (TextView) layout1.findViewById(R.id.confirmtxt);
@@ -421,16 +427,16 @@ public class fabuActivity extends AppCompatActivity {
         });
         switch ((int) cList.tag) {
             case 1:
-                tagView.setImageResource(R.drawable.huodong);
+                tagView.setText("Activity");
                 break;
             case 2:
-                tagView.setImageResource(R.drawable.yuema);
+                tagView.setText("Dates");
                 break;
             case 3:
-                tagView.setImageResource(R.drawable.remwu);
+                tagView.setText("Missions");
                 break;
             case 4:
-                tagView.setImageResource(R.drawable.qita);
+                tagView.setText("Other");
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));

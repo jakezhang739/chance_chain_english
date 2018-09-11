@@ -75,7 +75,6 @@ public class changeInformationActivity extends AppCompatActivity {
         nickNameView = (EditText) findViewById(R.id.inpUid);
         nameView = (EditText) findViewById(R.id.inpName);
         chanceView = (EditText) findViewById(R.id.inpChance);
-        walletView = (EditText) findViewById(R.id.inpWallet);
         genderView = (EditText) findViewById(R.id.inpSex);
         careerView = (EditText) findViewById(R.id.inpCareer);
         resumeView = (EditText) findViewById(R.id.inpRes);
@@ -87,7 +86,6 @@ public class changeInformationActivity extends AppCompatActivity {
                 nickName=nickNameView.getText().toString();
                 name=nameView.getText().toString();
                 chance=chanceView.getText().toString();
-                wallet=walletView.getText().toString();
                 gender=genderView.getText().toString();
                 career=careerView.getText().toString();
                 resume=resumeView.getText().toString();
@@ -283,7 +281,6 @@ public class changeInformationActivity extends AppCompatActivity {
         userInf.setCareer(career);
         userInf.setChanceId(chance);
         userInf.setNickName(nickName);
-        userInf.setWalletAddress(wallet);
         userInf.setResume(resume);
         userInf.setGender(gender);
         new Thread(new Runnable() {

@@ -53,7 +53,7 @@ public class chattingActivity extends AppCompatActivity {
     DynamoDBMapper mapper;
     String userId;
     AmazonDynamoDBClient dbClient;
-    ImageView addText;
+    TextView addText;
     RelativeLayout liaotiankuang;
     TextView tianconglan;
     ProgressBar progressBar;
@@ -92,7 +92,7 @@ public class chattingActivity extends AppCompatActivity {
             }
         });
 
-        addText = (ImageView) findViewById(R.id.fasongxiao);
+        addText = (TextView) findViewById(R.id.fasongxiao);
         addText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

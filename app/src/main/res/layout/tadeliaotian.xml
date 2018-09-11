@@ -24,7 +24,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="84dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/msginput"
+        android:paddingLeft="20dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/whiteround"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="20sp" />

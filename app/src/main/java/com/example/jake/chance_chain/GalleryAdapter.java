@@ -69,8 +69,8 @@ public class GalleryAdapter extends
             super(arg0);
         }
 
-        ImageView uImg,tagView,moreContent,fent,zhuanfa,pingPic,likePic,likedPic;
-        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr;
+        ImageView uImg,moreContent,fent,zhuanfa,pingPic,likePic,likedPic;
+        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr,tagView;
         GridView mGridview;
         RelativeLayout link;
         ProgressBar loading;
@@ -108,7 +108,7 @@ public class GalleryAdapter extends
             viewHolder.uImg=(ImageView) view.findViewById(R.id.touxiangImg);
             viewHolder.uidTxt=(TextView) view.findViewById(R.id.userNameText);
             viewHolder.timeTxt=(TextView) view.findViewById(R.id.timeview);
-            viewHolder.tagView=(ImageView) view.findViewById(R.id.tagView);
+            viewHolder.tagView=(TextView) view.findViewById(R.id.tagView);
             viewHolder.mGridview = (GridView) view.findViewById(R.id.gallery);
             viewHolder.moreContent = (ImageView) view.findViewById(R.id.gengduo);
             viewHolder.cardView = (CardView) view.findViewById(R.id.card_view);
@@ -162,16 +162,16 @@ public class GalleryAdapter extends
             viewHolder.timeTxt.setText(display);
             switch ((int) cList.get(i).tag) {
                 case 1:
-                    viewHolder.tagView.setImageResource(R.drawable.huodong);
+                    viewHolder.tagView.setText("Activity");
                     break;
                 case 2:
-                    viewHolder.tagView.setImageResource(R.drawable.yuema);
+                    viewHolder.tagView.setText("Dates");
                     break;
                 case 3:
-                    viewHolder.tagView.setImageResource(R.drawable.remwu);
+                    viewHolder.tagView.setText("Missions");
                     break;
                 case 4:
-                    viewHolder.tagView.setImageResource(R.drawable.qita);
+                    viewHolder.tagView.setText("Other");
                     break;
             }
             viewHolder.pingjia.setText(String.valueOf(cList.get(i).cNumber));

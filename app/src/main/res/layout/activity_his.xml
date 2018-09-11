@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/guanzhuNum"
         android:layout_centerHorizontal="true"
-        android:text="Followed By" />
+        android:text="Follower" />
 
     <TextView
         android:id="@+id/woFabuNum"
@@ -102,7 +102,7 @@
         android:layout_below="@+id/guanzhuNum"
         android:layout_alignParentRight="true"
         android:layout_marginRight="40dp"
-        android:text="Upload" />
+        android:text="Post" />
 
     <TextView
         android:id="@+id/woSpace1"
@@ -156,7 +156,7 @@
                 android:layout_alignStart="@+id/followed"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:text="Follow Him"
+                android:text="Follow"
                 android:textColor="@color/yellow"
                 android:textSize="15sp"
                 android:visibility="visible" />
@@ -209,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="His follow"
+                android:text="More"
                 android:textColor="@color/yellow"
                 android:textSize="15sp" />
         </RelativeLayout>

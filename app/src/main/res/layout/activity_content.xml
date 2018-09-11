@@ -7,121 +7,140 @@
     tools:context=".ContentActivity">
 
     <ScrollView
+        android:id="@+id/scrollId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollId"
-        android:layout_above="@+id/bottomBar">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollRel"
-        >
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/contentTou"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/sp" />
+        android:layout_alignParentTop="true">
 
-    <TextView
-        android:id="@+id/contentUid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/contentTou"
-        android:layout_toEndOf="@+id/contentTou"
-        android:layout_marginLeft="10dp"
-        android:text="TextView"
-        android:textSize="@dimen/action_bar_text"/>
-
-    <TextView
-        android:id="@+id/contentTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/contentUid"
-        android:layout_marginTop="49dp"
-        android:text="TextView" />
-        <TextView
+        <RelativeLayout
+            android:id="@+id/scrollRel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/contentNei"
-            android:layout_below="@+id/contentTou"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:text="lk"
-            />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imgLayout"
-            android:orientation="vertical"
-            android:layout_below="@id/contentNei">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/contentTou"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:src="@drawable/sp" />
 
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:id="@+id/spacing1"
-            android:layout_below="@+id/imgLayout"
-            android:background="@color/homeback"/>
+            <TextView
+                android:id="@+id/contentUid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/contentTou"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/contentTou"
+                android:text="TextView"
+                android:textSize="@dimen/action_bar_text" />
 
+            <TextView
+                android:id="@+id/contentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/contentUid"
+                android:layout_marginTop="49dp"
+                android:text="TextView" />
 
-        <Button
-            android:id="@+id/getBtn"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/spacing1"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/round_corner"
-            android:text="Get"
-            android:textColor="@color/black" />
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cRecycle"
-            android:layout_below="@+id/getBtn">
-        </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:id="@+id/contentNei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/contentTou"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="lk" />
 
-        <TextView
-            android:id="@+id/jine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/spacing1"
-            android:layout_marginStart="13dp"
-            android:textColor="@color/yellow"
-            android:text="TextView" />
+            <LinearLayout
+                android:id="@+id/imgLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/contentNei"
+                android:orientation="vertical">
 
-        ]<TextView
-            android:id="@+id/renshu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spacing1"
-            android:layout_toRightOf="@+id/jine"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/yellow"
-            android:text="TextView" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/xianzhi"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:layout_below="@+id/spacing1"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/round_corner"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="13sp" />
+            <TextView
+                android:id="@+id/spacing1"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_below="@+id/imgLayout"
+                android:background="@color/homeback" />
 
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/getBtn"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/spacing1"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/round_corner"
+                android:text="Get"
+                android:textColor="@color/black" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cRecycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/xianzhi"></android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/jine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/spacing1"
+                android:layout_marginStart="13dp"
+                android:text="TextView"
+                android:textColor="@color/yellow" />
+
+            ]
+
+            <TextView
+                android:id="@+id/renshu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spacing1"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/jine"
+                android:text="TextView"
+                android:textColor="@color/yellow" />
+
+            <TextView
+                android:id="@+id/tagView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/contentTou"
+                android:layout_toRightOf="@+id/contentUid"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/round_corner"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/xianzhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/getBtn"
+                android:layout_below="@+id/spacing1"
+                android:background="@drawable/round_corner"
+                android:gravity="center"
+                android:text="Chance taken"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+
+        </RelativeLayout>
     </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"

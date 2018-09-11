@@ -131,8 +131,8 @@ public class wodejihui extends AppCompatActivity {
 
     public void onAddView(chanceClass cList){
         View layout1 = LayoutInflater.from(this).inflate(R.layout.fabuitem, beijing, false);
-        ImageView uImg,tagView,moreContent;
-        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,confTxt,unconfTxt;
+        ImageView uImg,moreContent;
+        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,confTxt,unconfTxt,tagView;
         GridView mGridview;
         CardView cardView;
         Button confirmBtn,cancelBtn;
@@ -142,7 +142,7 @@ public class wodejihui extends AppCompatActivity {
         uImg=(ImageView) layout1.findViewById(R.id.touxiangImg);
         uidTxt=(TextView) layout1.findViewById(R.id.userNameText);
         timeTxt=(TextView) layout1.findViewById(R.id.timeview);
-        tagView=(ImageView) layout1.findViewById(R.id.tagView);
+        tagView=(TextView) layout1.findViewById(R.id.tagView);
         mGridview = (GridView) layout1.findViewById(R.id.gallery);
         moreContent = (ImageView) layout1.findViewById(R.id.gengduo);
         unconfTxt = (TextView) layout1.findViewById(R.id.unConfirmtxt);
@@ -176,16 +176,16 @@ public class wodejihui extends AppCompatActivity {
         }
         switch ((int) cList.tag) {
             case 1:
-                tagView.setImageResource(R.drawable.huodong);
+                tagView.setText("Activity");
                 break;
             case 2:
-                tagView.setImageResource(R.drawable.yuema);
+                tagView.setText("Dates");
                 break;
             case 3:
-                tagView.setImageResource(R.drawable.remwu);
+                tagView.setText("Missions");
                 break;
             case 4:
-                tagView.setImageResource(R.drawable.qita);
+                tagView.setText("Other");
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));
@@ -225,8 +225,8 @@ public class wodejihui extends AppCompatActivity {
 
     public void onAddJingXing(chanceClass cList,int i){
         View layout1 = LayoutInflater.from(this).inflate(R.layout.fabuitem, beijing, false);
-        ImageView uImg,tagView,moreContent;
-        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,confTxt,unconfTxt;
+        ImageView uImg,moreContent;
+        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,confTxt,unconfTxt,tagView;
         GridView mGridview;
         CardView cardView;
         Button confirmBtn,cancelBtn;
@@ -236,7 +236,7 @@ public class wodejihui extends AppCompatActivity {
         uImg=(ImageView) layout1.findViewById(R.id.touxiangImg);
         uidTxt=(TextView) layout1.findViewById(R.id.userNameText);
         timeTxt=(TextView) layout1.findViewById(R.id.timeview);
-        tagView=(ImageView) layout1.findViewById(R.id.tagView);
+        tagView=(TextView) layout1.findViewById(R.id.tagView);
         mGridview = (GridView) layout1.findViewById(R.id.gallery);
         moreContent = (ImageView) layout1.findViewById(R.id.gengduo);
         unconfTxt = (TextView) layout1.findViewById(R.id.unConfirmtxt);
@@ -254,16 +254,16 @@ public class wodejihui extends AppCompatActivity {
         timeTxt.setText(display);
         switch ((int) cList.tag) {
             case 1:
-                tagView.setImageResource(R.drawable.huodong);
+                tagView.setText("Activity");
                 break;
             case 2:
-                tagView.setImageResource(R.drawable.yuema);
+                tagView.setText("Dates");
                 break;
             case 3:
-                tagView.setImageResource(R.drawable.remwu);
+                tagView.setText("Missions");
                 break;
             case 4:
-                tagView.setImageResource(R.drawable.qita);
+                tagView.setText("Other");
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));

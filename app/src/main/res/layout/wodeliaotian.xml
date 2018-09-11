@@ -24,7 +24,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginEnd="75dp"
         android:layout_marginTop="11dp"
-        android:background="@drawable/wodeliao"
+        android:paddingLeft="5dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/blueround"
         android:text="TextView"
         android:textSize="20sp" />
 
