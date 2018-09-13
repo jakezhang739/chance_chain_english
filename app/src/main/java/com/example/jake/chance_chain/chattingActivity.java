@@ -1,10 +1,15 @@
 package com.example.jake.chance_chain;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -24,15 +29,22 @@ import android.widget.Toast;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedList;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.QueryRequest;
+import com.sangcomz.fishbun.define.Define;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -59,6 +71,7 @@ public class chattingActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Boolean exit = true;
     ScrollView s;
+    Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +93,17 @@ public class chattingActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBarchat);
         liaotiankuang = (RelativeLayout) findViewById(R.id.liaotian);
         tianconglan = (TextView) findViewById(R.id.tianc);
+        ImageView sPic = (ImageView) findViewById(R.id.imageView23);
+        sPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requstStoragePermission();
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
+            }
+        });
         Thread receiveThread = new Thread(ReceiverListener);
         receiveThread.start();
         s = (ScrollView) findViewById(R.id.liaozhuti);
@@ -97,9 +121,13 @@ public class chattingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextValue = getInput.getText().toString();
-                addText.setVisibility(View.INVISIBLE);
-                getInput.setText("");
-                new Thread(sendMsg).start();
+                if (TextValue.length() == 0) {
+
+                } else {
+                    addText.setVisibility(View.INVISIBLE);
+                    getInput.setText("");
+                    new Thread(sendMsg).start();
+                }
             }
         });
 
@@ -124,12 +152,22 @@ public class chattingActivity extends AppCompatActivity {
         View layout1 = LayoutInflater.from(this).inflate(R.layout.wodeliaotian, beijing, false);
         TextView myMsg = (TextView) layout1.findViewById(R.id.woshuo);
         ImageView wotou = (ImageView) layout1.findViewById(R.id.wotou);
+        ImageView picture = (ImageView) layout1.findViewById(R.id.imageView24);
         Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/" + myUsr + ".png").placeholder(R.drawable.splash).into(wotou);
-        if (!getMsg.isEmpty()) {
-            myMsg.setText(getMsg);
-            beijing.addView(layout1);
+        if (getMsg.length()>20) {
+            Log.d("niubi",getMsg.substring(0,20));
+            if (getMsg.substring(0, 20).equals("jake_is_super_niu_bi")) {
+                myMsg.setVisibility(View.INVISIBLE);
+                picture.setVisibility(View.VISIBLE);
+                Picasso.get().load(getMsg.substring(21, getMsg.length() - 1)).into(picture);
+            } else {
+                myMsg.setText(getMsg);
+            }
         }
-
+        else {
+            myMsg.setText(getMsg);
+        }
+        beijing.addView(layout1);
         Log.d("beijing", String.valueOf(beijing.getChildCount()) + Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/" + "sd" + ".png"));
     }
 
@@ -146,12 +184,23 @@ public class chattingActivity extends AppCompatActivity {
         View layout1 = LayoutInflater.from(this).inflate(R.layout.tadeliaotian, beijing, false);
         TextView myMsg = (TextView) layout1.findViewById(R.id.tashuo);
         ImageView wotou = (ImageView) layout1.findViewById(R.id.tadetou);
+        ImageView picture = (ImageView) layout1.findViewById(R.id.imageView24);
         Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/" + userId + ".png").placeholder(R.drawable.splash).into(wotou);
-        if (!getMsg.isEmpty()) {
-            myMsg.setText(getMsg);
-            beijing.addView(layout1);
+        if (getMsg.length()>20) {
+            Log.d("niubi",getMsg.substring(0,20));
+            if (getMsg.substring(0, 20).equals("jake_is_super_niu_bi")) {
+                myMsg.setVisibility(View.INVISIBLE);
+                picture.setVisibility(View.VISIBLE);
+                Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+getMsg.substring(20, getMsg.length())).into(picture);
+                Log.d("jakeis",getMsg.substring(20, getMsg.length()));
+            } else {
+                myMsg.setText(getMsg);
+            }
         }
-
+        else {
+            myMsg.setText(getMsg);
+        }
+        beijing.addView(layout1);
         Log.d("beijing", String.valueOf(beijing.getChildCount()) + Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/" + "sd" + ".png"));
     }
 
@@ -167,6 +216,162 @@ public class chattingActivity extends AppCompatActivity {
                 if(usrChat1.getChattingList().contains(userId)){
                     usrChat1.removeUsr(userId);
                     }
+                usrChat1.addChatting(userId);
+                usrChat1.addSentence(userId,TextValue);
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                usrChat1.addTime(userId,dateString);
+                mapper.save(usrChat1);
+            }catch (Exception e){
+                Log.d("chat1error",e.toString());
+                final UserChatDO userChatDO1 = new UserChatDO();
+                userChatDO1.addChatting(userId);
+                userChatDO1.setUserId(myUsr);
+                userChatDO1.addSentence(userId,TextValue);
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                userChatDO1.addTime(userId,dateString);
+                mapper.save(userChatDO1);
+            }
+            try{
+                usrChat2 = mapper.load(UserChatDO.class,userId);
+                if(usrChat2.getChattingList().contains(myUsr)){
+                    usrChat2.removeUsr(myUsr);
+                }
+                usrChat2.addChatting(myUsr);
+                usrChat2.addSentence(myUsr,TextValue);
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                usrChat2.addUnread(myUsr);
+                usrChat2.addTotal();
+                usrChat2.addTime(myUsr,dateString);
+                mapper.save(usrChat2);
+            }catch (Exception e){
+                Log.d("chat2error",e.toString());
+                final UserChatDO userChatDO = new UserChatDO();
+                userChatDO.addChatting(myUsr);
+                userChatDO.setUserId(userId);
+                userChatDO.addSentence(myUsr,TextValue);
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                userChatDO.addTime(myUsr,dateString);
+                userChatDO.addTotal();
+                userChatDO.addUnread(myUsr);
+                mapper.save(userChatDO);
+            }
+            try{
+                chatList = mapper.load(ChattingListDO.class,myUsr,userId);
+                chatList.addText(TextValue);
+                chatList.addSr("user1");
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                chatList.addTime(dateString);
+
+                mapper.save(chatList);
+            }catch (Exception e){
+                flag=1;
+                try{
+                    chatList = mapper.load(ChattingListDO.class,userId,myUsr);
+                    chatList.addText(TextValue);
+                    chatList.addSr("user2");
+                    Date currentTime = Calendar.getInstance().getTime();
+                    String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                    chatList.addTime(dateString);
+                    mapper.save(chatList);
+                }catch (Exception e1){
+                    flag=2;
+                }
+            }
+            if(flag==2){
+                final ChattingListDO chattingListDO = new ChattingListDO();
+                chattingListDO.setUser1(myUsr);
+                chattingListDO.setUser2(userId);
+                chattingListDO.addText(TextValue);
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                chattingListDO.addTime(dateString);
+                chattingListDO.addSr("user1");
+                mapper.save(chattingListDO);
+            }
+            Message mesg = new Message();
+            mesg.what=5;
+            addHandler.sendMessage(mesg);
+
+        }
+    };
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("get code","reque" + requestCode + " resu " + resultCode);
+
+        if(requestCode == 1){
+            if(resultCode == 0){
+
+            }
+            else {
+                uri=data.getData();
+                Log.d("givemeshit",uri.toString());
+            }
+        }
+    }
+
+
+    Runnable uploadPic = new Runnable() {
+        @Override
+        public void run() {
+
+            try {
+                String path = helper.getPath(uri, context);
+                File file = new File(path);
+                TransferUtility sTransferUtility = helper.getTransferUtility(context);
+                ChattingListDO chattingListDO;
+                try{
+                    chattingListDO = mapper.load(ChattingListDO.class,myUsr);
+                }catch (Exception e){
+                    Log.d("listtag",e.toString());
+                    
+                }
+                TransferObserver observer =
+                        sTransferUtility.upload(helper.BUCKET_NAME, String.valueOf(cSize) + "_" + String.valueOf(i) + ".png", file);
+                observer.setTransferListener(new TransferListener() {
+                    @Override
+                    public void onError(int id, Exception e) {
+                        Log.e("onError", "Error during upload: " + id, e);
+                    }
+
+                    @Override
+                    public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                        Log.d("onProgress", String.format("onProgressChanged: %d, total: %d, current: %d",
+                                id, bytesTotal, bytesCurrent));
+                    }
+
+                    @Override
+                    public void onStateChanged(int id, TransferState newState) {
+                        Log.d("onState", "onStateChanged: " + id + ", " + newState);
+                    }
+                });
+                //beginUpload(path);
+                Log.d("gooodshit", "upload " + String.valueOf(cSize) + "_" + String.valueOf(i) + ".png");
+            } catch (URISyntaxException e) {
+                Log.d("fck2", "Unable to upload file from the given uri", e);
+            }
+
+        }
+    };
+
+    Runnable sendPic = new Runnable() {
+        @Override
+        public void run() {
+            int flag=0;
+            ChattingListDO chatList;
+            UserChatDO usrChat1,usrChat2;
+            Log.d("me usr",myUsr+userId);
+            try{
+                usrChat1 = mapper.load(UserChatDO.class,myUsr);
+                if(usrChat1.getChattingList().contains(userId)){
+                    usrChat1.removeUsr(userId);
+                }
                 usrChat1.addChatting(userId);
                 usrChat1.addSentence(userId,TextValue);
                 Date currentTime = Calendar.getInstance().getTime();
@@ -490,6 +695,33 @@ public class chattingActivity extends AppCompatActivity {
 
         }
     };
+
+
+    private void requstStoragePermission(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed because of this and that")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(chattingActivity.this,
+                                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 10);
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+        }else {
+            ActivityCompat.requestPermissions(this,
+                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 10);
+        }
+    }
 
 
 
