@@ -19,7 +19,7 @@
         android:textSize="25sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="31dp"
-        android:text="Confirm your account" />
+        android:text="@string/confirmAccount" />
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
         android:textSize="15sp"
         android:textColor="@color/yellow"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Please enter your username and the verification code we provided to complete your account" />
+        android:text="@string/enterAccount" />
 
     <EditText
         android:id="@+id/editText"
@@ -43,7 +43,7 @@
         android:layout_marginTop="132dp"
         android:backgroundTint="@color/yellow"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/Username"
         android:textSize="20sp"
         android:textColor="@color/yellow"
         android:inputType="text"
@@ -71,5 +71,5 @@
         android:layout_marginBottom="114dp"
         android:background="@drawable/button_selector"
         android:textColor="@color/black"
-        android:text="Complete Registration" />
+        android:text="@string/finishRegister" />
 </RelativeLayout>

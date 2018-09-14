@@ -19,8 +19,8 @@
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="Menu">Menu</string>
-    <string name="uploadTou">Upload Profile Photo</string>
-    <string name="takePic">Take Profile Picture</string>
+    <string name="uploadTou">Upload Photo</string>
+    <string name="takePic">Take Picture</string>
     <string name="nickname">Nick Name</string>
     <string name="name">Name</string>
     <string name="chanceId">Chance ID</string>
@@ -29,11 +29,12 @@
     <string name="career">career</string>
     <string name="resuem">Resume</string>
     <string name="finish">Complete</string>
-    <string name="confirmAccount">Please Confirm Your Account</string>
+    <string name="confirmAccount">Confirm Your Account</string>
     <string name="enterAccount">Please enter your username and the verification code to finish registration</string>
     <string name="userName">UserName</string>
     <string name="verCode">Verification Code</string>
     <string name="finishRegister">Complete Registration</string>
+    <string name="send">send</string>
 
 
     <string-array name="currency_name">

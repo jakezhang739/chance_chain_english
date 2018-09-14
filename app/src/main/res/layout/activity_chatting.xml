@@ -75,7 +75,7 @@
             android:clickable="true"
             android:background="@drawable/blackcorner"
             android:gravity="center"
-            android:text="send"
+            android:text="@string/send"
             android:textSize="15sp" />
 
         <ImageView

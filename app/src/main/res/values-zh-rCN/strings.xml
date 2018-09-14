@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">机会链</string>
+    <string name="title_activity_authenticator">Chance</string>
+    <string name="title_home">机会首页</string>
+    <string name="title_dashboard">我的</string>
+    <string name="title_notifications">发布信息</string>
+    <string name="title_activity_home">机会首页</string>
+    <string name="title_activity_notification">发布</string>
+    <string name="title_activity_my">我的主页</string>
+    <string name="title_activity_information">个人信息</string>
+    <string name="title_activity_change_information">完善个人信息</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Menu">Menu</string>
+    <string name="uploadTou">上传头像文件</string>
+    <string name="takePic">拍照头像文件</string>
+    <string name="nickname">昵称</string>
+    <string name="name">姓名</string>
+    <string name="chanceId">机会号</string>
+    <string name="walletAddress">钱包地址</string>
+    <string name="gender">性别</string>
+    <string name="career">职业</string>
+    <string name="resuem">个人简介</string>
+    <string name="finish">完成</string>
+    <string name="confirmAccount">确认您的帐号</string>
+    <string name="enterAccount">请输入你的用户名和我们向您提供的验证码以完成注册</string>
+    <string name="userName">用户名</string>
+    <string name="verCode">验证码</string>
+    <string name="finishRegister">完成注册</string>
+
+
+
+
+    <string-array name="currency_name">
+        <item>cc</item>
+        <item>eth</item>
+        <item>btc</item>
+    </string-array>
+
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

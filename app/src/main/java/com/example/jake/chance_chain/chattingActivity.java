@@ -44,7 +44,9 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.io.File;
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -317,49 +319,18 @@ public class chattingActivity extends AppCompatActivity {
     }
 
 
-    Runnable uploadPic = new Runnable() {
-        @Override
-        public void run() {
-
-            try {
-                String path = helper.getPath(uri, context);
-                File file = new File(path);
-                TransferUtility sTransferUtility = helper.getTransferUtility(context);
-                ChattingListDO chattingListDO;
-                try{
-                    chattingListDO = mapper.load(ChattingListDO.class,myUsr);
-                }catch (Exception e){
-                    Log.d("listtag",e.toString());
-                    
-                }
-                TransferObserver observer =
-                        sTransferUtility.upload(helper.BUCKET_NAME, String.valueOf(cSize) + "_" + String.valueOf(i) + ".png", file);
-                observer.setTransferListener(new TransferListener() {
-                    @Override
-                    public void onError(int id, Exception e) {
-                        Log.e("onError", "Error during upload: " + id, e);
-                    }
-
-                    @Override
-                    public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-                        Log.d("onProgress", String.format("onProgressChanged: %d, total: %d, current: %d",
-                                id, bytesTotal, bytesCurrent));
-                    }
-
-                    @Override
-                    public void onStateChanged(int id, TransferState newState) {
-                        Log.d("onState", "onStateChanged: " + id + ", " + newState);
-                    }
-                });
-                //beginUpload(path);
-                Log.d("gooodshit", "upload " + String.valueOf(cSize) + "_" + String.valueOf(i) + ".png");
-            } catch (URISyntaxException e) {
-                Log.d("fck2", "Unable to upload file from the given uri", e);
-            }
+    public void uploadPic(Uri uri, String key){
+        try {
+            String path = helper.getPath(uri, context);
+            File file = new File(path);
+            TransferUtility sTransferUtility = helper.getTransferUtility(context);
+            TransferObserver observer;
+            observer =
+                    sTransferUtility.upload(helper.BUCKET_NAME, key, file);
+        }catch (Exception e){
 
         }
-    };
-
+    }
     Runnable sendPic = new Runnable() {
         @Override
         public void run() {
@@ -367,57 +338,11 @@ public class chattingActivity extends AppCompatActivity {
             ChattingListDO chatList;
             UserChatDO usrChat1,usrChat2;
             Log.d("me usr",myUsr+userId);
-            try{
-                usrChat1 = mapper.load(UserChatDO.class,myUsr);
-                if(usrChat1.getChattingList().contains(userId)){
-                    usrChat1.removeUsr(userId);
-                }
-                usrChat1.addChatting(userId);
-                usrChat1.addSentence(userId,TextValue);
-                Date currentTime = Calendar.getInstance().getTime();
-                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-                usrChat1.addTime(userId,dateString);
-                mapper.save(usrChat1);
-            }catch (Exception e){
-                Log.d("chat1error",e.toString());
-                final UserChatDO userChatDO1 = new UserChatDO();
-                userChatDO1.addChatting(userId);
-                userChatDO1.setUserId(myUsr);
-                userChatDO1.addSentence(userId,TextValue);
-                Date currentTime = Calendar.getInstance().getTime();
-                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-                userChatDO1.addTime(userId,dateString);
-                mapper.save(userChatDO1);
-            }
-            try{
-                usrChat2 = mapper.load(UserChatDO.class,userId);
-                if(usrChat2.getChattingList().contains(myUsr)){
-                    usrChat2.removeUsr(myUsr);
-                }
-                usrChat2.addChatting(myUsr);
-                usrChat2.addSentence(myUsr,TextValue);
-                Date currentTime = Calendar.getInstance().getTime();
-                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-                usrChat2.addUnread(myUsr);
-                usrChat2.addTotal();
-                usrChat2.addTime(myUsr,dateString);
-                mapper.save(usrChat2);
-            }catch (Exception e){
-                Log.d("chat2error",e.toString());
-                final UserChatDO userChatDO = new UserChatDO();
-                userChatDO.addChatting(myUsr);
-                userChatDO.setUserId(userId);
-                userChatDO.addSentence(myUsr,TextValue);
-                Date currentTime = Calendar.getInstance().getTime();
-                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
-                userChatDO.addTime(myUsr,dateString);
-                userChatDO.addTotal();
-                userChatDO.addUnread(myUsr);
-                mapper.save(userChatDO);
-            }
+            String key;
             try{
                 chatList = mapper.load(ChattingListDO.class,myUsr,userId);
-                chatList.addText(TextValue);
+                key=String.valueOf(chatList.getChattingText().size())+".png";
+                chatList.addText("jake_is_super_niubihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
                 chatList.addSr("user1");
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
@@ -428,7 +353,8 @@ public class chattingActivity extends AppCompatActivity {
                 flag=1;
                 try{
                     chatList = mapper.load(ChattingListDO.class,userId,myUsr);
-                    chatList.addText(TextValue);
+                    key=String.valueOf(chatList.getChattingText().size())+".png";
+                    chatList.addText("jake_is_super_niubihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
                     chatList.addSr("user2");
                     Date currentTime = Calendar.getInstance().getTime();
                     String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
@@ -442,7 +368,8 @@ public class chattingActivity extends AppCompatActivity {
                 final ChattingListDO chattingListDO = new ChattingListDO();
                 chattingListDO.setUser1(myUsr);
                 chattingListDO.setUser2(userId);
-                chattingListDO.addText(TextValue);
+                key=String.valueOf(chattingListDO.getChattingText().size())+".png";
+                chattingListDO.addText("jake_is_super_niubihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
                 chattingListDO.addTime(dateString);
@@ -452,6 +379,54 @@ public class chattingActivity extends AppCompatActivity {
             Message mesg = new Message();
             mesg.what=5;
             addHandler.sendMessage(mesg);
+            try{
+                usrChat1 = mapper.load(UserChatDO.class,myUsr);
+                if(usrChat1.getChattingList().contains(userId)){
+                    usrChat1.removeUsr(userId);
+                }
+                usrChat1.addChatting(userId);
+                usrChat1.addSentence(userId,"[picture}");
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                usrChat1.addTime(userId,dateString);
+                mapper.save(usrChat1);
+            }catch (Exception e){
+                Log.d("chat1error",e.toString());
+                final UserChatDO userChatDO1 = new UserChatDO();
+                userChatDO1.addChatting(userId);
+                userChatDO1.setUserId(myUsr);
+                userChatDO1.addSentence(userId,"[picture}");
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                userChatDO1.addTime(userId,dateString);
+                mapper.save(userChatDO1);
+            }
+            try{
+                usrChat2 = mapper.load(UserChatDO.class,userId);
+                if(usrChat2.getChattingList().contains(myUsr)){
+                    usrChat2.removeUsr(myUsr);
+                }
+                usrChat2.addChatting(myUsr);
+                usrChat2.addSentence(myUsr,"[picture}");
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                usrChat2.addUnread(myUsr);
+                usrChat2.addTotal();
+                usrChat2.addTime(myUsr,dateString);
+                mapper.save(usrChat2);
+            }catch (Exception e){
+                Log.d("chat2error",e.toString());
+                final UserChatDO userChatDO = new UserChatDO();
+                userChatDO.addChatting(myUsr);
+                userChatDO.setUserId(userId);
+                userChatDO.addSentence(myUsr,"[picture}");
+                Date currentTime = Calendar.getInstance().getTime();
+                String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
+                userChatDO.addTime(myUsr,dateString);
+                userChatDO.addTotal();
+                userChatDO.addUnread(myUsr);
+                mapper.save(userChatDO);
+            }
 
         }
     };
