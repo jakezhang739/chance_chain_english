@@ -57,7 +57,7 @@ public class liuyan extends AppCompatActivity {
         myUsr = helper.getCurrentUserName(context);
         mapper = helper.getMapper(context);
         TextView titlebar = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        titlebar.setText("Message");
+        titlebar.setText(R.string.woxiao);
         ImageView backImg = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         new Thread(setup).start();
         backImg.setOnClickListener(new View.OnClickListener() {

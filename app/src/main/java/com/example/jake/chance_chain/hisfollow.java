@@ -38,7 +38,7 @@ public class hisfollow extends AppCompatActivity {
         beijing = (LinearLayout) findViewById(R.id.woguanzhu);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         TextView titlteText = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        titlteText.setText("His follow");
+        titlteText.setText(R.string.title_his_follow);
         progressBar = (ProgressBar) findViewById(R.id.progressBarchat);
         myUsr = getIntent().getStringExtra("userName");
         Log.d("hisfollow",myUsr);

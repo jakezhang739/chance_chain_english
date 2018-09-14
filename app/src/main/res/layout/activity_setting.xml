@@ -18,7 +18,7 @@
         android:layout_height="35dp"
         android:gravity="center_vertical"
         android:textSize="25sp"
-        android:text="My Information" />
+        android:text="@string/myinf" />
 
         <ImageView
             android:id="@+id/more1"
@@ -48,7 +48,7 @@
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:layout_alignParentStart="true"
-            android:text="Personalize" />
+            android:text="@string/yuyan" />
 
         <ImageView
             android:id="@+id/more2"
@@ -86,7 +86,7 @@
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:layout_alignParentStart="true"
-            android:text="Empty cache" />
+            android:text="@string/qingchu" />
 
 
         <TextView
@@ -94,126 +94,6 @@
             android:layout_height="3dp"
             android:layout_below="@+id/qingchuhuancun"
             android:id="@+id/shezhiSpace3"
-            android:background="@color/homeback"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rel4"
-        android:clickable="true"
-        android:layout_below="@+id/rel3">
-        <ImageView
-            android:id="@+id/more4"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_marginEnd="17dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/yejianmoshi"
-            app:srcCompat="@drawable/more" />
-        <TextView
-            android:id="@+id/yejianmoshi"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:gravity="center_vertical"
-            android:textSize="25sp"
-            android:layout_alignParentStart="true"
-            android:text="Night Mode" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@+id/yejianmoshi"
-            android:id="@+id/shezhiSpace4"
-            android:background="@color/homeback"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rel5"
-        android:clickable="true"
-        android:layout_below="@+id/rel4">
-        <ImageView
-            android:id="@+id/more5"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="17dp"
-            android:layout_alignBottom="@+id/zhanghaoanquan"
-            app:srcCompat="@drawable/more" />
-        <TextView
-            android:id="@+id/zhanghaoanquan"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:gravity="center_vertical"
-            android:textSize="25sp"
-            android:layout_alignParentStart="true"
-            android:text="Account Security" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@+id/zhanghaoanquan"
-            android:id="@+id/shezhiSpace5"
-            android:background="@color/homeback"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rel6"
-        android:clickable="true"
-        android:layout_below="@id/rel5">
-        <ImageView
-            android:id="@+id/more6"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/yinsi"
-            android:layout_marginEnd="17dp"
-            app:srcCompat="@drawable/more" />
-        <TextView
-            android:id="@+id/yinsi"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:gravity="center_vertical"
-            android:textSize="25sp"
-            android:layout_alignParentStart="true"
-            android:text="Privacy" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@+id/yinsi"
-            android:id="@+id/shezhiSpace6"
-            android:background="@color/homeback"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rel7"
-        android:clickable="true"
-        android:layout_below="@id/rel6">
-        <ImageView
-            android:id="@+id/more7"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/yuyan"
-            android:layout_marginEnd="17dp"
-            app:srcCompat="@drawable/more" />
-        <TextView
-            android:id="@+id/yuyan"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:gravity="center_vertical"
-            android:textSize="25sp"
-            android:layout_alignParentStart="true"
-            android:text="Language" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@+id/yuyan"
-            android:id="@+id/shezhiSpace7"
             android:background="@color/homeback"/>
     </RelativeLayout>
 
@@ -226,7 +106,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="41dp"
         android:background="@color/warning"
-        android:text="Logout"
+        android:text="@string/logout"
         android:textSize="25sp" />
 
     <EditText
@@ -242,7 +122,7 @@
         android:textColor="@color/white"
         android:inputType="textPersonName"
         android:textColorHint="@color/white"
-        android:hint="IP address" />
+        android:hint="@string/ipad" />
 
     <Button
         android:id="@+id/button7"
@@ -252,6 +132,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="111dp"
         android:background="@color/yellow"
-        android:text="Confirm IP address"
+        android:text="@string/confip"
         android:textColor="@color/black" />
 </RelativeLayout>

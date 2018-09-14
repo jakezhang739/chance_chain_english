@@ -98,28 +98,28 @@ public class ContentActivity extends AppCompatActivity {
         });
         titlteText.setText(chanceC.txtTitle);
         if(chanceC.shoufei==0.0) {
-            jineTxt.setText("Pay： " + fufei + " "+stype);
+            jineTxt.setText(R.string.pay + fufei + " "+stype);
         }
         else{
-            jineTxt.setText("Ask： " + shoufei + " "+stype);
+            jineTxt.setText(R.string.ask + shoufei + " "+stype);
         }
         int rNum = (int) chanceC.renshu;
         TextView tagView = (TextView) findViewById(R.id.tagView);
         switch ((int) chanceC.tag) {
             case 1:
-                tagView.setText("Activity");
+                tagView.setText(R.string.huodong);
                 break;
             case 2:
-                tagView.setText("Dates");
+                tagView.setText(R.string.yue);
                 break;
             case 3:
-                tagView.setText("Missions");
+                tagView.setText(R.string.renwu);
                 break;
             case 4:
-                tagView.setText("Other");
+                tagView.setText(R.string.qita);
                 break;
         }
-        renshu.setText(" Chance left: "+String.valueOf(rNum));
+        renshu.setText(R.string.cleft+String.valueOf(rNum));
         touImg = (ImageView) findViewById(R.id.contentTou);
         uName = (TextView) findViewById(R.id.contentUid);
         uTime = (TextView) findViewById(R.id.contentTime);
@@ -256,12 +256,12 @@ public class ContentActivity extends AppCompatActivity {
 
         if(chanceC.gottenId.contains(curUsername)){
             getButton.setVisibility(View.INVISIBLE);
-            showText.setText("Chance already taken");
+            showText.setText(R.string.ataken);
             showText.setVisibility(View.VISIBLE);
         }
         else if(chanceC.renshu<1){
             getButton.setVisibility(View.INVISIBLE);
-            showText.setText("No chance left");
+            showText.setText(R.string.nochance);
             showText.setVisibility(View.VISIBLE);
         }
         else {

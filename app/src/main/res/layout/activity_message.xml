@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imageView4"
             android:gravity="center_vertical"
-            android:text="Chance Secretary"
+            android:text="@string/csec"
             android:textSize="25sp" />
 
         <ImageView
@@ -71,7 +71,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imageView11"
             android:gravity="center_vertical"
-            android:text="Chance Broadcast"
+            android:text="@string/cbro"
             android:textSize="25sp" />
 
         <ImageView
@@ -130,7 +130,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imageView12"
             android:gravity="center_vertical"
-            android:text="Message"
+            android:text="@string/message"
             android:textSize="25sp" />
 
 
@@ -162,57 +162,6 @@
             android:text="TextView"
             android:textSize="15sp"
             android:visibility="invisible"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/merel4"
-        android:clickable="true"
-        android:layout_below="@+id/merel3">
-        <ImageView
-            android:id="@+id/more4"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="18dp"
-            android:layout_alignBottom="@+id/yejianmoshi"
-            app:srcCompat="@drawable/more" />
-
-        <TextView
-            android:id="@+id/yejianmoshi"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageView13"
-            android:gravity="center_vertical"
-            android:text="My Review"
-            android:textSize="25sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@+id/yejianmoshi"
-            android:id="@+id/shezhiSpace4"
-            android:background="@color/homeback"/>
-
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            app:srcCompat="@drawable/pingjia" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="66dp"
-            android:textSize="15sp" />
     </RelativeLayout>
 
 </RelativeLayout>

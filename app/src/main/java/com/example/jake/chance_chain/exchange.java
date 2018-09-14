@@ -41,7 +41,7 @@ public class exchange extends AppCompatActivity {
         actionBar.setCustomView(R.layout.chatbar);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        title.setText("Exhange Wallet");
+        title.setText(R.string.ex);
         mapper = helper.getMapper(context);
         userID = helper.getCurrentUserName(context);
         back.setOnClickListener(new View.OnClickListener() {

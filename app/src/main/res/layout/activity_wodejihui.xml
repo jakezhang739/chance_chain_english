@@ -28,7 +28,7 @@
             android:textColor="@color/yellow"
             android:gravity="center"
             android:clickable="true"
-            android:text="Chance in Process"/>
+            android:text="@string/cproc"/>
 
         <TextView
             android:id="@+id/ywc"
@@ -39,7 +39,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:clickable="true"
-            android:text="Completed Chance" />
+            android:text="@string/ccomp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

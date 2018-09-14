@@ -162,16 +162,16 @@ public class GalleryAdapter extends
             viewHolder.timeTxt.setText(display);
             switch ((int) cList.get(i).tag) {
                 case 1:
-                    viewHolder.tagView.setText("Activity");
+                    viewHolder.tagView.setText(R.string.huodong);
                     break;
                 case 2:
-                    viewHolder.tagView.setText("Dates");
+                    viewHolder.tagView.setText(R.string.yue);
                     break;
                 case 3:
-                    viewHolder.tagView.setText("Missions");
+                    viewHolder.tagView.setText(R.string.renwu);
                     break;
                 case 4:
-                    viewHolder.tagView.setText("Other");
+                    viewHolder.tagView.setText(R.string.qita);
                     break;
             }
             viewHolder.pingjia.setText(String.valueOf(cList.get(i).cNumber));

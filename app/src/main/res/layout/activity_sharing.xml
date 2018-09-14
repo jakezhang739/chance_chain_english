@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
-        android:hint="Talk about this sharing"
+        android:hint="@string/tanzhuan"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/white"
         android:textColorHint="@color/white"

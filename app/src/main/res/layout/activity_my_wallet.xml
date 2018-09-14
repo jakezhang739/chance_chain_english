@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/AvailFunds"
-            android:text="Candy"
+            android:text="@string/candy"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -40,7 +40,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/AvailFunds"
             android:layout_marginBottom="13dp"
-            android:text="Total Asset: 0"
+            android:text="@string/tasset"
             android:textColor="@color/black"
             android:textStyle="italic"
             android:textSize="15sp" />
@@ -52,7 +52,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="40dp"
-            android:text="Available Funds: 0"
+            android:text="@string/afunds"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="20sp" />
@@ -83,7 +83,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="40dp"
-            android:text="ChanceChain Coin"
+            android:text="@string/cc"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/bichance"
             android:layout_centerVertical="true"
-            android:text="Total Asset: 0"
+            android:text="@string/tasset"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -124,7 +124,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="40dp"
-            android:text="Ethernum"
+            android:text="@string/ether"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -135,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/ethchance"
             android:layout_centerVertical="true"
-            android:text="Total Asset: 0"
+            android:text="@string/tasset"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -151,7 +151,7 @@
         android:layout_marginBottom="40dp"
         android:textColor="@color/black"
         android:background="@color/yellow"
-        android:text="Exhange" />
+        android:text="@string/ex" />
 
 
 </RelativeLayout>

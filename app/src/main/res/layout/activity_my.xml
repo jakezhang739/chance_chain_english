@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/guanzhuNum"
         android:layout_alignStart="@id/guanzhuNum"
-        android:text="Follow" />
+        android:text="@string/fol" />
 
     <TextView
         android:id="@+id/beiGuanNum"
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/beiGuanNum"
         android:layout_alignStart="@id/beiGuanNum"
-        android:text="Follower" />
+        android:text="@string/beiguan" />
 
     <TextView
         android:id="@+id/woFabuNum"
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/woFabuNum"
         android:layout_below="@+id/woFabuNum"
-        android:text="Post" />
+        android:text="@string/fabu" />
 
     <TextView
         android:id="@+id/woSpace1"
@@ -141,7 +141,7 @@
         android:layout_marginTop="10dp"
         android:textSize="12sp"
         android:layout_below="@+id/woJihui"
-        android:text="My Chance" />
+        android:text="@string/woji" />
 
     <ImageView
         android:id="@+id/woFabuImg"
@@ -160,7 +160,7 @@
         android:layout_marginTop="10dp"
         android:textSize="12sp"
         android:layout_centerHorizontal="true"
-        android:text="My Post" />
+        android:text="@string/wofa" />
 
     <ImageView
         android:id="@+id/woRenWu"
@@ -179,7 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/woRenWu"
         android:layout_alignTop="@+id/woJihuiNum"
-        android:text="My Mission"
+        android:text="@string/woren"
         android:textSize="12sp" />
 
     <TextView
@@ -226,7 +226,7 @@
         android:layout_below="@+id/woQian"
         android:layout_marginTop="10dp"
         android:textSize="12sp"
-        android:text="My Wallet" />
+        android:text="@string/woqian" />
 
     <TextView
         android:id="@+id/woGuanNum"
@@ -235,7 +235,7 @@
         android:layout_alignTop="@+id/woQianNum"
         android:layout_centerHorizontal="true"
         android:textSize="12sp"
-        android:text="My Follow" />
+        android:text="@string/wogen" />
 
     <TextView
         android:id="@+id/woXiaoNum"
@@ -243,7 +243,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/woRenWu"
         android:layout_alignTop="@+id/woQianNum"
-        android:text="My Message"
+        android:text="@string/woxiao"
         android:textSize="12sp" />
 
     <TextView
@@ -270,7 +270,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="26dp"
-            android:text="Settings"
+            android:text="@string/setting"
             android:textColor="@color/white"
             android:textSize="25sp" />
 

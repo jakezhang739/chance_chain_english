@@ -19,7 +19,7 @@
             android:layout_below="@+id/resumeInp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="Change infomation" />
+            android:text="@string/change" />
 
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -37,7 +37,7 @@
             android:layout_alignStart="@+id/touxiang"
             android:layout_below="@+id/touxiang"
             android:layout_marginTop="89dp"
-            android:text="Nicknam" />
+            android:text="@string/nickname" />
 
         <TextView
             android:id="@+id/nameText"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="119dp"
-            android:text="Name" />
+            android:text="@string/name" />
 
         <TextView
             android:id="@+id/chanceId"
@@ -54,7 +54,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="149dp"
-            android:text="Chance ID" />
+            android:text="@string/chanceId" />
         <TextView
             android:id="@+id/walletAddress"
             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="179dp"
-            android:text="Wallet Address" />
+            android:text="@string/walletAddress" />
 
         <TextView
             android:id="@+id/sexText"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="209dp"
-            android:text="Gender" />
+            android:text="@string/gender" />
 
         <TextView
             android:id="@+id/careerTxt"
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="239dp"
-            android:text="Career" />
+            android:text="@string/career" />
 
         <TextView
             android:id="@+id/resumeTxt"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/touxiang"
             android:layout_marginTop="269dp"
-            android:text="Resume" />
+            android:text="@string/resuem" />
 
         <TextView
             android:id="@+id/resumeInp"

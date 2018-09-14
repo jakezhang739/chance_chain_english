@@ -46,7 +46,7 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
         android:background="@drawable/round_corner"
-        android:text="Exchange" />
+        android:text="@string/ex" />
 
     <ImageView
         android:id="@+id/imageView19"
@@ -67,7 +67,7 @@
         android:background="@drawable/blackcorner"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:hint="Enter amount"
+        android:hint="@string/amount"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:visibility="invisible"
@@ -98,7 +98,7 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
         android:background="@drawable/round_corner"
-        android:text="TOP UP" />
+        android:text="@string/top" />
 
     <EditText
         android:id="@+id/editText4"
@@ -113,7 +113,7 @@
         android:textSize="13sp"
         android:inputType="numberDecimal"
         android:visibility="invisible"
-        android:hint="Enter amount" />
+        android:hint="@string/amount" />
 
     <TextView
         android:id="@+id/textView11"

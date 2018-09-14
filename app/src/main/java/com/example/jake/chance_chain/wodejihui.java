@@ -254,16 +254,16 @@ public class wodejihui extends AppCompatActivity {
         timeTxt.setText(display);
         switch ((int) cList.tag) {
             case 1:
-                tagView.setText("Activity");
+                tagView.setText(R.string.huodong);
                 break;
             case 2:
-                tagView.setText("Dates");
+                tagView.setText(R.string.yue);
                 break;
             case 3:
-                tagView.setText("Missions");
+                tagView.setText(R.string.renwu);
                 break;
             case 4:
-                tagView.setText("Other");
+                tagView.setText(R.string.qita);
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));

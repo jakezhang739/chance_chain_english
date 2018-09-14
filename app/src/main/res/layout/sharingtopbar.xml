@@ -11,7 +11,7 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="15dp"
-        android:text="Cancel"
+        android:text="@string/quxi"
         android:textColor="@color/yellow"
         android:textSize="15sp"
         android:clickable="true"/>
@@ -26,7 +26,7 @@
         android:layout_marginEnd="15dp"
         android:background="@color/yellow"
         android:textColor="@color/black"
-        android:text="Share"
+        android:text="@string/share"
         android:textSize="13sp"/>
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center_vertical"
         android:gravity="center_horizontal"
-        android:text="Share Chance"
+        android:text="@string/sharec"
         android:textColor="@color/yellow"
         android:textSize="20sp"/>
 

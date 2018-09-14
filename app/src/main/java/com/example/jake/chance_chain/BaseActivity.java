@@ -445,16 +445,16 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                     }
                     if(titleText.length()==0){
                         Log.d("wtftt"," shou fu " + fufei);
-                        Toast.makeText(context,"Please Enter Title",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,R.string.entitle,Toast.LENGTH_LONG).show();
                     }
                     else if(Neirong.length()==0){
-                        Toast.makeText(context,"Please Enter Content",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,R.string.encontent,Toast.LENGTH_LONG).show();
                     }
                     else if(clickFlag==0){
-                        Toast.makeText(context,"Please Choose Label",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,R.string.entag,Toast.LENGTH_LONG).show();
                     }
                     else if(ren.getText().length()==0){
-                        Toast.makeText(context,"Please Chance Size",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,R.string.enquan,Toast.LENGTH_LONG).show();
                     }
                     else {
                         textTilte = titleText.getText().toString();
@@ -630,11 +630,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         @Override
         public void handleMessage(Message msg){
             switch (msg.what){
-                case 1:Toast.makeText(context,"Uploaded",Toast.LENGTH_LONG).show();Intent intent = new Intent(BaseActivity.this,HomeActivity.class);
+                case 1:Toast.makeText(context,R.string.upl,Toast.LENGTH_LONG).show();Intent intent = new Intent(BaseActivity.this,HomeActivity.class);
                     startActivity(intent);break;
-                case 2:Toast.makeText(context,"Available funds not enough",Toast.LENGTH_LONG).show();break;
-                case 3:Toast.makeText(context,"First upload, you have gotten 100 Candy",Toast.LENGTH_LONG).show();;break;
-                case 4:Toast.makeText(context,"First upload today, you have gotten 10 Candy",Toast.LENGTH_LONG).show();;break;
+                case 2:Toast.makeText(context,R.string.fnote,Toast.LENGTH_LONG).show();break;
+                case 3:Toast.makeText(context,R.string.fupload,Toast.LENGTH_LONG).show();;break;
+                case 4:Toast.makeText(context,R.string.ftoup,Toast.LENGTH_LONG).show();;break;
             }
 
         }
@@ -1002,15 +1002,25 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         @Override
         public void handleMessage(Message msg){
             int selector = msg.what;
-            switch (selector){
-                case 0:Toast.makeText(context,"Fist Login，you have gotten 100 Candy",Toast.LENGTH_LONG).show();break;
-                case 1:Toast.makeText(context,"Consecutive Login in one day，you have gotten 5 Candy",Toast.LENGTH_LONG).show();break;
-                case 2:Toast.makeText(context,"Consecutive Login in two days，you have gotten 10 Candy",Toast.LENGTH_LONG).show();break;
-                case 3:Toast.makeText(context,"Consecutive Login in three days，you have gotten 15 Candy",Toast.LENGTH_LONG).show();break;
-                case 4:Toast.makeText(context,"Consecutive Login in four days，you have gotten 30 Candy",Toast.LENGTH_LONG).show();break;
-                case 5:Toast.makeText(context,"Consecutive Login in five days，you have gotten 40 Candy",Toast.LENGTH_LONG).show();break;
-                case 6:Toast.makeText(context,"Consecutive Login in six days，you have gotten 50 Candy",Toast.LENGTH_LONG).show();break;
-                case 7:Toast.makeText(context,"Consecutive Login in seven days，you have gotten 1 Reputation",Toast.LENGTH_LONG).show();break;
+            switch (selector) {
+                case 0:
+                    Toast.makeText(context, R.string.flogin, Toast.LENGTH_LONG).show();
+                    break;
+                case 1:
+                    Toast.makeText(context, R.string.onelog, Toast.LENGTH_LONG).show();
+                    break;
+                case 2:Toast.makeText(context, R.string.twolog, Toast.LENGTH_LONG).show();
+                    break;
+                case 3:Toast.makeText(context, R.string.threelog, Toast.LENGTH_LONG).show();
+                    break;
+                case 4:Toast.makeText(context, R.string.fourlog, Toast.LENGTH_LONG).show();
+                    break;
+                case 5:Toast.makeText(context, R.string.fivelog, Toast.LENGTH_LONG).show();
+                    break;
+                case 6:Toast.makeText(context, R.string.sixlog, Toast.LENGTH_LONG).show();
+                    break;
+                case 7:Toast.makeText(context, R.string.sevenlog, Toast.LENGTH_LONG).show();
+                    break;
             }
 
         }

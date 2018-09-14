@@ -69,7 +69,7 @@ public class fabuActivity extends AppCompatActivity {
         taglayout = (LinearLayout) findViewById(R.id.tagrel);
         beijing = (LinearLayout) findViewById(R.id.viewLay);
         progressBar = (ProgressBar) findViewById(R.id.progressBarchat);
-        titlteText.setText("My Upload");
+        titlteText.setText(R.string.wofabu);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,16 +172,16 @@ public class fabuActivity extends AppCompatActivity {
         timeTxt.setText(display);
         switch ((int) cList.tag) {
             case 1:
-                tagView.setText("Activity");
+                tagView.setText(R.string.huodong);
                 break;
             case 2:
-                tagView.setText("Dates");
+                tagView.setText(R.string.yue);
                 break;
             case 3:
-                tagView.setText("Missions");
+                tagView.setText(R.string.renwu);
                 break;
             case 4:
-                tagView.setText("Other");
+                tagView.setText(R.string.qita);
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));
@@ -289,16 +289,16 @@ public class fabuActivity extends AppCompatActivity {
         });
         switch ((int) cList.tag) {
             case 1:
-                tagView.setText("Activity");
+                tagView.setText(R.string.huodong);
                 break;
             case 2:
-                tagView.setText("Dates");
+                tagView.setText(R.string.yue);
                 break;
             case 3:
-                tagView.setText("Missions");
+                tagView.setText(R.string.renwu);
                 break;
             case 4:
-                tagView.setText("Other");
+                tagView.setText(R.string.qita);
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));
@@ -427,16 +427,16 @@ public class fabuActivity extends AppCompatActivity {
         });
         switch ((int) cList.tag) {
             case 1:
-                tagView.setText("Activity");
+                tagView.setText(R.string.huodong);
                 break;
             case 2:
-                tagView.setText("Dates");
+                tagView.setText(R.string.yue);
                 break;
             case 3:
-                tagView.setText("Missions");
+                tagView.setText(R.string.renwu);
                 break;
             case 4:
-                tagView.setText("Other");
+                tagView.setText(R.string.qita);
                 break;
         }
         pingjia.setText(String.valueOf(cList.cNumber));

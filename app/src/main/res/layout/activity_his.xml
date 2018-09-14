@@ -48,7 +48,7 @@
         android:layout_toEndOf="@+id/progressBar"
         android:background="@color/yellow"
         android:clickable="true"
-        android:text="Reputation: 0"
+        android:text="@string/repu"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/guanzhuNum"
         android:layout_below="@+id/guanzhuNum"
-        android:text="Follow" />
+        android:text="@string/fol" />
 
     <TextView
         android:id="@+id/beiGuanNum"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/guanzhuNum"
         android:layout_centerHorizontal="true"
-        android:text="Follower" />
+        android:text="@string/beiguan" />
 
     <TextView
         android:id="@+id/woFabuNum"
@@ -102,7 +102,7 @@
         android:layout_below="@+id/guanzhuNum"
         android:layout_alignParentRight="true"
         android:layout_marginRight="40dp"
-        android:text="Post" />
+        android:text="@string/fabu" />
 
     <TextView
         android:id="@+id/woSpace1"
@@ -156,7 +156,7 @@
                 android:layout_alignStart="@+id/followed"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:text="Follow"
+                android:text="@string/fol"
                 android:textColor="@color/yellow"
                 android:textSize="15sp"
                 android:visibility="visible" />
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="Unfollow"
+                android:text="@string/quguan"
                 android:visibility="invisible"
                 android:textColor="@color/yellow"
                 android:textSize="15sp" />
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="Send Message"
+                android:text="@string/faxiao"
                 android:textColor="@color/yellow"
                 android:textSize="15sp" />
 
@@ -209,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="More"
+                android:text="@string/more"
                 android:textColor="@color/yellow"
                 android:textSize="15sp" />
         </RelativeLayout>

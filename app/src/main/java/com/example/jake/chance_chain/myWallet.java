@@ -32,7 +32,7 @@ public class myWallet extends AppCompatActivity {
         actionBar.setCustomView(R.layout.chatbar);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        title.setText("My Wallet");
+        title.setText(R.string.woqian);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,10 +59,10 @@ public class myWallet extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
-                case 1:currency.setText("Total Funds: " + msg.obj.toString());break;
-                case 2:available.setText("Available Funds "+msg.obj.toString());break;
-                case 3:ccb.setText("Total Funds: " + msg.obj.toString());break;
-                case 4:eth.setText("Total Funds: " + msg.obj.toString());break;
+                case 1:currency.setText(R.string.tasset + msg.obj.toString());break;
+                case 2:available.setText(R.string.afunds+msg.obj.toString());break;
+                case 3:ccb.setText(R.string.tasset + msg.obj.toString());break;
+                case 4:eth.setText(R.string.tasset + msg.obj.toString());break;
             }
         }
     };
