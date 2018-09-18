@@ -38,7 +38,7 @@ public class fsizepic extends AppCompatActivity {
                 pos--;
                 Log.d("pos1 ",String.valueOf(pos));
                 if(pos<0){
-                    Toast.makeText(fsizepic.this, "This is the first picture", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(fsizepic.this, R.string.fpic, Toast.LENGTH_SHORT).show();
                     pos=0;
                 }
                 else {
@@ -51,7 +51,7 @@ public class fsizepic extends AppCompatActivity {
                 pos++;
                 Log.d("pos2 ",String.valueOf(pos));
                 if(pos>=uriList.size()){
-                    Toast.makeText(fsizepic.this, "This is the last picture", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(fsizepic.this, R.string.lpic, Toast.LENGTH_SHORT).show();
                     pos=uriList.size()-1;
                 }
                 else {

@@ -35,7 +35,7 @@ public class forgotPassword extends AppCompatActivity implements AWSLoginHandler
             @Override
             public void onClick(View v) {
                 if (userName.length() == 0) {
-                    Toast.makeText(forgotPassword.this, "邮箱或用户名不能为空 ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(forgotPassword.this, R.string.empyou, Toast.LENGTH_LONG).show();
 
                 } else {
 
@@ -49,7 +49,7 @@ public class forgotPassword extends AppCompatActivity implements AWSLoginHandler
             @Override
             public void onClick(View v) {
                 if (verCode.length() == 0 || newPass.length() == 0) {
-                    Toast.makeText(forgotPassword.this, "验证码和新密码不能为空 ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(forgotPassword.this, R.string.empyan, Toast.LENGTH_LONG).show();
 
                 } else {
                     confirmPass();
@@ -86,7 +86,7 @@ public class forgotPassword extends AppCompatActivity implements AWSLoginHandler
 
     @Override
     public void onSignInSuccess() {
-        Toast.makeText(forgotPassword.this, "成功修改密码" , Toast.LENGTH_LONG).show();
+        Toast.makeText(forgotPassword.this, R.string.compchange , Toast.LENGTH_LONG).show();
         Intent intent = new Intent(forgotPassword.this,LoginActivity.class);
         startActivity(intent);
 
@@ -97,7 +97,7 @@ public class forgotPassword extends AppCompatActivity implements AWSLoginHandler
     public void onFailure(int process, Exception exception) {
 
     if(process == 4){
-            Toast.makeText(forgotPassword.this, "修改密码错误，请重新填写信息 " , Toast.LENGTH_LONG).show();
+            Toast.makeText(forgotPassword.this, R.string.changefail , Toast.LENGTH_LONG).show();
         }
 
     }

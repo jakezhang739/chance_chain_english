@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
 
         exception.printStackTrace();
 
-        Toast.makeText(LoginActivity.this, "Login fail, Please enter agin", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this, R.string.login_failed, Toast.LENGTH_LONG).show();
 
     }
 

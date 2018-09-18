@@ -77,7 +77,7 @@ public class shareContent extends AppCompatActivity {
         likeNum = chanceC.liked.size();
 
         int rNum = (int) chanceC.renshu;
-        renshu.setText(" Chance left: "+String.valueOf(rNum));
+        renshu.setText(R.string.cleft+String.valueOf(rNum));
         touImg = (ImageView) findViewById(R.id.contentTou);
         uName = (TextView) findViewById(R.id.contentUid);
         uTime = (TextView) findViewById(R.id.contentTime);

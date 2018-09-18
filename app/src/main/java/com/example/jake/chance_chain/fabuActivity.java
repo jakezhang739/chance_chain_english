@@ -530,7 +530,7 @@ public class fabuActivity extends AppCompatActivity {
     Handler confHand = new Handler(){
         @Override
         public void handleMessage(Message msg){
-            Toast.makeText(context,"First trade，you have gotten 100 Candy",Toast.LENGTH_LONG).show();
+            Toast.makeText(context,R.string.fget,Toast.LENGTH_LONG).show();
 
         }
     };

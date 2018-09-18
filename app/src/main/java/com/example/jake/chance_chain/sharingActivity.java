@@ -85,11 +85,11 @@ public class sharingActivity extends AppCompatActivity {
       @Override
       public void handleMessage(Message msg){
           if(msg.what==1){
-              Toast.makeText(context,"First share，you have gotten 100 Candy",Toast.LENGTH_LONG).show();
+              Toast.makeText(context,R.string.fshare,Toast.LENGTH_LONG).show();
 
           }
           else if(msg.what==2){
-              Toast.makeText(context,"First share today，you have gotten 10 Candy",Toast.LENGTH_LONG).show();
+              Toast.makeText(context,R.string.fshareto,Toast.LENGTH_LONG).show();
 
           }
       }

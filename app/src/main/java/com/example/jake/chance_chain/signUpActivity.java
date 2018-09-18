@@ -29,14 +29,14 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
             public void onClick(View v) {
                 Log.d("wtf","1 "+pass.getText().toString()+" 2 "+rePass.getText().toString());
                 if(username.length() == 0 || pass.length()==0 || rePass.length() == 0 || Email.length() == 0){
-                    Toast.makeText(signUpActivity.this,"Please enter all the information",Toast.LENGTH_LONG).show();
+                    Toast.makeText(signUpActivity.this,R.string.enterall,Toast.LENGTH_LONG).show();
                 }
 
                else if(!pass.getText().toString().equals(rePass.getText().toString())){
-                    Toast.makeText(signUpActivity.this,"Password doesn't match please enter again",Toast.LENGTH_LONG).show();
+                    Toast.makeText(signUpActivity.this,R.string.passnotmatch,Toast.LENGTH_LONG).show();
                 }
                 else if(pass.getText().toString().length()<8){
-                    Toast.makeText(signUpActivity.this,"Password be longer than eight characters",Toast.LENGTH_LONG).show();
+                    Toast.makeText(signUpActivity.this,R.string.passnotlong,Toast.LENGTH_LONG).show();
                 }
                 else {
                     registerAction();

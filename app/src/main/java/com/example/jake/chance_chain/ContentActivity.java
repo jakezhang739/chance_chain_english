@@ -2,6 +2,7 @@ package com.example.jake.chance_chain;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
@@ -32,6 +33,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedList;
+import com.bumptech.glide.load.engine.Resource;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -98,10 +100,14 @@ public class ContentActivity extends AppCompatActivity {
         });
         titlteText.setText(chanceC.txtTitle);
         if(chanceC.shoufei==0.0) {
-            jineTxt.setText(R.string.pay + fufei + " "+stype);
+            Resources res = getResources();
+            String text = String.format(res.getString(R.string.pay), fufei, stype);
+            jineTxt.setText(text);
         }
         else{
-            jineTxt.setText(R.string.ask + shoufei + " "+stype);
+            Resources res = getResources();
+            String text = String.format(res.getString(R.string.ask), shoufei, stype);
+            jineTxt.setText(text);
         }
         int rNum = (int) chanceC.renshu;
         TextView tagView = (TextView) findViewById(R.id.tagView);
@@ -119,7 +125,9 @@ public class ContentActivity extends AppCompatActivity {
                 tagView.setText(R.string.qita);
                 break;
         }
-        renshu.setText(R.string.cleft+String.valueOf(rNum));
+        Resources res = getResources();
+        String text = String.format(res.getString(R.string.cleft),String.valueOf(rNum));
+        renshu.setText(text);
         touImg = (ImageView) findViewById(R.id.contentTou);
         uName = (TextView) findViewById(R.id.contentUid);
         uTime = (TextView) findViewById(R.id.contentTime);
@@ -379,16 +387,16 @@ public class ContentActivity extends AppCompatActivity {
                 showText.setVisibility(View.VISIBLE);
             }
             else if(msg.what==4){
-                Toast.makeText(getApplicationContext().getApplicationContext(),"该机会已被抢光了！！！",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext().getApplicationContext(),R.string.chanceguang,Toast.LENGTH_LONG).show();
 
             }
             else if(msg.what==5){
                 Log.d("handler1",String.valueOf(msg.what));
-                Toast.makeText(getApplicationContext().getApplicationContext(),"可用资产不足获得该机会",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext().getApplicationContext(),R.string.afundnot,Toast.LENGTH_LONG).show();
 
             }
             else if(msg.what==6){
-                Toast.makeText(getApplicationContext().getApplicationContext(),"首次get，奖励Candy100个",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext().getApplicationContext(),R.string.fget,Toast.LENGTH_LONG).show();
             }
 
 

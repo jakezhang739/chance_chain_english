@@ -38,7 +38,7 @@ public class wodeGuanZHui extends AppCompatActivity {
         beijing = (LinearLayout) findViewById(R.id.woguanzhu);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
         TextView titlteText = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        titlteText.setText("My follow");
+        titlteText.setText(R.string.wogen);
         progressBar = (ProgressBar) findViewById(R.id.progressBarchat);
         myUsr = helper.getCurrentUserName(context);
         mapper = helper.getMapper(context);

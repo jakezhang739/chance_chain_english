@@ -154,10 +154,10 @@ public class exchange extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg){
             switch (msg.what){
-                case 1: Toast.makeText(context,"Transfer CC successful, the hash is "+msg.obj.toString(),Toast.LENGTH_LONG).show();break;
-                case 2: Toast.makeText(context,"Transfer CC failed",Toast.LENGTH_LONG).show();break;
-                case 3: Toast.makeText(context,"Transfer eth successful, the hash is "+msg.obj.toString(),Toast.LENGTH_LONG).show();break;
-                case 4: Toast.makeText(context,"Transfer eth failed",Toast.LENGTH_LONG).show();break;
+                case 1: Toast.makeText(context,R.string.transferccsuc+msg.obj.toString(),Toast.LENGTH_LONG).show();break;
+                case 2: Toast.makeText(context,R.string.transferccfail,Toast.LENGTH_LONG).show();break;
+                case 3: Toast.makeText(context,R.string.transferethsuc+msg.obj.toString(),Toast.LENGTH_LONG).show();break;
+                case 4: Toast.makeText(context,R.string.transferethfail,Toast.LENGTH_LONG).show();break;
             }
 
         }

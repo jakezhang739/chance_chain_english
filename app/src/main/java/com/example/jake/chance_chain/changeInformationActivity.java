@@ -185,7 +185,7 @@ public class changeInformationActivity extends AppCompatActivity {
 
     private void beginUpload(String filePath) {
         if (filePath == null) {
-            Toast.makeText(this, "Could not find the filepath of the selected file",
+            Toast.makeText(this, R.string.cantfind,
                     Toast.LENGTH_LONG).show();
             return;
         }
@@ -232,9 +232,9 @@ public class changeInformationActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == STORAGE_PERMISSION_CODE)  {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.permg, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.permd, Toast.LENGTH_SHORT).show();
             }
         }
     }
