@@ -33,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:textColor="@color/fontcol"
         android:layout_marginTop="75dp"
         android:layout_toRightOf="@+id/wodetouxiang"
         android:layout_marginLeft="5dp"
@@ -46,9 +47,10 @@
         android:layout_above="@+id/wodeJian"
         android:layout_marginBottom="-65dp"
         android:layout_toEndOf="@+id/progressBar"
-        android:background="@color/yellow"
+        android:background="@drawable/round_corner"
+        android:padding="5dp"
         android:clickable="true"
-        android:text="@string/repu"
+        android:text="@string/rep"
         android:textColor="@color/black"
         android:textSize="15sp" />
 

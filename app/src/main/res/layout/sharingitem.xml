@@ -55,20 +55,13 @@
                 android:text="TextView" />
 
 
-            <ImageView
-                android:id="@+id/simageView8"
-                android:layout_width="40dp"
-                android:layout_height="48dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/zhanwaifenxiang2x" />
-
             <TextView
                 android:id="@+id/stimeview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/suserNameText"
                 android:layout_marginTop="5dp"
+                android:textColor="@color/fontcol"
                 android:layout_toEndOf="@+id/stouxiangImg"
                 android:text="TextView" />
 
@@ -129,8 +122,7 @@
         android:layout_height="40dp"
         android:id="@+id/comment_card"
         android:layout_below="@+id/scard_view"
-        android:background="@color/colorPrimaryDark"
-        android:layout_marginBottom="5dp">
+        android:background="@color/colorPrimaryDark">
 
 
         <ImageView

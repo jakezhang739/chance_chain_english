@@ -53,7 +53,6 @@
     <string name="cpass">Change Password</string>
     <string name="sver">Send Verification Code</string>
     <string name="fol">Follow</string>
-    <string name="repu">Reputation:</string>
     <string name="beiguan">Follower</string>
     <string name="fabu">Post</string>
     <string name="quguan">Unfollow</string>
@@ -125,8 +124,8 @@
     <string name="fivelog">Consecutive Login in five day，you have gotten 40 Candy</string>
     <string name="sixlog">Consecutive Login in six day，you have gotten 50 Candy</string>
     <string name="sevenlog">Consecutive Login in seven day，you have gotten 1 reputation</string>
-    <string name="pay" >Pay: %s%s</string>
-    <string name="ask">Ask: %s%s</string>
+    <string name="pay" >Pay: %s %s</string>
+    <string name="ask">Ask: %s %s</string>
     <string name="cleft"> Chances left: %s</string>
     <string name="nochance">No chance left</string>
     <string name="ataken">Chance already taken</string>
@@ -156,7 +155,9 @@
     <string name="cantfind">Could not find the filepath of the selected file</string>
     <string name="permg">Permission Granted </string>
     <string name="permd">Permission Denied </string>
-    
+    <string name="rep">Reputation: %s</string>
+    <string name="hispage">Profile</string>
+
 
 
     <string-array name="currency_name">

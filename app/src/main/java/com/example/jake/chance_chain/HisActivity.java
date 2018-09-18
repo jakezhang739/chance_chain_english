@@ -2,6 +2,7 @@ package com.example.jake.chance_chain;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
@@ -192,16 +193,18 @@ public class HisActivity extends AppCompatActivity {
             if(userPoolDO.getShengWang()==null){
                 Message msg =new Message();
                 msg.what=3;
-                msg.obj="Reputation：0";
+                Resources res = getResources();
+                String text = String.format(res.getString(R.string.rep), " 0 ");
+                msg.obj=text;
                 pHandler.sendMessage(msg);
             }
             else {
                 Message msg =new Message();
                 msg.what=3;
-                String str = "Reputation： ";
                 int sheng = userPoolDO.getShengWang().intValue();
-                str+=String.valueOf(sheng);
-                msg.obj=str;
+                Resources res = getResources();
+                String text = String.format(res.getString(R.string.rep), String.valueOf(sheng));
+                msg.obj=text;
                 pHandler.sendMessage(msg);
             }
             if(userPoolDO.getGuanZhu()==null){

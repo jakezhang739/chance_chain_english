@@ -314,6 +314,7 @@ public class chattingActivity extends AppCompatActivity {
             else {
                 uri=data.getData();
                 Log.d("givemeshit",uri.toString());
+                new Thread(sendPic).start();
             }
         }
     }
@@ -341,8 +342,9 @@ public class chattingActivity extends AppCompatActivity {
             String key;
             try{
                 chatList = mapper.load(ChattingListDO.class,myUsr,userId);
-                key=String.valueOf(chatList.getChattingText().size())+".png";
-                chatList.addText("jake_is_super_niubihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
+                key=myUsr+userId+String.valueOf(chatList.getChattingText().size())+".png";
+                chatList.addText("jake_is_super_niu_bihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
+                uploadPic(uri,key);
                 chatList.addSr("user1");
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
@@ -353,8 +355,9 @@ public class chattingActivity extends AppCompatActivity {
                 flag=1;
                 try{
                     chatList = mapper.load(ChattingListDO.class,userId,myUsr);
-                    key=String.valueOf(chatList.getChattingText().size())+".png";
-                    chatList.addText("jake_is_super_niubihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
+                    key=myUsr+userId+String.valueOf(chatList.getChattingText().size())+".png";
+                    chatList.addText("jake_is_super_niu_bihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
+                    uploadPic(uri,key);
                     chatList.addSr("user2");
                     Date currentTime = Calendar.getInstance().getTime();
                     String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
@@ -368,8 +371,9 @@ public class chattingActivity extends AppCompatActivity {
                 final ChattingListDO chattingListDO = new ChattingListDO();
                 chattingListDO.setUser1(myUsr);
                 chattingListDO.setUser2(userId);
-                key=String.valueOf(chattingListDO.getChattingText().size())+".png";
+                key=myUsr+userId+String.valueOf(chattingListDO.getChattingText().size())+".png";
                 chattingListDO.addText("jake_is_super_niubihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
+                uploadPic(uri,key);
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
                 chattingListDO.addTime(dateString);

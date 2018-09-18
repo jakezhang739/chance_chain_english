@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/touxiangImg"
+                android:layout_marginLeft="5dp"
                 android:textSize="@dimen/action_bar_text"
                 android:text="TextView" />
 
@@ -47,6 +48,8 @@
                 android:id="@+id/neirongTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginBottom="5dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="65dp"
@@ -63,6 +66,7 @@
                 android:textColor="@color/black"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/round_corner"
                 android:layout_toEndOf="@+id/userNameText" />
@@ -72,6 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/userNameText"
+                android:textColor="@color/fontcol"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/touxiangImg"
                 android:text="TextView" />
@@ -86,17 +92,9 @@
                 android:layout_centerHorizontal="true"
                 android:stretchMode="columnWidth"
                 android:gravity="center"
-                android:layout_below="@+id/gengduo"
+                android:layout_below="@+id/neirongTxt"
                 >
             </GridView>
-
-            <ImageView
-                android:id="@+id/gengduo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/neirongTxt"
-                app:srcCompat="@drawable/gengduo" />
 
         </RelativeLayout>
 
@@ -107,8 +105,7 @@
         android:layout_height="30dp"
         android:id="@+id/comment_card"
         android:layout_below="@+id/card_view"
-        android:background="@color/colorPrimaryDark"
-        android:layout_marginBottom="5dp">
+        android:background="@color/colorPrimaryDark"  >
 
 
         <ImageView
@@ -129,6 +126,7 @@
                 android:layout_toEndOf="@+id/imageView2"
                 android:gravity="left"
                 android:textSize="20sp"
+                android:layout_marginBottom="3dp"
                 android:text="0" />
 
 
@@ -147,6 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/imageView9"
+            android:layout_marginBottom="3dp"
             android:textSize="20sp"
             android:text="0" />
 
@@ -178,6 +177,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="18dp"
+            android:layout_marginBottom="3dp"
             android:textSize="20sp"
             android:text="0" />
     </RelativeLayout>

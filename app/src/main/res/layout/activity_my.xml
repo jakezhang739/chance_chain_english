@@ -36,7 +36,7 @@
         android:layout_toRightOf="@+id/wodetouxiang"
         android:layout_marginLeft="5dp"
         android:textSize="20sp"
-        android:text="" />
+        android:text="0" />
 
     <TextView
         android:id="@+id/wodeJian"
@@ -47,7 +47,8 @@
         android:layout_toRightOf="@+id/wodetouxiang"
         android:layout_marginLeft="5dp"
         android:textSize="15sp"
-        android:text="" />
+        android:textColor="@color/fontcol"
+        android:text="0" />
 
     <TextView
         android:id="@+id/woshengwang"
@@ -56,8 +57,9 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/wodeUser"
         android:layout_marginEnd="24dp"
-        android:background="@color/yellow"
-        android:text=""
+        android:background="@drawable/round_corner"
+        android:padding="5dp"
+        android:text="0"
         android:clickable="true"
         android:textColor="@color/black"
         android:textSize="15sp" />
@@ -70,14 +72,14 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="125dp"
-        android:text="" />
+        android:text="0" />
 
     <TextView
         android:id="@+id/guanzhu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/woJihui"
         android:layout_below="@+id/guanzhuNum"
-        android:layout_alignStart="@id/guanzhuNum"
         android:text="@string/fol" />
 
     <TextView
@@ -86,14 +88,14 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/guanzhuNum"
         android:layout_centerHorizontal="true"
-        android:text="" />
+        android:text="0" />
 
     <TextView
         android:id="@+id/beiGuan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/beiGuanNum"
-        android:layout_alignStart="@id/beiGuanNum"
+        android:layout_below="@+id/guanzhuNum"
+        android:layout_centerHorizontal="true"
         android:text="@string/beiguan" />
 
     <TextView
@@ -103,14 +105,14 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="50dp"
         android:layout_alignTop="@id/beiGuanNum"
-        android:text="" />
+        android:text="0" />
 
     <TextView
         android:id="@+id/woFabu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/woFabuNum"
-        android:layout_below="@+id/woFabuNum"
+        android:layout_below="@+id/guanzhuNum"
+        android:layout_toStartOf="@+id/alert1"
         android:text="@string/fabu" />
 
     <TextView

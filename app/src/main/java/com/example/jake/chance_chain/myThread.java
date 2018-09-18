@@ -54,16 +54,14 @@ public class myThread extends Thread {
             }
         }
         Log.d("thread", "fg"+"sdf11");
-        ;
+
 
 
         Log.d("thread", "fg"+"sdf");
 
 
-
         baseActivity.setFragment(cList,ft);
         Log.d("thread", "fg"+"sd123f");
-
 
         //设置布局管理器
 

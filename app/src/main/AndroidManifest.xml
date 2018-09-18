@@ -25,7 +25,7 @@
             android:logo="@drawable/name3x" />
         <activity
             android:name=".NotificationActivity"
-            android:label="Post"
+            android:label="@string/wofabu"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MyActivity"
@@ -61,24 +61,24 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="Login" />
+            android:label="@string/login" />
         <activity
             android:name=".signUpActivity"
-            android:label="Register">
+            android:label="@string/register">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
         <activity
             android:name=".forgotPassword"
-            android:label="Forgot Password">
+            android:label="@string/forgot">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
         <activity
             android:name=".confirmUser"
-            android:label="Confirm User">
+            android:label="@string/conf">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".signUpActivity" />
@@ -91,7 +91,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".settingActivity"
-            android:label="Settings">
+            android:label="@string/setting">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyActivity" />
@@ -99,7 +99,7 @@
         <activity android:name=".MessageActivity" />
         <activity
             android:name=".HisActivity"
-            android:label="Profile">
+            android:label="@string/hispage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
