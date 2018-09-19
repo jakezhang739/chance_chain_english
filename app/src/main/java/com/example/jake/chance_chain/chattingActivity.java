@@ -157,11 +157,11 @@ public class chattingActivity extends AppCompatActivity {
         ImageView picture = (ImageView) layout1.findViewById(R.id.imageView24);
         Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/" + myUsr + ".png").placeholder(R.drawable.splash).into(wotou);
         if (getMsg.length()>20) {
-            Log.d("niubi",getMsg.substring(0,20));
+            Log.d("niubi",getMsg.substring(20, getMsg.length()));
             if (getMsg.substring(0, 20).equals("jake_is_super_niu_bi")) {
                 myMsg.setVisibility(View.INVISIBLE);
                 picture.setVisibility(View.VISIBLE);
-                Picasso.get().load(getMsg.substring(21, getMsg.length() - 1)).into(picture);
+                Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+getMsg.substring(20, getMsg.length())).resize(500,500).into(picture);
             } else {
                 myMsg.setText(getMsg);
             }
@@ -193,7 +193,7 @@ public class chattingActivity extends AppCompatActivity {
             if (getMsg.substring(0, 20).equals("jake_is_super_niu_bi")) {
                 myMsg.setVisibility(View.INVISIBLE);
                 picture.setVisibility(View.VISIBLE);
-                Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+getMsg.substring(20, getMsg.length())).into(picture);
+                Picasso.get().load("https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+getMsg.substring(20, getMsg.length())).resize(500,500).into(picture);
                 Log.d("jakeis",getMsg.substring(20, getMsg.length()));
             } else {
                 myMsg.setText(getMsg);
@@ -343,7 +343,7 @@ public class chattingActivity extends AppCompatActivity {
             try{
                 chatList = mapper.load(ChattingListDO.class,myUsr,userId);
                 key=myUsr+userId+String.valueOf(chatList.getChattingText().size())+".png";
-                chatList.addText("jake_is_super_niu_bihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
+                chatList.addText("jake_is_super_niu_bi"+key);
                 uploadPic(uri,key);
                 chatList.addSr("user1");
                 Date currentTime = Calendar.getInstance().getTime();
@@ -356,7 +356,7 @@ public class chattingActivity extends AppCompatActivity {
                 try{
                     chatList = mapper.load(ChattingListDO.class,userId,myUsr);
                     key=myUsr+userId+String.valueOf(chatList.getChattingText().size())+".png";
-                    chatList.addText("jake_is_super_niu_bihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
+                    chatList.addText("jake_is_super_niu_bi"+key);
                     uploadPic(uri,key);
                     chatList.addSr("user2");
                     Date currentTime = Calendar.getInstance().getTime();
@@ -372,7 +372,7 @@ public class chattingActivity extends AppCompatActivity {
                 chattingListDO.setUser1(myUsr);
                 chattingListDO.setUser2(userId);
                 key=myUsr+userId+String.valueOf(chattingListDO.getChattingText().size())+".png";
-                chattingListDO.addText("jake_is_super_niubihttps://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+key);
+                chattingListDO.addText("jake_is_super_niub"+key);
                 uploadPic(uri,key);
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
@@ -389,7 +389,7 @@ public class chattingActivity extends AppCompatActivity {
                     usrChat1.removeUsr(userId);
                 }
                 usrChat1.addChatting(userId);
-                usrChat1.addSentence(userId,"[picture}");
+                usrChat1.addSentence(userId,"[picture]");
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
                 usrChat1.addTime(userId,dateString);
@@ -399,7 +399,7 @@ public class chattingActivity extends AppCompatActivity {
                 final UserChatDO userChatDO1 = new UserChatDO();
                 userChatDO1.addChatting(userId);
                 userChatDO1.setUserId(myUsr);
-                userChatDO1.addSentence(userId,"[picture}");
+                userChatDO1.addSentence(userId,"[picture]");
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
                 userChatDO1.addTime(userId,dateString);
@@ -411,7 +411,7 @@ public class chattingActivity extends AppCompatActivity {
                     usrChat2.removeUsr(myUsr);
                 }
                 usrChat2.addChatting(myUsr);
-                usrChat2.addSentence(myUsr,"[picture}");
+                usrChat2.addSentence(myUsr,"[picture]");
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
                 usrChat2.addUnread(myUsr);
@@ -423,7 +423,7 @@ public class chattingActivity extends AppCompatActivity {
                 final UserChatDO userChatDO = new UserChatDO();
                 userChatDO.addChatting(myUsr);
                 userChatDO.setUserId(userId);
-                userChatDO.addSentence(myUsr,"[picture}");
+                userChatDO.addSentence(myUsr,"[picture]");
                 Date currentTime = Calendar.getInstance().getTime();
                 String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(currentTime.getTime())).toString();
                 userChatDO.addTime(myUsr,dateString);
