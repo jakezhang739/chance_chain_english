@@ -158,6 +158,9 @@
     <string name="rep">Reputation: %s</string>
     <string name="hispage">Profile</string>
 
+    <string name="facebook_app_id">1007699982736676</string>
+    <string name="fb_login_protocol_scheme">fb1007699982736676</string>
+
 
 
     <string-array name="currency_name">
