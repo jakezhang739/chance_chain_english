@@ -159,6 +159,17 @@ public class ContentActivity extends AppCompatActivity {
             for(int i = 0; i<strList.size();i++){
                 ImageView neiImg =new ImageView(this);
                 Picasso.get().load(strList.get(i)).into(neiImg);
+                int s = i;
+                neiImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(v.getContext(),fsizepic.class);
+                        ArrayList<String> uriList = new ArrayList<>(strList);
+                        intent.putStringArrayListExtra("uri",uriList);
+                        intent.putExtra("pos",s);
+                        v.getContext().startActivity(intent);
+                    }
+                });
                 imgList.add(neiImg);
             }
         }

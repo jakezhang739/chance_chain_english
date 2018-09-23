@@ -101,9 +101,10 @@ public class AppHelper {
             appHelper = new AppHelper();
         }
 
-            userPool = new CognitoUserPool(context, userPoolId, clientId, clientSecret, cognitoRegion);
-            user = userPool.getCurrentUser();
-            return user.getUserId();
+            SharedPreferences preferences = context.getSharedPreferences("SavedValues",Context.MODE_PRIVATE);
+
+
+            return preferences.getString("awsUserName","null");
 
     }
 

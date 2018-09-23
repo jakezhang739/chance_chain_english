@@ -7,182 +7,231 @@
     android:background="@drawable/beijing"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/imageViewAppMainCognitoIcon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/logo" />
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_inter_group_separation"
-        android:layout_below="@+id/imageViewAppMainCognitoIcon"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/space2" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:paddingLeft="@dimen/activity_text_padding"
-        android:paddingRight="@dimen/activity_text_padding"
-        android:id="@+id/editTextUserId"
-        android:layout_below="@+id/space2"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/yellow"
-        android:textColor="@color/yellow"
-        android:hint="@string/Username"
-        android:textColorHint="@color/yellow"
-        android:inputType="textPersonName"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/activity_text_padding"
-        android:text=" "
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/alert"
-        android:id="@+id/textViewUserIdMessage"
-        android:layout_below="@+id/editTextUserId"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=" "
-        android:textSize="@dimen/activity_text_size_small"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/textViewUserPasswordLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textViewUserIdMessage" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_text_padding"
-        android:paddingRight="@dimen/activity_text_padding"
-        android:id="@+id/editTextUserPassword"
-        android:layout_below="@+id/textViewUserPasswordLabel"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/Password"
-        android:textColor="@color/yellow"
-        android:textColorHint="@color/yellow"
-        android:backgroundTint="@color/yellow"
-        android:inputType="textPassword" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/activity_text_padding"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text=" "
-        android:textColor="@color/alert"
-        android:id="@+id/textViewUserPasswordMessage"
-        android:layout_below="@+id/editTextUserPassword"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/buttonLogIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewUserForgotPassword"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button_selector"
-        android:text="@string/login"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/activity_button_text_size" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_intra_group_separation"
-        android:layout_below="@+id/buttonLogIn"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/space5" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_intra_group_separation"
-        android:layout_below="@+id/space5"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/space6" />
-
-    <TextView
-        android:id="@+id/textViewUserForgotPassword"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/imageView7"
-        android:layout_below="@+id/textViewUserPasswordMessage"
-        android:clickable="true"
-        android:text="@string/forgot"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/yellow"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/textViewUserSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonLogIn"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="98dp"
-        android:clickable="true"
-        android:text="@string/register"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/yellow"
-        android:textSize="15dp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textViewUserIdMessage"
-        android:layout_marginBottom="20dp"
-        app:srcCompat="@drawable/weibo" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/weixin" />
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/imageView6"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignEnd="@+id/textViewUserIdMessage"
-        android:layout_alignTop="@+id/imageView"
-        android:background="@drawable/facebook"/>
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="46dp"
-        android:layout_marginTop="241dp"
-        android:clickable="true"
-        app:srcCompat="@drawable/baomi" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/yellow"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="invisible" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/show">
+
+        <ImageView
+            android:id="@+id/imageViewAppMainCognitoIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo" />
+
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_inter_group_separation"
+            android:layout_below="@+id/imageViewAppMainCognitoIcon"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/space2" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="@dimen/activity_text_padding"
+            android:paddingRight="@dimen/activity_text_padding"
+            android:id="@+id/editTextUserId"
+            android:layout_below="@+id/space2"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/yellow"
+            android:hint="@string/Username"
+            android:textColorHint="@color/yellow"
+            android:inputType="textPersonName"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/activity_text_padding"
+            android:text=" "
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/alert"
+            android:id="@+id/textViewUserIdMessage"
+            android:layout_below="@+id/editTextUserId"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="@dimen/activity_text_size_small"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/textViewUserPasswordLabel"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textViewUserIdMessage" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_text_padding"
+            android:paddingRight="@dimen/activity_text_padding"
+            android:id="@+id/editTextUserPassword"
+            android:layout_below="@+id/textViewUserPasswordLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/Password"
+            android:textColor="@color/yellow"
+            android:textColorHint="@color/yellow"
+            android:backgroundTint="@color/yellow"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/activity_text_padding"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text=" "
+            android:textColor="@color/alert"
+            android:id="@+id/textViewUserPasswordMessage"
+            android:layout_below="@+id/editTextUserPassword"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/buttonLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewUserForgotPassword"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/activity_button_text_size" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_intra_group_separation"
+            android:layout_below="@+id/buttonLogIn"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/space5" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_intra_group_separation"
+            android:layout_below="@+id/space5"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/space6" />
+
+        <TextView
+            android:id="@+id/textViewUserForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/imageView7"
+            android:layout_below="@+id/textViewUserPasswordMessage"
+            android:clickable="true"
+            android:text="@string/forgot"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/yellow"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/textViewUserSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonLogIn"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="98dp"
+            android:clickable="true"
+            android:text="@string/register"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/yellow"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/textViewUserIdMessage"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/weibo" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/weixin" />
+
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textViewUserIdMessage"
+            android:layout_alignTop="@+id/imageView">
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/imageView6"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:visibility="invisible"
+                android:layout_alignTop="@+id/imageView"/>
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:clickable="true"
+                android:background="@drawable/facebook"/>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="46dp"
+            android:layout_marginTop="241dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/baomi" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="46dp"
+            android:layout_marginTop="241dp"
+            android:clickable="true"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/gongkai" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

@@ -1,11 +1,16 @@
 package com.example.jake.chance_chain;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.media.Image;
+import android.os.Handler;
+import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -15,9 +20,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -43,11 +51,19 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
 
     private static final String TAG = "login";
     private Button loginBtn;
+    private ImageView fbBtn;
     private LoginButton fbLog;
     private TextView signupText,forgotText;
+    private Context context;
+    private final String ATTR_EMAIL = "email";
+    private static final String SHARED_PREFERENCE = "SavedValues";
+    private static final String PREFERENCE_USER_NAME = "awsUserName";
+    private static final String PREFERENCE_USER_EMAIL = "awsUserEmail";
     AWSLoginModel awsLoginModel;
     Boolean Show = false;
     CallbackManager callbackManager;
+    private Bundle facebookData;
+    private RelativeLayout allRel;
     PrefUtil prefUtil = new PrefUtil(LoginActivity.this);
 
 
@@ -57,55 +73,70 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
+        context = getApplicationContext().getApplicationContext();
         ImageView toggleShow = (ImageView) findViewById(R.id.imageView7);
         loginBtn = (Button) findViewById(R.id.buttonLogIn);
-        fbLog = (LoginButton) findViewById(R.id.imageView6);
-        fbLog.setReadPermissions(Arrays.asList(
-                "public_profile", "email"));
-        fbLog.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
+        fbBtn = (ImageView) findViewById(R.id.imageView8);
+        allRel = (RelativeLayout) findViewById(R.id.show);
+        ProgressBar mybar = (ProgressBar) findViewById(R.id.progressBar);
+        fbBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                            @Override
+                            public void onSuccess(LoginResult loginResult) {
+
+                                allRel.setVisibility(View.INVISIBLE);
+                                mybar.setVisibility(View.VISIBLE);
+
+                                String accessToken = loginResult.getAccessToken().getToken();
+
+                                // save accessToken to SharedPreference
+                                prefUtil.saveAccessToken(accessToken);
+
+                                GraphRequest request = GraphRequest.newMeRequest(
+                                        loginResult.getAccessToken(),
+                                        new GraphRequest.GraphJSONObjectCallback() {
+                                            @Override
+                                            public void onCompleted(JSONObject jsonObject,
+                                                                    GraphResponse response) {
+
+                                                // Getting FB User Data
+                                                facebookData = getFacebookData(jsonObject);
+                                                SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE).edit();
+                                                editor.putString(PREFERENCE_USER_NAME, facebookData.get("first_name").toString());
+                                                editor.apply();
+                                                Log.d("fbname1",facebookData.get("first_name").toString());
+                                                new Thread(facebookUser).start();
+
+                                            }
+                                        });
+
+                                Bundle parameters = new Bundle();
+                                parameters.putString("fields", "id,first_name,last_name,email,gender");
+                                request.setParameters(parameters);
+                                request.executeAsync();
+                            }
 
 
-                        String accessToken = loginResult.getAccessToken().getToken();
+                            @Override
+                            public void onCancel () {
+                                Log.d(TAG, "Login attempt cancelled.");
+                            }
 
-                        // save accessToken to SharedPreference
-                        prefUtil.saveAccessToken(accessToken);
+                            @Override
+                            public void onError (FacebookException e){
+                                e.printStackTrace();
+                                Log.d(TAG, "Login attempt failed.");
+                                deleteAccessToken();
+                            }
+                        }
+                );
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this,Arrays.asList(
+                        "public_profile", "email"));
 
-                        GraphRequest request = GraphRequest.newMeRequest(
-                                loginResult.getAccessToken(),
-                                new GraphRequest.GraphJSONObjectCallback() {
-                                    @Override
-                                    public void onCompleted(JSONObject jsonObject,
-                                                            GraphResponse response) {
-
-                                        // Getting FB User Data
-                                        Bundle facebookData = getFacebookData(jsonObject);
-
-
-                                    }
-                                });
-
-                        Bundle parameters = new Bundle();
-                        parameters.putString("fields", "id,first_name,last_name,email,gender");
-                        request.setParameters(parameters);
-                        request.executeAsync();
-                    }
-
-
-                    @Override
-                    public void onCancel () {
-                        Log.d(TAG, "Login attempt cancelled.");
-                    }
-
-                    @Override
-                    public void onError (FacebookException e){
-                        e.printStackTrace();
-                        Log.d(TAG, "Login attempt failed.");
-                        deleteAccessToken();
-                    }
-                }
-        );
+            }
+        });
         signupText = (TextView) findViewById(R.id.textViewUserSignUp);
         forgotText = (TextView) findViewById(R.id.textViewUserForgotPassword);
         awsLoginModel = new AWSLoginModel(this, this);
@@ -130,21 +161,36 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
                 startActivity(intent);
             }
         });
+        ImageView gongkai = (ImageView) findViewById(R.id.imageView9);
         toggleShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(Show == false){
                     password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    gongkai.setVisibility(View.VISIBLE);
+                    toggleShow.setVisibility(View.INVISIBLE);
                     Show = true;
-                }
-                else{
-                    password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    password.setSelection(password.length());
-                    Show = false;
                 }
 
             }
         });
+
+        gongkai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Show == true){
+                    password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    password.setSelection(password.length());
+                    gongkai.setVisibility(View.INVISIBLE);
+                    toggleShow.setVisibility(View.VISIBLE);
+                    Show = false;
+
+                }
+            }
+        });
+
+
+
 
     }
 
@@ -205,6 +251,53 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
         Toast.makeText(LoginActivity.this, R.string.login_failed, Toast.LENGTH_LONG).show();
 
     }
+
+    Runnable facebookUser = new Runnable() {
+        @Override
+        public void run() {
+
+            SharedPreferences preferences = context.getSharedPreferences(SHARED_PREFERENCE,context.MODE_PRIVATE);
+            Log.d("fbname",preferences.getString(PREFERENCE_USER_NAME,"fuck"));
+
+//            Log.d("wttttrf",facebookData.getString("first_name"));
+            prefUtil.getFacebookUserInfo();
+            String userid = prefUtil.getUsername();
+            userid="facebook_Name"+userid;
+            String email = prefUtil.getEmail();
+            Log.d("likeomg",prefUtil.getUsername());
+
+            SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE).edit();
+            //editor.putString(PREFERENCE_USER_EMAIL, email);
+            editor.putString(PREFERENCE_USER_NAME, userid);
+            editor.apply();
+
+            AppHelper helper = new AppHelper();
+            DynamoDBMapper mapper = helper.getMapper(context);
+            try{
+                UserPoolDO userPoolDO = mapper.load(UserPoolDO.class,userid);
+                userPoolDO.setUserId(userid);
+                userPoolDO.setMyEmail(email);
+                mapper.save(userPoolDO);
+            }catch (Exception e) {
+
+                final UserPoolDO userPoolDO = new UserPoolDO();
+                userPoolDO.setUserId(userid);
+                userPoolDO.setMyEmail(email);
+                mapper.save(userPoolDO);
+            }
+            Message msg = new Message();
+            handler.sendMessage(msg);
+        }
+    };
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+            context.startActivity(intent);
+        }
+    };
+
     private Bundle getFacebookData(JSONObject object) {
         Bundle bundle = new Bundle();
 
@@ -221,19 +314,34 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
             }
 
             bundle.putString("idFacebook", id);
-            if (object.has("first_name"))
+            if (object.has("first_name")) {
                 bundle.putString("first_name", object.getString("first_name"));
-            if (object.has("last_name"))
+            }
+            else{
+                bundle.putString("first_name", "first_name");
+            }
+            if (object.has("last_name")) {
                 bundle.putString("last_name", object.getString("last_name"));
-            if (object.has("email"))
+            }
+            else{
+                bundle.putString("last_name", "last_name");
+            }
+            if (object.has("email")) {
                 bundle.putString("email", object.getString("email"));
-            if (object.has("gender"))
-                bundle.putString("gender", object.getString("gender"));
+            }
+            else {
+                bundle.putString("email", "email");
+            }
+//            if (object.has("gender")) {
+//                bundle.putString("gender", object.getString("gender"));
+//            }
+//            else{
+//                bundle.putString("gender", "gender");
+//            }
 
 
             prefUtil.saveFacebookUserInfo(object.getString("first_name"),
-                    object.getString("last_name"),object.getString("email"),
-                    object.getString("gender"), profile_pic.toString());
+                    object.getString("last_name"),object.getString("email"), profile_pic.toString());
 
         } catch (Exception e) {
             Log.d(TAG, "BUNDLE Exception : "+e.toString());

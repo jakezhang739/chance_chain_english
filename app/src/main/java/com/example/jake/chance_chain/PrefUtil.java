@@ -34,21 +34,29 @@ public class PrefUtil {
         editor.apply(); // This line is IMPORTANT !!!
     }
 
-    public void saveFacebookUserInfo(String first_name,String last_name, String email, String gender, String profileURL){
+    public void saveFacebookUserInfo(String first_name,String last_name, String email, String profileURL){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("fb_first_name", first_name);
         editor.putString("fb_last_name", last_name);
         editor.putString("fb_email", email);
-        editor.putString("fb_gender", gender);
         editor.putString("fb_profileURL", profileURL);
         editor.apply(); // This line is IMPORTANT !!!
-        Log.d("MyApp", "Shared Name : "+first_name+"\nLast Name : "+last_name+"\nEmail : "+email+"\nGender : "+gender+"\nProfile Pic : "+profileURL);
+        Log.d("MyApp", "Shared Name : "+first_name+"\nLast Name : "+last_name+"\nEmail : "+email+"\nProfile Pic : "+profileURL);
+        getFacebookUserInfo();
     }
 
     public void getFacebookUserInfo(){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        Log.d("MyApp", "Name : "+prefs.getString("fb_name",null)+"\nEmail : "+prefs.getString("fb_email",null));
+        Log.d("MyApp", "Name : "+prefs.getString("fb_first_name",null)+"\nEmail : "+prefs.getString("fb_email",null));
+    }
+    public String getUsername(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        return prefs.getString("fb_first_name",null);
+    }
+    public String getEmail(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        return prefs.getString("fb_email",null);
     }
 
 

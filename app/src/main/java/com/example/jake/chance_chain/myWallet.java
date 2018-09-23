@@ -3,6 +3,7 @@ package com.example.jake.chance_chain;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
@@ -40,6 +41,7 @@ public class myWallet extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         currency = (TextView) findViewById(R.id.totalFunds);
         available = (TextView) findViewById(R.id.AvailFunds);
         eth = (TextView) findViewById(R.id.totaleth);
@@ -58,11 +60,12 @@ public class myWallet extends AppCompatActivity {
     Handler setupHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
+            Resources res = getResources();
             switch (msg.what){
-                case 1:currency.setText(R.string.tasset + msg.obj.toString());break;
-                case 2:available.setText(R.string.afunds+msg.obj.toString());break;
-                case 3:ccb.setText(R.string.tasset + msg.obj.toString());break;
-                case 4:eth.setText(R.string.tasset + msg.obj.toString());break;
+                case 1:currency.setText(String.format(res.getString(R.string.tasset), msg.obj.toString()));break;
+                case 2:available.setText(String.format(res.getString(R.string.afunds), msg.obj.toString()));break;
+                case 3:ccb.setText(String.format(res.getString(R.string.tasset), msg.obj.toString()));break;
+                case 4:eth.setText(String.format(res.getString(R.string.afunds), msg.obj.toString()));break;
             }
         }
     };

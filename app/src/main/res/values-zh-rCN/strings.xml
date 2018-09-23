@@ -1,44 +1,181 @@
 <resources>
     <string name="app_name">机会链</string>
-    <string name="title_activity_authenticator">Chance</string>
-    <string name="title_home">机会首页</string>
-    <string name="title_dashboard">我的</string>
-    <string name="title_notifications">发布信息</string>
+    <string name="title_activity_authenticator">机会</string>
+    <string name="title_home">首页</string>
+    <string name="title_guan">我的关注</string>
+    <string name="title_his_follow">他的关注</string>
+    <string name="title_dashboard">我的主页</string>
+    <string name="title_notifications">发布机会</string>
     <string name="title_activity_home">机会首页</string>
-    <string name="title_activity_notification">发布</string>
+    <string name="title_activity_notification">发布机会</string>
     <string name="title_activity_my">我的主页</string>
-    <string name="title_activity_information">个人信息</string>
-    <string name="title_activity_change_information">完善个人信息</string>
-    <string name="Username">Username</string>
-    <string name="Password">Password</string>
+    <string name="title_activity_information">关于我们</string>
+    <string name="title_activity_change_information">关于我们</string>
+    <string name="action_settings">设置</string>
+    <string name="app_main_screen">注册</string>
+    <string name="app_main_screen_title">Cognito Identity</string>
+    <string name="app_main_desc">A sample app to showcase Cognito Identity and the SDK for Android.</string>
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="Username">用户</string>
+    <string name="Password">密码</string>
     <string name="Menu">Menu</string>
-    <string name="uploadTou">上传头像文件</string>
-    <string name="takePic">拍照头像文件</string>
+    <string name="uploadTou">上传照片</string>
+    <string name="takePic">拍照</string>
     <string name="nickname">昵称</string>
     <string name="name">姓名</string>
-    <string name="chanceId">机会号</string>
+    <string name="chanceId">机会id</string>
     <string name="walletAddress">钱包地址</string>
     <string name="gender">性别</string>
     <string name="career">职业</string>
-    <string name="resuem">个人简介</string>
+    <string name="resuem">简介</string>
     <string name="finish">完成</string>
-    <string name="confirmAccount">确认您的帐号</string>
-    <string name="enterAccount">请输入你的用户名和我们向您提供的验证码以完成注册</string>
+    <string name="confirmAccount">确认您的账号</string>
+    <string name="enterAccount">请输入您的用户名和验证码来完成注册</string>
     <string name="userName">用户名</string>
-    <string name="verCode">验证码</string>
     <string name="finishRegister">完成注册</string>
-
-
+    <string name="send">发送</string>
+    <string name="Get">Get</string>
+    <string name="xianzhi">已获得该机会</string>
+    <string name="comment">说点什么。。。</string>
+    <string name="amount">输入金额</string>
+    <string name="top">TOP UP</string>
+    <string name="ex">兑换</string>
+    <string name="not">没有获得</string>
+    <string name="proc">进行中</string>
+    <string name="comp">已完成</string>
+    <string name="forgot">忘记密码</string>
+    <string name="forver">用我们发给您的验证码来修改密码</string>
+    <string name="unameor">你的用户名或密码</string>
+    <string name="newp">新密码</string>
+    <string name="cpass">更换密码</string>
+    <string name="sver">发送验证码</string>
+    <string name="fol">关注</string>
+    <string name="beiguan">被关注</string>
+    <string name="fabu">发布</string>
+    <string name="quguan">不关注</string>
+    <string name="faxiao">发私信</string>
+    <string name="more">他的关注</string>
+    <string name="change">更换密码</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="message">消息</string>
+    <string name="csec">机会秘书</string>
 
 
     <string-array name="currency_name">
+        <item>Candy</item>
         <item>cc</item>
         <item>eth</item>
-        <item>btc</item>
+    </string-array>
+
+    <string-array name="type">
+        <item>Pay</item>
+        <item>Ask</item>
     </string-array>
 
 
+    <string name="verCode">验证码</string>
+    <string name="cbro">机会广播</string>
+    <string name="woji">我的机会</string>
+    <string name="wofa">我的发布</string>
+    <string name="woren">我的任务</string>
+    <string name="woqian">我的钱包</string>
+    <string name="wogen">我的关注</string>
+    <string name="woxiao">我的私信</string>
+    <string name="setting">设置</string>
+    <string name="candy">糖果</string>
+    <string name="tasset">总资产： %s</string>
+    <string name="afunds">可用资产： %s</string>
+    <string name="cc">机会币</string>
+    <string name="ether">以太币</string>
+    <string name="title">题目</string>
+    <string name="neirong">内容</string>
+    <string name="biao">标签</string>
+    <string name="huodong">活动</string>
+    <string name="yue">约吗</string>
+    <string name="renwu">任务</string>
+    <string name="qita">其他</string>
+    <string name="jine">金额</string>
+    <string name="renshu">人数</string>
+    <string name="myinf">我的信息</string>
+    <string name="yuyan">语言</string>
+    <string name="qingchu">清楚缓存</string>
+    <string name="ipad">IP 地址</string>
+    <string name="confip">确认IP 地址</string>
+    <string name="logout">登出</string>
+    <string name="tanzhuan">说点什么</string>
+    <string name="regitxt">请输入以下信息来完成注册</string>
+    <string name="passagain">请再次输入密码</string>
+    <string name="cproc">进行中的机会</string>
+    <string name="ccomp">已完成的机会</string>
+    <string name="conf">确认</string>
+    <string name="quxi">取消</string>
+    <string name="yiguan">已关注</string>
+    <string name="seep">他的主页</string>
+    <string name="zhuhe">恭喜！您已获得该机会</string>
+    <string name="quji">去我的机会</string>
+    <string name="ok">OK</string>
+    <string name="share">分享</string>
+    <string name="sharec">分享我的机会</string>
+    <string name="home">首页</string>
+    <string name="wofabu">我的发布</string>
+    <string name="woye">我的主页</string>
+    <string name="entitle">请输入题目</string>
+    <string name="encontent">请输入内容</string>
+    <string name="entag">请输入标签</string>
+    <string name="enquan">请输入人数</string>
+    <string name="upl">已上传</string>
+    <string name="fnote">可用金额不足</string>
+    <string name="fupload">第一次发布，您已获得100个Candy</string>
+    <string name="ftoup">今日首次发布，您已获得10个Candy</string>
+    <string name="flogin">第一次登录，您已获得100个Candy</string>
+    <string name="onelog">连续登录一天，您已获得5个Candy</string>
+    <string name="twolog">连续登录两天，您已获得10个Candy</string>
+    <string name="threelog">连续登录三天，您已获得15个Candy</string>
+    <string name="fourlog">连续登录四天，您已获得30个Candy</string>
+    <string name="fivelog">连续登录五天，您已获得40个Candy</string>
+    <string name="sixlog">连续登录六天，您已获得50个Candy</string>
+    <string name="sevenlog">连续登录七天，您已获得一个声望</string>
+    <string name="pay">付费：%s%s</string>
+    <string name="ask">收费：%s%s</string>
+    <string name="cleft">剩余机会：%s</string>
+    <string name="nochance">无剩余机会</string>
+    <string name="ataken">机会已获得</string>
+    <string name="fpic">这是第一张图</string>
+    <string name="lpic">这是最后一张图</string>
+    <string name="ftrade">第一次交易，您已获得100个Candy</string>
+    <string name="chanceguang">机会被抢光了！</string>
+    <string name="afundnot">可用资产不足</string>
+    <string name="fget">第一次Get，您已获得100个Candy</string>
+    <string name="enterall">请输入所有信息</string>
+    <string name="passnotmatch">两次密码不一样</string>
+    <string name="passnotlong">密码应该长于八位</string>
+    <string name="empyou">请输入邮箱和用户名</string>
+    <string name="empyan">请输入密码和验证码</string>
+    <string name="loginfail">登录失败，请重试</string>
+    <string name="yourip">"您的IP地址是： "</string>
+    <string name="compchange">您已成功修改密码</string>
+    <string name="changefail">修改密码失败</string>
+    <string name="succonf">确认成功</string>
+    <string name="fshare">第一次分享，您已获得100个Candy</string>
+    <string name="fshareto">今日首次分享，您已获得10个Candy</string>
+    <string name="somewrong">有问题，请重试</string>
+    <string name="transferccsuc">交易cc成功，Hash为： %s</string>
+    <string name="transferccfail">交易cc失败</string>
+    <string name="transferethsuc">交易eth成功，Hash为：%s</string>
+    <string name="transferethfail">交易eth失败</string>
+    <string name="cantfind">Could not find the filepath of the selected file</string>
+    <string name="permg">Permission Granted</string>
+    <string name="permd">Permission Denied</string>
+    <string name="rep">声望：%s</string>
+    <string name="hispage">他的主页</string>
+    <string name="facebook_app_id">1007699982736676</string>
+    <string name="fb_login_protocol_scheme">fb1007699982736676</string>
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="dummy_content">DUMMY CONTENT</string>
 </resources>
+
+

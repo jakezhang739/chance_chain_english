@@ -283,6 +283,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
 
         else if(getContentViewId()==R.layout.activity_notification){
+
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(R.layout.chatbar);
+            ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
+            TextView titlteText = (TextView) actionBar.getCustomView().findViewById(R.id.title);
+            titlteText.setText(R.string.title_activity_notification);
             ImageView picView = (ImageView) findViewById(R.id.getPic);
             EditText titleText = (EditText) findViewById(R.id.titletext);
             EditText Neirong = (EditText) findViewById(R.id.neirong);
@@ -295,6 +302,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             TextView cic4 = (TextView) findViewById(R.id.circleText4);
 
             Button fabuBtn = (Button) findViewById(R.id.fabubtn);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BaseActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                }
+            });
 
 
             cic1.setOnClickListener(new View.OnClickListener() {
@@ -1072,7 +1086,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         @Override
         public void run() {
             SharedPreferences preferences = getSharedPreferences("ipaddress",0);
-            helper.createAccount(preferences,dynamoDBMapper,username);
+            //helper.createAccount(preferences,dynamoDBMapper,username);
         }
     };
 

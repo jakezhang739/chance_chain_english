@@ -5,9 +5,9 @@
     <string name="title_guan">My Follow</string>
     <string name="title_his_follow">His Follow</string>
     <string name="title_dashboard">My Page</string>
-    <string name="title_notifications">Upload Chance</string>
+    <string name="title_notifications">Post Chance</string>
     <string name="title_activity_home">ChanceHome</string>
-    <string name="title_activity_notification">Upload Chance</string>
+    <string name="title_activity_notification">Post Chance</string>
     <string name="title_activity_my">My Page</string>
     <string name="title_activity_information">About Me</string>
     <string name="title_activity_change_information">About Me</string>
@@ -72,8 +72,8 @@
     <string name="woxiao">My Message</string>
     <string name="setting">Settings</string>
     <string name="candy">candy</string>
-    <string name="tasset">Total Asset: </string>
-    <string name="afunds">Available Funds: </string>
+    <string name="tasset">Total Asset: %s</string>
+    <string name="afunds">Available Funds: %s</string>
     <string name="cc">ChanceChain Coin</string>
     <string name="ether">Ethernum</string>
     <string name="title">Title</string>
