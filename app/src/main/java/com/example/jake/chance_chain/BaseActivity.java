@@ -36,6 +36,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.ArraySet;
 import android.util.Base64;
@@ -295,11 +297,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             EditText Neirong = (EditText) findViewById(R.id.neirong);
             EditText fufei = (EditText) findViewById(R.id.fufei);
             EditText ren = (EditText) findViewById(R.id.huoderenshu);
+            TextView titleLimit = findViewById(R.id.textView9);
+            TextView contentLimit = findViewById(R.id.textView10);
 
             TextView cic1 = (TextView) findViewById(R.id.circleText1);
             TextView cic2 = (TextView) findViewById(R.id.circleText2);
             TextView cic3 = (TextView) findViewById(R.id.circleText3);
-            TextView cic4 = (TextView) findViewById(R.id.circleText4);
+            TextView cic4 = findViewById(R.id.circleText4);
 
             Button fabuBtn = (Button) findViewById(R.id.fabubtn);
             back.setOnClickListener(new View.OnClickListener() {
@@ -307,6 +311,58 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 public void onClick(View v) {
                     Intent intent = new Intent(BaseActivity.this,HomeActivity.class);
                     startActivity(intent);
+                }
+            });
+
+            titleText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String str = String.valueOf(s.toString().length())+"/50";
+                    Log.d("title",str);
+                    if(s.toString().length()>50){
+                        titleLimit.setTextColor(getColor(R.color.alert));
+                    }
+                    else {
+                        titleLimit.setTextColor(getColor(R.color.white));
+                    }
+                    titleLimit.setText(str);
+                    titleLimit.setVisibility(View.VISIBLE);
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            Neirong.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String str = String.valueOf(s.toString().length())+"/1000";
+                    Log.d("neirong",str);
+                    if(s.toString().length()>1000){
+                        contentLimit.setTextColor(getColor(R.color.alert));
+                    }
+                    else {
+                        contentLimit.setTextColor(getColor(R.color.white));
+                    }
+                    contentLimit.setText(str);
+                    contentLimit.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
                 }
             });
 
@@ -384,8 +440,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             String dateString = DateFormat.format("yyyyMMddHHmmss", new Date(yo)).toString();
 
             Log.d("time ", "tr " + currentTime.toString()+ " sd " + dateString+ " " + (double) currentTime.getTime());
-            Spinner bi1 = (Spinner) findViewById(R.id.bizhong);
-            Spinner bi2 = (Spinner) findViewById(R.id.bizhong2);
+            Spinner bi1 = findViewById(R.id.bizhong);
+            Spinner bi2 = findViewById(R.id.bizhong2);
 
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                     R.array.currency_name, R.layout.item_select);
@@ -461,8 +517,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                         Log.d("wtftt"," shou fu " + fufei);
                         Toast.makeText(context,R.string.entitle,Toast.LENGTH_LONG).show();
                     }
+                    else if(titleText.length()>50){
+                        Log.d("wtftt"," shou fu " + fufei);
+                        Toast.makeText(context,R.string.titlelimit,Toast.LENGTH_LONG).show();
+                    }
                     else if(Neirong.length()==0){
                         Toast.makeText(context,R.string.encontent,Toast.LENGTH_LONG).show();
+                    }
+                    else if(Neirong.length()>1000){
+                        Toast.makeText(context,R.string.contentLimit,Toast.LENGTH_LONG).show();
                     }
                     else if(clickFlag==0){
                         Toast.makeText(context,R.string.entag,Toast.LENGTH_LONG).show();

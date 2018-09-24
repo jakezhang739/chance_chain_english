@@ -176,6 +176,8 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY CONTENT</string>
+    <string name="titlelimit">标题过长</string>
+    <string name="contentLimit">内容过长</string>
 </resources>
 
 
