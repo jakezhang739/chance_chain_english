@@ -123,27 +123,31 @@
         android:layout_below="@id/woFabu"
         android:layout_marginTop="5dp"
         android:background="@color/colorPrimary"/>
-
-    <ImageView
-        android:id="@+id/woJihui"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/woSpace1"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:clickable="true"
-        app:srcCompat="@drawable/jihui" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/woJihui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/woSpace1"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/jihui" />
 
-    <TextView
-        android:id="@+id/woJihuiNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/woJihui"
-        android:layout_marginTop="10dp"
-        android:textSize="12sp"
-        android:layout_below="@+id/woJihui"
-        android:text="@string/woji" />
+        <TextView
+            android:id="@+id/woJihuiNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/woJihui"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            android:layout_below="@+id/woJihui"
+            android:text="@string/woji" />
+    </RelativeLayout>
+
 
     <ImageView
         android:id="@+id/woFabuImg"
