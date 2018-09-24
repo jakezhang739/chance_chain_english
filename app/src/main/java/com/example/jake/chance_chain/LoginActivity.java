@@ -260,9 +260,9 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
             Log.d("fbname",preferences.getString(PREFERENCE_USER_NAME,"fuck"));
 
 //            Log.d("wttttrf",facebookData.getString("first_name"));
-            prefUtil.getFacebookUserInfo();
-            String userid = prefUtil.getUsername();
-            userid="facebook_Name"+userid;
+            AppHelper helper = new AppHelper();
+            DynamoDBMapper mapper = helper.getMapper(context);
+             String userid="facebook_Name"+String.valueOf(helper.returnUser(mapper));
             String email = prefUtil.getEmail();
             Log.d("likeomg",prefUtil.getUsername());
 
@@ -271,8 +271,6 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
             editor.putString(PREFERENCE_USER_NAME, userid);
             editor.apply();
 
-            AppHelper helper = new AppHelper();
-            DynamoDBMapper mapper = helper.getMapper(context);
             try{
                 UserPoolDO userPoolDO = mapper.load(UserPoolDO.class,userid);
                 userPoolDO.setUserId(userid);

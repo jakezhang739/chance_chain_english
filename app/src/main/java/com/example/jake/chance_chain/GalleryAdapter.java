@@ -71,9 +71,8 @@ public class GalleryAdapter extends
             super(arg0);
         }
 
-        ImageView uImg,moreContent,fent,zhuanfa,pingPic,likePic,likedPic,genPic;
-        TextView uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr,tagView;
-        ExpandableTextView mTxt;
+        ImageView uImg,moreContent,fent,zhuanfa,pingPic,likePic,likedPic;
+        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr,tagView;
         GridView mGridview;
         RelativeLayout link;
         ProgressBar loading;
@@ -107,7 +106,7 @@ public class GalleryAdapter extends
             view = mInflater.inflate(R.layout.item,
                     viewGroup, false);
             viewHolder = new ViewHolder(view);
-            viewHolder.mTxt= (ExpandableTextView) view.findViewById(R.id.neirongTxt);
+            viewHolder.mTxt=  view.findViewById(R.id.neirongTxt);
             viewHolder.uImg=(ImageView) view.findViewById(R.id.touxiangImg);
             viewHolder.uidTxt=(TextView) view.findViewById(R.id.userNameText);
             viewHolder.timeTxt=(TextView) view.findViewById(R.id.timeview);
@@ -122,7 +121,6 @@ public class GalleryAdapter extends
             viewHolder.pingPic = (ImageView) view.findViewById(R.id.imageView9);
             viewHolder.likePic = (ImageView) view.findViewById(R.id.imageView10);
             viewHolder.likedPic = (ImageView) view.findViewById(R.id.imageView11);
-            viewHolder.genPic = view.findViewById(R.id.imageView13);
 
             Log.d("gallery adapter","v "+String.valueOf(i));
         }
@@ -130,7 +128,7 @@ public class GalleryAdapter extends
             view = mInflater.inflate(R.layout.sharingitem,
                     viewGroup, false);
             viewHolder = new ViewHolder(view);
-            viewHolder.mTxt= (ExpandableTextView) view.findViewById(R.id.sneirongTxt);
+            viewHolder.mTxt=  view.findViewById(R.id.sneirongTxt);
             viewHolder.uImg=(ImageView) view.findViewById(R.id.stouxiangImg);
             viewHolder.uidTxt=(TextView) view.findViewById(R.id.suserNameText);
             viewHolder.timeTxt=(TextView) view.findViewById(R.id.stimeview);
@@ -146,7 +144,6 @@ public class GalleryAdapter extends
             viewHolder.zhuanfa = (ImageView) view.findViewById(R.id.imageView2);
             viewHolder.likePic = (ImageView) view.findViewById(R.id.imageView10);
             viewHolder.likedPic = (ImageView) view.findViewById(R.id.imageView11);
-            viewHolder.genPic = view.findViewById(R.id.imageView13);
         }
 
 
@@ -179,10 +176,15 @@ public class GalleryAdapter extends
                     viewHolder.tagView.setText(R.string.qita);
                     break;
             }
-            viewHolder.genPic.setOnClickListener(new View.OnClickListener() {
+            viewHolder.mTxt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    
+                    if(viewHolder.mTxt.getMaxLines()==6) {
+                        viewHolder.mTxt.setMaxLines(Integer.MAX_VALUE);
+                    }
+                    else{
+                        viewHolder.mTxt.setMaxLines(6);
+                    }
 
                 }
             });
@@ -308,6 +310,18 @@ public class GalleryAdapter extends
             }
             viewHolder.fenUsr.setText(cList.get(i).shareLink.get(1));
             viewHolder.fenTitle.setText(cList.get(i).shareLink.get(2));
+            viewHolder.mTxt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(viewHolder.mTxt.getMaxLines()==6) {
+                        viewHolder.mTxt.setMaxLines(Integer.MAX_VALUE);
+                    }
+                    else{
+                        viewHolder.mTxt.setMaxLines(6);
+                    }
+
+                }
+            });
             viewHolder.uImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

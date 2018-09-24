@@ -159,6 +159,7 @@
     <string name="hispage">Profile</string>
     <string name="titlelimit">Title is too long</string>
     <string name="contentLimit">Content is too long</string>
+    <string name="userToolong">Your Username is too long</string>
 
     <string name="facebook_app_id">1007699982736676</string>
     <string name="fb_login_protocol_scheme">fb1007699982736676</string>

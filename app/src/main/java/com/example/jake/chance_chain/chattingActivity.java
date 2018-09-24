@@ -125,7 +125,11 @@ public class chattingActivity extends AppCompatActivity {
                 TextValue = getInput.getText().toString();
                 if (TextValue.length() == 0) {
 
-                } else {
+                }
+                else if (TextValue.trim().length() == 0){
+
+                }
+                else {
                     addText.setVisibility(View.INVISIBLE);
                     getInput.setText("");
                     new Thread(sendMsg).start();

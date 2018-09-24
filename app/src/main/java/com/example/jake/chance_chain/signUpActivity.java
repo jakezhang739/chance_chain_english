@@ -31,6 +31,9 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
                 if(username.length() == 0 || pass.length()==0 || rePass.length() == 0 || Email.length() == 0){
                     Toast.makeText(signUpActivity.this,R.string.enterall,Toast.LENGTH_LONG).show();
                 }
+                else if(username.length()>20){
+                    Toast.makeText(signUpActivity.this,R.string.userToolong,Toast.LENGTH_LONG).show();
+                }
 
                else if(!pass.getText().toString().equals(rePass.getText().toString())){
                     Toast.makeText(signUpActivity.this,R.string.passnotmatch,Toast.LENGTH_LONG).show();

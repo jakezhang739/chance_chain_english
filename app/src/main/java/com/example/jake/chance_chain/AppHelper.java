@@ -165,6 +165,13 @@ public class AppHelper {
 
     }
 
+    public int returnUser(DynamoDBMapper mapper){
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        PaginatedList<UserPoolDO> result = mapper.scan(UserPoolDO.class,scanExpression);
+        return result.size();
+
+    }
+
     public int returnChatSize(DynamoDBMapper mapper){
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
         PaginatedList<ChattingTableDO> result = mapper.scan(ChattingTableDO.class,scanExpression);
