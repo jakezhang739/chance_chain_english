@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -69,8 +71,9 @@ public class GalleryAdapter extends
             super(arg0);
         }
 
-        ImageView uImg,moreContent,fent,zhuanfa,pingPic,likePic,likedPic;
-        TextView mTxt,uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr,tagView;
+        ImageView uImg,moreContent,fent,zhuanfa,pingPic,likePic,likedPic,genPic;
+        TextView uidTxt,timeTxt,dianzhan,fenxiang,pingjia,fenTitle,fenUsr,tagView;
+        ExpandableTextView mTxt;
         GridView mGridview;
         RelativeLayout link;
         ProgressBar loading;
@@ -104,7 +107,7 @@ public class GalleryAdapter extends
             view = mInflater.inflate(R.layout.item,
                     viewGroup, false);
             viewHolder = new ViewHolder(view);
-            viewHolder.mTxt=(TextView) view.findViewById(R.id.neirongTxt);
+            viewHolder.mTxt= (ExpandableTextView) view.findViewById(R.id.neirongTxt);
             viewHolder.uImg=(ImageView) view.findViewById(R.id.touxiangImg);
             viewHolder.uidTxt=(TextView) view.findViewById(R.id.userNameText);
             viewHolder.timeTxt=(TextView) view.findViewById(R.id.timeview);
@@ -119,6 +122,7 @@ public class GalleryAdapter extends
             viewHolder.pingPic = (ImageView) view.findViewById(R.id.imageView9);
             viewHolder.likePic = (ImageView) view.findViewById(R.id.imageView10);
             viewHolder.likedPic = (ImageView) view.findViewById(R.id.imageView11);
+            viewHolder.genPic = view.findViewById(R.id.imageView13);
 
             Log.d("gallery adapter","v "+String.valueOf(i));
         }
@@ -126,7 +130,7 @@ public class GalleryAdapter extends
             view = mInflater.inflate(R.layout.sharingitem,
                     viewGroup, false);
             viewHolder = new ViewHolder(view);
-            viewHolder.mTxt=(TextView) view.findViewById(R.id.sneirongTxt);
+            viewHolder.mTxt= (ExpandableTextView) view.findViewById(R.id.sneirongTxt);
             viewHolder.uImg=(ImageView) view.findViewById(R.id.stouxiangImg);
             viewHolder.uidTxt=(TextView) view.findViewById(R.id.suserNameText);
             viewHolder.timeTxt=(TextView) view.findViewById(R.id.stimeview);
@@ -142,6 +146,7 @@ public class GalleryAdapter extends
             viewHolder.zhuanfa = (ImageView) view.findViewById(R.id.imageView2);
             viewHolder.likePic = (ImageView) view.findViewById(R.id.imageView10);
             viewHolder.likedPic = (ImageView) view.findViewById(R.id.imageView11);
+            viewHolder.genPic = view.findViewById(R.id.imageView13);
         }
 
 
@@ -156,7 +161,7 @@ public class GalleryAdapter extends
     {
 
         if(cList.get(i).shareLink.size()==0) {
-            viewHolder.mTxt.setText(cList.get(i).txtTitle);
+            viewHolder.mTxt.setText(cList.get(i).txtTitle+"\n\n"+cList.get(i).txtNeirong);
             viewHolder.uidTxt.setText(cList.get(i).userid);
             String display = helper.displayTime(String.valueOf((long) cList.get(i).uploadTime));
             viewHolder.timeTxt.setText(display);
@@ -174,6 +179,13 @@ public class GalleryAdapter extends
                     viewHolder.tagView.setText(R.string.qita);
                     break;
             }
+            viewHolder.genPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    
+
+                }
+            });
             viewHolder.pingjia.setText(String.valueOf(cList.get(i).cNumber));
             if (!cList.get(i).touUri.isEmpty()) {
                 Picasso.get().load(cList.get(i).touUri).into(viewHolder.uImg);
