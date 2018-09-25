@@ -35,32 +35,18 @@
         android:text="@string/enterAccount" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="132dp"
-        android:backgroundTint="@color/yellow"
-        android:ems="10"
-        android:hint="@string/Username"
-        android:textSize="20sp"
-        android:textColor="@color/yellow"
-        android:inputType="text"
-        android:textColorHint="@color/yellow" />
-
-    <EditText
         android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:ems="10"
-        android:textSize="20sp"
-        android:textColor="@color/yellow"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:backgroundTint="@color/yellow"
+        android:ems="10"
+        android:hint="@string/verCode"
         android:inputType="textPassword"
+        android:textColor="@color/yellow"
         android:textColorHint="@color/yellow"
-        android:hint="@string/verCode" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/button2"

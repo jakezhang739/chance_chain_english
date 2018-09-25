@@ -23,6 +23,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHa
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetailsHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -138,6 +139,7 @@ public class AWSLoginModel {
     public void registerUser(String userName, String userEmail, String userPassword) {
         CognitoUserAttributes userAttributes = new CognitoUserAttributes();
         userAttributes.addAttribute(ATTR_EMAIL, userEmail);
+
 
         final SignUpHandler signUpHandler = new SignUpHandler() {
             @Override

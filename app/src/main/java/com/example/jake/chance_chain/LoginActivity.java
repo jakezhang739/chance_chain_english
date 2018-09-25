@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
     private Bundle facebookData;
     private RelativeLayout allRel;
     PrefUtil prefUtil = new PrefUtil(LoginActivity.this);
+    AppHelper helper = new AppHelper();
 
 
     @Override
@@ -116,6 +117,7 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
                                 parameters.putString("fields", "id,first_name,last_name,email,gender");
                                 request.setParameters(parameters);
                                 request.executeAsync();
+                                deleteAccessToken();
                             }
 
 
@@ -128,7 +130,6 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
                             public void onError (FacebookException e){
                                 e.printStackTrace();
                                 Log.d(TAG, "Login attempt failed.");
-                                deleteAccessToken();
                             }
                         }
                 );

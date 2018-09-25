@@ -160,6 +160,9 @@
     <string name="titlelimit">Title is too long</string>
     <string name="contentLimit">Content is too long</string>
     <string name="userToolong">Your Username is too long</string>
+    <string name="usernameexit">Your Username already exist</string>
+    <string name="emailused">This email is already registered</string>
+    <string name="st">Sent</string>
 
     <string name="facebook_app_id">1007699982736676</string>
     <string name="fb_login_protocol_scheme">fb1007699982736676</string>

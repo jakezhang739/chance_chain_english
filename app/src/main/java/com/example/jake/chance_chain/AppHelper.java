@@ -31,6 +31,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetailsHandler;
+import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
@@ -110,15 +111,8 @@ public class AppHelper {
 
 
 
-    public  CognitoUserPool getCurrentUserPool(Context context) {
 
-        if (appHelper == null) {
-            appHelper = new AppHelper();
-        }
-        userPool = new CognitoUserPool(context, userPoolId, clientId, clientSecret, cognitoRegion);
-        return userPool;
 
-    }
 
     public  AmazonS3Client getS3Client(Context context) {
         if (sS3Client == null) {

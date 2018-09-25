@@ -62,6 +62,7 @@
     <string name="register">注册</string>
     <string name="message">消息</string>
     <string name="csec">机会秘书</string>
+    <string name="st">已发送</string>
 
 
     <string-array name="currency_name">
@@ -71,8 +72,8 @@
     </string-array>
 
     <string-array name="type">
-        <item>Pay</item>
-        <item>Ask</item>
+        <item>付费</item>
+        <item>收费</item>
     </string-array>
 
 
@@ -179,6 +180,8 @@
     <string name="titlelimit">标题过长</string>
     <string name="contentLimit">内容过长</string>
     <string name="userToolong">您的用户名过长</string>
+    <string name="usernameexit">此用户名已经存在</string>
+    <string name="emailused">此邮箱已被注册</string>
 </resources>
 
 
