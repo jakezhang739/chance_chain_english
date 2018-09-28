@@ -190,7 +190,7 @@
         android:layout_alignEnd="@+id/textViewRegMessage"
         android:layout_marginTop="5dp"
         android:background="@drawable/round_corner"
-        android:text="@string/comp"
+        android:text="@string/finishRegister"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textStyle="bold"

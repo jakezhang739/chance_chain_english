@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -16,13 +17,13 @@ import java.util.ArrayList;
 public class fsizepic extends AppCompatActivity {
     private int pos;
     private ArrayList<String> uriList = new ArrayList<>();
-    ImageView fpic;
+    PhotoView fpic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fsizepic);
-        fpic = (ImageView) findViewById(R.id.fSpic);
+        fpic =  findViewById(R.id.fSpic);
         uriList = getIntent().getStringArrayListExtra("uri");
         pos = getIntent().getIntExtra("pos",0);
         Log.d("pos ",String.valueOf(pos));

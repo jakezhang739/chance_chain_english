@@ -263,7 +263,7 @@ public class LoginActivity extends AppCompatActivity implements AWSLoginHandler 
 //            Log.d("wttttrf",facebookData.getString("first_name"));
             AppHelper helper = new AppHelper();
             DynamoDBMapper mapper = helper.getMapper(context);
-             String userid="facebook_Name"+String.valueOf(helper.returnUser(mapper));
+             String userid="fbName_"+String.valueOf(helper.returnUser(mapper));
             String email = prefUtil.getEmail();
             Log.d("likeomg",prefUtil.getUsername());
 

@@ -37,12 +37,19 @@ public class wodeGuanZHui extends AppCompatActivity {
         context = getApplicationContext().getApplicationContext();
         beijing = (LinearLayout) findViewById(R.id.woguanzhu);
         ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
+        String f = getIntent().getStringExtra("f");
         TextView titlteText = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-        titlteText.setText(R.string.wogen);
         progressBar = (ProgressBar) findViewById(R.id.progressBarchat);
         myUsr = helper.getCurrentUserName(context);
         mapper = helper.getMapper(context);
-        new Thread(guanRun).start();
+        if(f.equals("follow")){
+            titlteText.setText(R.string.wogen);
+            new Thread(guanRun).start();
+        }
+        else {
+            titlteText.setText(R.string.wobeiguan);
+            new Thread(beiguanRun).start();
+        }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +87,31 @@ public class wodeGuanZHui extends AppCompatActivity {
                     Message msg = new Message();
                     msg.what = 1;
                     msg.obj = userPoolDO.getGuanZhu().get(i);
+                    handler.sendMessage(msg);
+                }
+                Message msg = new Message();
+                msg.what = 2;
+                handler.sendMessage(msg);
+
+            }
+        }
+    };
+
+    Runnable beiguanRun = new Runnable() {
+        @Override
+        public void run() {
+            UserPoolDO userPoolDO = mapper.load(UserPoolDO.class, myUsr);
+            //Log.d("wtf",userPoolDO.getGuanZhu().toString());
+            if (userPoolDO.getBeiGuanZhu() == null) {
+                Message msg = new Message();
+                msg.what = 2;
+                handler.sendMessage(msg);
+            } else {
+                Log.d("wtf",userPoolDO.getBeiGuanZhu().toString());
+                for (int i = 0; i <userPoolDO.getBeiGuanZhu().size(); i++) {
+                    Message msg = new Message();
+                    msg.what = 1;
+                    msg.obj = userPoolDO.getBeiGuanZhu().get(i);
                     handler.sendMessage(msg);
                 }
                 Message msg = new Message();

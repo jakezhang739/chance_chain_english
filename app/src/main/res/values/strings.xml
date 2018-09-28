@@ -27,8 +27,8 @@
     <string name="name">Name</string>
     <string name="chanceId">Chance ID</string>
     <string name="walletAddress">Wallet Address</string>
-    <string name="gender">gender</string>
-    <string name="career">career</string>
+    <string name="gender">Gender</string>
+    <string name="career">Career</string>
     <string name="resuem">Resume</string>
     <string name="finish">Complete</string>
     <string name="confirmAccount">Confirm Your Account</string>
@@ -54,6 +54,7 @@
     <string name="sver">Send Verification Code</string>
     <string name="fol">Follow</string>
     <string name="beiguan">Follower</string>
+    <string name="wobeiguan">My Follower</string>
     <string name="fabu">Post</string>
     <string name="quguan">Unfollow</string>
     <string name="faxiao">Send Message</string>
@@ -97,7 +98,7 @@
     <string name="cproc">Chance in Process</string>
     <string name="ccomp">Completed Chances</string>
     <string name="conf">Confirm</string>
-    <string name="quxi">cancel</string>
+    <string name="quxi">Cancel</string>
     <string name="yiguan">Followed</string>
     <string name="seep">See Profile</string>
     <string name="zhuhe">Congratulations！\nYou have gotten this Chance</string>
@@ -124,7 +125,7 @@
     <string name="fivelog">Consecutive Login in five day，you have gotten 40 Candy</string>
     <string name="sixlog">Consecutive Login in six day，you have gotten 50 Candy</string>
     <string name="sevenlog">Consecutive Login in seven day，you have gotten 1 reputation</string>
-    <string name="pay" >Pay: %s %s</string>
+    <string name="pay">Pay: %s %s</string>
     <string name="ask">Ask: %s %s</string>
     <string name="cleft"> Chances left: %s</string>
     <string name="nochance">No chance left</string>
@@ -163,10 +164,7 @@
     <string name="usernameexit">Your Username already exist</string>
     <string name="emailused">This email is already registered</string>
     <string name="st">Sent</string>
-
-    <string name="facebook_app_id">1007699982736676</string>
-    <string name="fb_login_protocol_scheme">fb1007699982736676</string>
-
+    <string name="changeTou">Change Profile Picture</string>
 
 
     <string-array name="currency_name">

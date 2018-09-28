@@ -26,6 +26,7 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
     private String email,uid;
     private AppHelper helper = new AppHelper();
     private Context context;
+    EditText pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
         awsLoginModel = new AWSLoginModel(this, this);
         finishBtn = (Button) findViewById(R.id.signUp);
         username = (EditText) findViewById(R.id.editTextRegUserId);
-        EditText pass = (EditText) findViewById(R.id.editTextRegUserPassword);
+        pass = (EditText) findViewById(R.id.editTextRegUserPassword);
         EditText rePass = (EditText) findViewById(R.id.editTextRegGivenName);
         Email = (EditText) findViewById(R.id.editTextRegEmail);
         finishBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +57,7 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
                     Toast.makeText(signUpActivity.this,R.string.passnotlong,Toast.LENGTH_LONG).show();
                 }
                 else {
+                    finishBtn.setVisibility(View.INVISIBLE);
                     email = Email.getText().toString();
                     new Thread(getEmail).start();
                     //registerAction();
@@ -70,6 +72,7 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
         Intent intent = new Intent(signUpActivity.this, confirmUser.class);
         intent.putExtra("username",username.getText().toString());
         intent.putExtra("email",Email.getText().toString());
+        intent.putExtra("pass",pass.getText().toString());
         startActivity(intent);
 
     }
@@ -113,24 +116,14 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
         }
     };
 
-    Runnable CreateNewUser = new Runnable() {
-        @Override
-        public void run() {
-            AppHelper helper = new AppHelper();
-            DynamoDBMapper mapper = helper.getMapper(context);
-            final UserPoolDO userPoolDO = new UserPoolDO();
-            userPoolDO.setUserId(username.getText().toString());
-            userPoolDO.setMyEmail(email);
-            mapper.save(userPoolDO);
-        }
-    };
+
 
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg){
             switch (msg.what){
-                case 1:Toast.makeText(context,R.string.usernameexit,Toast.LENGTH_LONG).show();break;
-                case 2:Toast.makeText(context,R.string.emailused,Toast.LENGTH_LONG).show();break;
+                case 1:Toast.makeText(context,R.string.usernameexit,Toast.LENGTH_LONG).show();finishBtn.setVisibility(View.VISIBLE);break;
+                case 2:Toast.makeText(context,R.string.emailused,Toast.LENGTH_LONG).show();finishBtn.setVisibility(View.VISIBLE);break;
 
             }
         }
@@ -139,6 +132,7 @@ public class signUpActivity extends AppCompatActivity implements AWSLoginHandler
     @Override
     public void onFailure(int process, Exception exception) {
 
+        finishBtn.setVisibility(View.INVISIBLE);
         Toast.makeText(signUpActivity.this, "Something is wrong，please fill again", Toast.LENGTH_LONG).show();
 
     }

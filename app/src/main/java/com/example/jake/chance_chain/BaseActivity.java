@@ -225,18 +225,37 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             beiGuanText = (TextView) findViewById(R.id.beiGuanNum);
             faText = (TextView) findViewById(R.id.woFabuNum);
             alert1 = (TextView) findViewById(R.id.alert1);
+            RelativeLayout gLay = findViewById(R.id.folllowLay);
+            RelativeLayout bLay = findViewById(R.id.beiguanLay);
+            RelativeLayout pLay = findViewById(R.id.postLay);
             ImageView wodeFabu = (ImageView) findViewById(R.id.woFabuImg);
             ImageView wodeQianbao = (ImageView) findViewById(R.id.woQian);
             ImageView wodeXiaoxi = (ImageView) findViewById(R.id.woXiao);
             ImageView wodejihui1 = (ImageView) findViewById(R.id.woJihui);
             ImageView wodeGuan = (ImageView) findViewById(R.id.woGuan);
-//            wodeGuan.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent=new Intent(BaseActivity.this,wodeGuanZHui.class);
-//                    startActivity(intent);
-//                }
-//            });
+            gLay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BaseActivity.this,wodeGuanZHui.class);
+                    intent.putExtra("f","follow");
+                    startActivity(intent);
+                }
+            });
+            bLay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BaseActivity.this,wodeGuanZHui.class);
+                    intent.putExtra("f","fuck");
+                    startActivity(intent);
+                }
+            });
+            pLay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BaseActivity.this,fabuActivity.class);
+                    startActivity(intent);
+                }
+            });
             wodejihui1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -271,6 +290,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(BaseActivity.this,wodeGuanZHui.class);
+                    intent.putExtra("f","follow");
+                    startActivity(intent);
+                }
+            });
+            tImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BaseActivity.this,singleFpic.class);
+                    intent.putExtra("pic","https://s3.amazonaws.com/chance-userfiles-mobilehub-653619147/"+uId+".png");
                     startActivity(intent);
                 }
             });
@@ -606,7 +634,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         public void handleMessage(Message msg) {
 
             switch (msg.what){
-                case 1:Picasso.get().load(msg.obj.toString()).resize(60,60).centerCrop().into(tImage);break;
+                case 1:Log.d("mytou",msg.obj.toString());Picasso.get().invalidate(msg.obj.toString());Picasso.get().load(msg.obj.toString()).resize(60,60).centerCrop().into(tImage);break;
                 case 2:jianText.setText(msg.obj.toString());break;
                 case 3:shenText.setText(msg.obj.toString());break;
                 case 4:guanText.setText(msg.obj.toString());break;

@@ -144,6 +144,9 @@ public class AWSLoginModel {
         final SignUpHandler signUpHandler = new SignUpHandler() {
             @Override
             public void onSuccess(CognitoUser user, boolean signUpConfirmationState, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE).edit();
+                editor.putString(PREFERENCE_USER_NAME, userName);
+                editor.apply();
                 mCognitoUser = user;
                 mCallback.onRegisterSuccess(!signUpConfirmationState);
             }

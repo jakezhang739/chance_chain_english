@@ -14,21 +14,24 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 
 public class confirmUser extends AppCompatActivity implements AWSLoginHandler{
     AWSLoginModel awsLoginModel;
-    String userid,email;
+    String userid,email,password;
     Context context;
+    Button confUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_user);
         awsLoginModel = new AWSLoginModel(this, this);
-        Button confUser = (Button) findViewById(R.id.button2);
+        confUser = (Button) findViewById(R.id.button2);
         userid=getIntent().getStringExtra("username");
         email = getIntent().getStringExtra("email");
+        password = getIntent().getStringExtra("pass");
         context = getApplicationContext().getApplicationContext();
         confUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                confUser.setVisibility(View.INVISIBLE);
                 confirmAction();
             }
         });
@@ -42,9 +45,8 @@ public class confirmUser extends AppCompatActivity implements AWSLoginHandler{
     @Override
     public void onRegisterConfirmed() {
         Toast.makeText(confirmUser.this, R.string.succonf, Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(confirmUser.this, LoginActivity.class);
         new Thread(CreateNewUser).start();
-        startActivity(intent);
+        LoginAction();
 
     }
 
@@ -62,12 +64,12 @@ public class confirmUser extends AppCompatActivity implements AWSLoginHandler{
 
     @Override
     public void onSignInSuccess() {
-
+        confirmUser.this.startActivity(new Intent(confirmUser.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 
     @Override
     public void onFailure(int process, Exception exception) {
-
+        confUser.setVisibility(View.VISIBLE);
         Toast.makeText(confirmUser.this, R.string.conf + exception.getMessage(), Toast.LENGTH_LONG).show();
 
 
@@ -75,10 +77,17 @@ public class confirmUser extends AppCompatActivity implements AWSLoginHandler{
 
     private void confirmAction() {
         EditText confirmationCode = (EditText) findViewById(R.id.editText2);
-        EditText userId = (EditText) findViewById(R.id.editText);
         Log.d("wobushieshili","1"+confirmationCode.getText().toString());
 
         // do confirmation and handles on interface
-        awsLoginModel.confirmRegistration(confirmationCode.getText().toString(),userId.getText().toString());
+        awsLoginModel.confirmRegistration(confirmationCode.getText().toString(),userid);
     }
+
+    private void LoginAction(){
+
+        awsLoginModel.signInUser(userid, password);
+
+
+    }
+
 }

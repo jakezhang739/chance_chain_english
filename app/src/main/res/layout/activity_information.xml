@@ -4,151 +4,299 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     tools:context=".InformationActivity">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/changeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/resumeInp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/change" />
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/touxiang"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/sp" />
-        <TextView
-            android:id="@+id/uid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/touxiang"
-            android:layout_below="@+id/touxiang"
-            android:layout_marginTop="89dp"
-            android:text="@string/nickname" />
 
-        <TextView
-            android:id="@+id/nameText"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/touxiang"
-            android:layout_marginTop="119dp"
-            android:text="@string/name" />
+            android:id="@+id/touLay">
 
-        <TextView
-            android:id="@+id/chanceId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/touxiang"
-            android:layout_marginTop="149dp"
-            android:text="@string/chanceId" />
-        <TextView
-            android:id="@+id/walletAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/touxiang"
-            android:layout_marginTop="179dp"
-            android:text="@string/walletAddress" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/touxiang"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:clickable="true"
+                android:src="@drawable/sp" />
 
-        <TextView
-            android:id="@+id/sexText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/touxiang"
-            android:layout_marginTop="209dp"
-            android:text="@string/gender" />
 
-        <TextView
-            android:id="@+id/careerTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/touxiang"
-            android:layout_marginTop="239dp"
-            android:text="@string/career" />
+            <TextView
+                android:id="@+id/profPic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/changeTou" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_below="@+id/touxiang"
+                android:background="@color/homeback"/>
 
-        <TextView
-            android:id="@+id/resumeTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/touxiang"
-            android:layout_marginTop="269dp"
-            android:text="@string/resuem" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:id="@+id/nameLay"
+            android:layout_below="@+id/touLay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/namText"
+                android:layout_marginStart="10dp"
+                android:paddingRight="10dp"
+                android:textSize="15sp"
+                android:text="@string/name"/>
 
-        <TextView
-            android:id="@+id/resumeInp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/touxiang"
-            android:layout_marginTop="299dp"
-            />
+            <EditText
+                android:id="@+id/nameInp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@+id/namText"
+                android:gravity="right"
+                android:background="@color/colorPrimaryDark"
+                android:maxLines="6"
+                android:textColorHint="@color/fontcol"
+                android:hint="text"
+                android:textSize="15sp"
+                android:textColor="@color/fontcol" />
 
-        <TextView
-            android:id="@+id/usridInp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/uid"
-            android:layout_toEndOf="@+id/touxiang" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/homeback"/>
 
-        <TextView
-            android:id="@+id/chanceInp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/chanceId"
-            android:layout_alignTop="@+id/chanceId"
-             />
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/addressInp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/walletAddress"
-            android:layout_toRightOf="@+id/walletAddress" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:id="@+id/chancLay"
+            android:layout_below="@+id/nameLay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/chance"
+                android:layout_marginStart="10dp"
+                android:paddingRight="10dp"
+                android:textSize="15sp"
+                android:text="@string/chanceId"/>
 
-        <TextView
-            android:id="@+id/nameInp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/nameText"
-            android:layout_toEndOf="@+id/nameText" />
+            <EditText
+                android:id="@+id/chanceInp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@+id/chance"
+                android:gravity="right"
+                android:background="@color/colorPrimaryDark"
+                android:maxLines="6"
+                android:textColorHint="@color/fontcol"
+                android:hint="text"
+                android:textSize="15sp"
+                android:textColor="@color/fontcol" />
 
-        <TextView
-            android:id="@+id/sexInp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/sexText"
-            android:layout_alignTop="@+id/sexText"
-             />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/homeback"/>
 
-        <TextView
-            android:id="@+id/careerInp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/careerTxt"
-            android:layout_alignTop="@+id/careerTxt"
-             />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:id="@+id/walletLay"
+            android:layout_below="@+id/chancLay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/walletTxt"
+                android:paddingRight="10dp"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:text="@string/walletAddress"/>
+
+            <EditText
+                android:id="@+id/walletInp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@+id/walletTxt"
+                android:gravity="right"
+                android:background="@color/colorPrimaryDark"
+                android:maxLines="6"
+                android:textColorHint="@color/fontcol"
+                android:hint="text"
+                android:textSize="15sp"
+                android:textColor="@color/fontcol" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/homeback"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:id="@+id/genderLay"
+            android:layout_below="@+id/walletLay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/genderTxt"
+                android:paddingRight="10dp"
+                android:textSize="15sp"
+                android:layout_marginStart="10dp"
+                android:text="@string/gender"/>
+
+            <EditText
+                android:id="@+id/genderInp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@+id/genderTxt"
+                android:gravity="right"
+                android:background="@color/colorPrimaryDark"
+                android:maxLines="6"
+                android:textColorHint="@color/fontcol"
+                android:hint="text"
+                android:textSize="15sp"
+                android:textColor="@color/fontcol" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/homeback"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:id="@+id/careerLay"
+            android:layout_below="@+id/genderLay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/careerTxt"
+                android:layout_marginStart="10dp"
+                android:paddingRight="10dp"
+                android:textSize="15sp"
+                android:text="@string/career"/>
+
+            <EditText
+                android:id="@+id/careerInp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@+id/careerTxt"
+                android:gravity="right"
+                android:background="@color/colorPrimaryDark"
+                android:maxLines="6"
+                android:textColorHint="@color/fontcol"
+                android:hint="text"
+                android:textSize="15sp"
+                android:textColor="@color/fontcol" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/homeback"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:id="@+id/resumeLay"
+            android:layout_below="@+id/careerLay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/resumeTxt"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:paddingRight="10dp"
+                android:text="@string/resuem"/>
+
+            <EditText
+                android:id="@+id/resumeInp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@+id/resumeTxt"
+                android:gravity="right"
+                android:background="@color/colorPrimaryDark"
+                android:maxLines="10"
+                android:textColorHint="@color/fontcol"
+                android:hint="text"
+                android:textSize="15sp"
+                android:textColor="@color/fontcol" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/homeback"/>
+
+        </RelativeLayout>
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/usridInp"
-            android:layout_marginTop="27dp"
-            android:text="TextView" />
+            android:layout_below="@+id/resumeLay"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/limit"
+            android:text="text"
+            android:visibility="invisible"
+            android:layout_marginEnd="15dp"/>
+
+
+
+
 
 
     </RelativeLayout>
