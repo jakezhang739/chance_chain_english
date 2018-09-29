@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -59,25 +60,35 @@ public class shareContent extends AppCompatActivity {
     RecyclerView mRecyclerView;
     CommentAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
-    PopupWindow popupWindow;
+
     View rootview;
     TextView showText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content);
+        setContentView(R.layout.activity_share_content);
         context = getApplication().getApplicationContext();
         curUsername = helper.getCurrentUserName(context);
         dynamoDBMapper=helper.getMapper(context);
-        LinearLayout imgLay = (LinearLayout) findViewById(R.id.imgLayout);
         chanceC = (chanceClass) getIntent().getParcelableExtra("cc");
         shareNum = chanceC.shared;
         liuNum = chanceC.cNumber;
         likeNum = chanceC.liked.size();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(R.layout.tiltlebar);
+        ImageView back = (ImageView) actionBar.getCustomView().findViewById(R.id.back);
+        TextView titlteText = (TextView) actionBar.getCustomView().findViewById(R.id.title);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
 
-        int rNum = (int) chanceC.renshu;
-        renshu.setText(R.string.cleft+String.valueOf(rNum));
+            }
+        });
+        titlteText.setText(R.string.sharec);
+
         touImg = (ImageView) findViewById(R.id.contentTou);
         uName = (TextView) findViewById(R.id.contentUid);
         uTime = (TextView) findViewById(R.id.contentTime);
@@ -104,25 +115,37 @@ public class shareContent extends AppCompatActivity {
 
         uTime.setText(helper.displayTime(String.valueOf((long) chanceC.uploadTime)));
         nText.setText(chanceC.txtNeirong);
-        if(chanceC.imageSet.size()!=0){
-            strList = chanceC.imageSet;
-            for(int i = 0; i<strList.size();i++){
-                ImageView neiImg =new ImageView(this);
-                Picasso.get().load(strList.get(i)).into(neiImg);
-                imgList.add(neiImg);
-            }
-        }
-        for(int i =0;i<imgList.size();i++){
-            imgLay.addView(imgList.get(i));
-            TextView spaceImg = new TextView(this);
-            spaceImg.setHeight(20);
-            imgLay.addView(spaceImg);
-        }
+
 
 
         zhuanNum.setText(String.valueOf(shareNum));
         comNum.setText(String.valueOf(liuNum));
         zhanNum.setText(String.valueOf(likeNum));
+
+        RelativeLayout sharelink = findViewById(R.id.shareLink);
+        ImageView fentout = findViewById(R.id.fenTou);
+        TextView userAt = findViewById(R.id.UserNameAt);
+        TextView scot = findViewById(R.id.titleTxt);
+        String fstr="";
+        if(chanceC.shareLink.size()>3){
+            fstr=chanceC.shareLink.get(3);
+            Picasso.get().load(fstr).placeholder(R.drawable.fenxiang).into(fentout);
+        }
+        else{
+            fentout.setImageResource(R.drawable.fenxiang);
+        }
+        userAt.setText(chanceC.shareLink.get(1));
+        scot.setText(chanceC.shareLink.get(2));
+        sharelink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(shareContent.this,ContentActivity.class);
+                intent.putExtra("cc",chanceC);
+                intent.putExtra("comment","false");
+                startActivity(intent);
+
+            }
+        });
 
 
         RelativeLayout fLay = (RelativeLayout) findViewById(R.id.firstBar);

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -49,7 +50,6 @@ public class ContentActivity extends AppCompatActivity {
     DynamoDBMapper dynamoDBMapper;
     ImageView touImg,likeImg,likeYellow;
     TextView uName,uTime,nText,zhuanNum,comNum,zhanNum,jineTxt,fuTxt,renshu;
-    List<ImageView> imgList = new ArrayList<>();
     List<String> strList = new ArrayList<>();
     List<commentClass> comClass = new ArrayList<>();
     int shareNum ;
@@ -75,7 +75,6 @@ public class ContentActivity extends AppCompatActivity {
         context = getApplication().getApplicationContext();
         curUsername = helper.getCurrentUserName(context);
         dynamoDBMapper=helper.getMapper(context);
-        LinearLayout imgLay = (LinearLayout) findViewById(R.id.imgLayout);
         chanceC = (chanceClass) getIntent().getParcelableExtra("cc");
         shareNum = chanceC.shared;
         liuNum = chanceC.cNumber;
@@ -170,15 +169,9 @@ public class ContentActivity extends AppCompatActivity {
                         v.getContext().startActivity(intent);
                     }
                 });
-                imgList.add(neiImg);
             }
         }
-        for(int i =0;i<imgList.size();i++){
-            imgLay.addView(imgList.get(i));
-            TextView spaceImg = new TextView(this);
-            spaceImg.setHeight(20);
-            imgLay.addView(spaceImg);
-        }
+
 
 
         zhuanNum.setText(String.valueOf(shareNum));
@@ -264,6 +257,18 @@ public class ContentActivity extends AppCompatActivity {
                 comLayout.setVisibility(View.INVISIBLE);
             }
         });
+        GridView gridView = findViewById(R.id.gallery);
+        if (chanceC.imageSet.size() != 0) {
+            ImageAdapter imageAdapter = new ImageAdapter(context,chanceC.imageSet);
+            int adprow = chanceC.imageSet.size()/4;;
+            if(chanceC.imageSet.size()%4>0){
+                adprow++;
+            }
+            ViewGroup.LayoutParams params = gridView.getLayoutParams();
+            params.height=250*adprow;
+            gridView.setLayoutParams(params);
+            gridView.setAdapter(imageAdapter);
+        }
 
         getButton = (Button) findViewById(R.id.getBtn);
         popupWindow = new PopupWindow(this);

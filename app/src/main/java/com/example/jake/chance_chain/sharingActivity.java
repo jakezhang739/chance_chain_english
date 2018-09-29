@@ -63,11 +63,20 @@ public class sharingActivity extends AppCompatActivity {
         sUimg = (ImageView) findViewById(R.id.fenTou);
         shuru = (EditText) findViewById(R.id.fenXiangShare);
         RelativeLayout sharRel = (RelativeLayout) findViewById(R.id.shareLink);
-        if(!chC.touUri.isEmpty()){
-            Picasso.get().load(chC.touUri).into(sUimg);
+        if(chC.shareLink==null) {
+            if (!chC.imageSet.isEmpty()) {
+                Picasso.get().load(chC.imageSet.get(0)).into(sUimg);
+            }
+            sNei.setText(chC.txtTitle+"\n"+chC.txtNeirong);
+            sUser.setText("@" + chC.userid);
         }
-        sNei.setText(chC.txtTitle);
-        sUser.setText("@"+chC.userid);
+        else {
+            if (chC.shareLink.size()>4) {
+                Picasso.get().load(chC.shareLink.get(4)).placeholder(R.drawable.fenxiang).into(sUimg);
+            }
+            sNei.setText(chC.shareLink.get(2)+"\n"+chC.shareLink.get(3));
+            sUser.setText("@" + chC.shareLink.get(1));
+        }
 
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override

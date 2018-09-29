@@ -33,8 +33,8 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 
-public class GalleryAdapter extends
-        RecyclerView.Adapter<GalleryAdapter.ViewHolder>
+public class galleryAdapter extends
+        RecyclerView.Adapter<galleryAdapter.ViewHolder>
 {
 
     private LayoutInflater mInflater;
@@ -48,7 +48,7 @@ public class GalleryAdapter extends
 
 
 
-    public GalleryAdapter(Context context, List<chanceClass> cc)
+    public galleryAdapter(Context context, List<chanceClass> cc)
     {
         this.mInflater = LayoutInflater.from(context);
         this.cList = cc;
@@ -144,6 +144,7 @@ public class GalleryAdapter extends
             viewHolder.zhuanfa = (ImageView) view.findViewById(R.id.imageView2);
             viewHolder.likePic = (ImageView) view.findViewById(R.id.imageView10);
             viewHolder.likedPic = (ImageView) view.findViewById(R.id.imageView11);
+            viewHolder.cardView = (CardView) view.findViewById(R.id.scard_view);
         }
 
 
@@ -306,7 +307,7 @@ public class GalleryAdapter extends
                 Picasso.get().load(cList.get(i).touUri).into(viewHolder.uImg);
             }
             if(cList.get(i).shareLink.size()==4){
-                Picasso.get().load(cList.get(i).shareLink.get(3)).into(viewHolder.fent);
+                Picasso.get().load(cList.get(i).shareLink.get(3)).placeholder(R.drawable.fenxiang).into(viewHolder.fent);
             }
             viewHolder.fenUsr.setText(cList.get(i).shareLink.get(1));
             viewHolder.fenTitle.setText(cList.get(i).shareLink.get(2));
@@ -343,7 +344,7 @@ public class GalleryAdapter extends
                 public void onClick(View v) {
                     Log.d("clistid user",cList.get(i).userid+myUser);
                     cid = cList.get(i).shareLink.get(0);
-                    viewHolder.loading.setVisibility(View.VISIBLE);
+                    //viewHolder.loading.setVisibility(View.VISIBLE);
                     new Thread(shareLink).start();
                 }
             });
@@ -388,6 +389,16 @@ public class GalleryAdapter extends
                     viewHolder.likedPic.setVisibility(View.VISIBLE);
                     viewHolder.dianzhan.setText(String.valueOf(cList.get(i).liked.size()));
                     new Thread(likeRunnable).start();
+                }
+            });
+            viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), shareContent.class);
+                    intent.putExtra("cc", cList.get(i));
+                    intent.putExtra("comment","false");
+                    v.getContext().startActivity(intent);
+
                 }
             });
         }

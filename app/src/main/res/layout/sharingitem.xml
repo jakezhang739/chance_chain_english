@@ -43,13 +43,14 @@
                 android:text="TextView" />
 
 
-            <at.blogc.android.views.ExpandableTextView
+            <TextView
                 android:id="@+id/sneirongTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="65dp"
+                android:maxLines="6"
                 android:text="TextView"
                 android:textColor="@color/white" />
 
@@ -66,7 +67,9 @@
 
             <RelativeLayout
                 android:id="@+id/shareLink"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_height="100dp"
                 android:layout_below="@+id/sneirongTxt"
                 android:layout_marginTop="20dp"
@@ -75,7 +78,8 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/sp"
+                    android:src="@drawable/fenxiang"
+                    android:background="@color/white"
                     android:id="@+id/fenTou"
                     />
 
@@ -85,6 +89,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/fenTou"
+                    android:layout_marginStart="10dp"
+                    android:singleLine="true"
                     android:textSize="20sp"
                     android:text="TextView" />
 
@@ -92,9 +98,11 @@
                     android:id="@+id/titleTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxHeight="70dp"
                     android:textSize="18sp"
                     android:layout_below="@+id/UserNameAt"
                     android:layout_toEndOf="@+id/fenTou"
+                    android:layout_marginStart="10dp"
                     android:text="TextView" />
             </RelativeLayout>
 
@@ -137,11 +145,13 @@
             android:id="@+id/fenxiang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="7dp"
             android:layout_toEndOf="@+id/imageView2"
             android:gravity="left"
-            android:textSize="20sp"
-            android:text="0" />
+            android:text="0"
+            android:textSize="20sp" />
 
 
         <ImageView
@@ -156,10 +166,11 @@
             android:id="@+id/liuyan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="7dp"
             android:layout_toEndOf="@+id/imageView9"
-            android:textSize="20sp"
-            android:text="0" />
+            android:text="0"
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/imageView10"
@@ -186,11 +197,12 @@
             android:id="@+id/dianzhan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="18dp"
-            android:textSize="20sp"
-            android:text="0" />
+            android:layout_marginBottom="8dp"
+            android:layout_centerVertical="true"
+            android:text="0"
+            android:textSize="20sp" />
     </RelativeLayout>
 
 </RelativeLayout>

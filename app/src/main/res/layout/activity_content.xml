@@ -58,21 +58,26 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="lk" />
-
-            <LinearLayout
-                android:id="@+id/imgLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/contentNei"
-                android:orientation="vertical">
-
-            </LinearLayout>
+            <GridView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gallery"
+                android:layout_marginTop="10dp"
+                android:numColumns="4"
+                android:verticalSpacing="5dp"
+                android:horizontalSpacing="5dp"
+                android:layout_centerHorizontal="true"
+                android:stretchMode="columnWidth"
+                android:gravity="center"
+                android:layout_below="@+id/contentNei"
+                >
+            </GridView>
 
             <TextView
                 android:id="@+id/spacing1"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_below="@+id/imgLayout"
+                android:layout_below="@+id/gallery"
                 android:background="@color/homeback" />
 
 

@@ -38,7 +38,7 @@ public class HisFragment extends Fragment {
     private List<chanceClass> cList = new ArrayList<chanceClass>();
     Boolean nomoreFlag = false;
     RecyclerView mRecyclerView;
-    GalleryAdapter mAdapter;
+    galleryAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
     int uploadOffset=-1;
     int tempOffset=-1;
@@ -90,7 +90,7 @@ public class HisFragment extends Fragment {
 //        Log.d("home12", "how many wtf do i need");
 //
 //
-        mAdapter = new GalleryAdapter(getContext(), cList);
+        mAdapter = new galleryAdapter(getContext(), cList);
 
         mRecyclerView.setAdapter(mAdapter);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {

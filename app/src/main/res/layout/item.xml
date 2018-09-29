@@ -87,7 +87,7 @@
 
             <GridView
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/gallery"
                 android:numColumns="4"
                 android:verticalSpacing="5dp"
@@ -125,11 +125,10 @@
                 android:id="@+id/fenxiang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/imageView2"
                 android:gravity="left"
                 android:textSize="20sp"
-                android:layout_marginBottom="3dp"
                 android:text="0" />
 
 
@@ -146,9 +145,8 @@
             android:id="@+id/liuyan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/imageView9"
-            android:layout_marginBottom="3dp"
+            android:layout_centerVertical="true"
             android:textSize="20sp"
             android:text="0" />
 
@@ -177,10 +175,9 @@
             android:id="@+id/dianzhan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="18dp"
-            android:layout_marginBottom="3dp"
             android:textSize="20sp"
             android:text="0" />
     </RelativeLayout>

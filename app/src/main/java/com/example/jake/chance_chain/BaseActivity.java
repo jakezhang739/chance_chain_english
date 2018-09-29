@@ -11,6 +11,7 @@ import android.content.res.XmlResourceParser;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.media.Image;
+import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.app.Activity;
@@ -43,6 +44,7 @@ import android.util.ArraySet;
 import android.util.Base64;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -52,6 +54,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -93,6 +96,7 @@ import junit.framework.Test;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -126,20 +130,23 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected BottomNavigationView navigationView;
     String us;
     private int STORAGE_PERMISSION_CODE = 10;
-    private static final int GALLERY_REQUEST= 5;
+    View rootview;
+    private static final int REQUEST_CODE_GALLERY= 5;
+    private static final int REQUEST_CODE_CAMERA = 10;
     private Context context;
     TransferObserver observer;
     private TransferUtility sTransferUtility;
     AppHelper helper= new AppHelper();;
     private String uId;
     int number=0;
+    PopupWindow popupWindow;
     ImageView myimageView,tImage;
     TextView myTextView,jianText,shenText,guanText,beiGuanText,faText;
     String ChanceId="asd";
     String totId="totalID";
     String vStr;
     private RecyclerView mRecyclerView;
-    private GalleryAdapter mAdapter;
+    private galleryAdapter mAdapter;
     private List<String> mDatasText;
     private List<String> mDatasImage;
     private String username,textTilte,textValue,txtShoufei,txtShoufeiType,txtFuFei,txtFuFeiType;
@@ -513,6 +520,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 }
             });
 
+            popupWindow = new PopupWindow(this);
+            popupWindow.setWidth(RelativeLayout.LayoutParams.WRAP_CONTENT);
+            popupWindow.setHeight(RelativeLayout.LayoutParams.WRAP_CONTENT);
+            popupWindow.setContentView(LayoutInflater.from(this).inflate(R.layout.picturepopup,null));
+            rootview = LayoutInflater.from(BaseActivity.this).inflate(R.layout.activity_information, null);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setFocusable(true);
+            popupWindow.setTouchable(true);
+
 
             picView.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -520,7 +536,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                     Log.d("typetry"," fu "+fufeiInt+" shou " + shoufeiInt);
 
                     requstStoragePermission();
-                    FishBun.with(BaseActivity.this).setImageAdapter(new GlideAdapter()).startAlbum();
+                    popupWindow.showAtLocation(rootview, Gravity.CENTER_VERTICAL,0,0);
+//                    FishBun.with(BaseActivity.this).setImageAdapter(new GlideAdapter()).startAlbum();
                 }
             });
 
@@ -855,19 +872,36 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
         Log.d("uri","size "+uriList.size());
         Log.d("get code","reque" + requestCode + " resu " + resultCode);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.lineScroll);
+
 
         if(requestCode == Define.ALBUM_REQUEST_CODE){
-            if(resultCode == 0){
-
-            }
-            else {
+            if(resultCode == RESULT_OK){
+                layout.removeAllViews();
                 uriList = data.getParcelableArrayListExtra(Define.INTENT_PATH);
                 for(int i=0;i<uriList.size();i++){
-                    LinearLayout layout = (LinearLayout) findViewById(R.id.lineScroll);
-                    onAddImage(layout,uriList.get(i));
+                    onAddImage(layout,i,uriList);
                 }
             }
+            else {
             }
+            }
+            else if(requestCode == REQUEST_CODE_CAMERA){
+            if(resultCode==RESULT_OK){
+                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                uriList.add(getImageUri(context,thumbnail));
+                onAddImage(layout,uriList.size()-1,uriList);
+            }
+
+
+        }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
     }
 
     // Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
@@ -1017,6 +1051,22 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
         }
     };
+    public void dismiss(View v){
+        popupWindow.dismiss();
+    }
+
+    public void uploadpic(View v){
+        requstStoragePermission();
+        popupWindow.dismiss();
+        FishBun.with(BaseActivity.this).setImageAdapter(new GlideAdapter()).startAlbum();
+    }
+
+    public void takePic(View v){
+        requstStoragePermission();
+        popupWindow.dismiss();
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CODE_CAMERA);
+    }
     Runnable LoginRunnable = new Runnable() {
         @Override
         public void run() {
@@ -1181,13 +1231,28 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         }
     };
 
-    public void onAddImage(LinearLayout horLay, Uri uri){
+    public void onAddImage(LinearLayout horLay, int pos,List<Uri> uList){
         View layout1 = LayoutInflater.from(this).inflate(R.layout.addimageview, horLay, false);
         ImageView img = layout1.findViewById(R.id.imageView22);
-        Picasso.get().load(uri).resize(40,40).into(img);
+        Picasso.get().load(uList.get(pos)).resize(40,40).into(img);
+        ArrayList<String> uriList = new ArrayList<>();
+        for(Uri u:uList){
+            uriList.add(u.toString());
+        }
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),fsizepic.class);
+                intent.putStringArrayListExtra("uri",uriList);
+                intent.putExtra("pos",pos);
+                startActivity(intent);
+
+            }
+        });
         horLay.addView(layout1);
 
-    };
+    }
+
 
     private int sameDay(String thatTime){
         Date currentTime = Calendar.getInstance().getTime();

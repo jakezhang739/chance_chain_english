@@ -38,16 +38,16 @@ public class HomeFragment extends Fragment {
     private List<chanceClass> cList = new ArrayList<chanceClass>();
     int tC,temptC;
     RecyclerView mRecyclerView;
-    GalleryAdapter mAdapter;
+    galleryAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
     int uploadOffset=-1;
     int tempOffset=-1;
     AppHelper helper = new AppHelper();
     static {
-        ClassicsHeader.REFRESH_HEADER_PULLING = "Pull down to refresh";
+        ClassicsHeader.REFRESH_HEADER_PULLING = "打工是不可能打工的 ";
         ClassicsHeader.REFRESH_HEADER_REFRESHING = "Refreshing...";
         ClassicsHeader.REFRESH_HEADER_LOADING = "Loading...";
-        ClassicsHeader.REFRESH_HEADER_RELEASE = "Release to refresh";
+        ClassicsHeader.REFRESH_HEADER_RELEASE = "这辈子都不可能打工的";
         ClassicsHeader.REFRESH_HEADER_FINISH = "Refreshing completed";
         ClassicsHeader.REFRESH_HEADER_FAILED = "Refreshing failed";
         ClassicsFooter.REFRESH_FOOTER_PULLING = "Pull up to load more";
@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
 //        Log.d("home12", "how many wtf do i need");
 //
 //
-        mAdapter = new GalleryAdapter(getContext(), cList);
+        mAdapter = new galleryAdapter(getContext(), cList);
 
         mRecyclerView.setAdapter(mAdapter);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -100,10 +100,10 @@ public class HomeFragment extends Fragment {
 
                 new Thread(pullDownRunnable).start();
 
-                while(!refreshFlag){
-
-                }
-                refreshlayout.finishRefresh(refreshFlag);//传入false表示刷新失败
+//                while(!refreshFlag){
+//
+//                }
+                refreshlayout.finishRefresh(500,refreshFlag);//传入false表示刷新失败
                 refreshLayout.setNoMoreData(false);
             }
         });
@@ -112,9 +112,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 new Thread(pullUpLoad).start();
-                while(!loadmoreFlag){
-
-                }
+//                while(!loadmoreFlag){
+//
+//                }
                 if(tC<=10){
 
                     refreshLayout.finishLoadMore(500,loadmoreFlag,true);
@@ -148,6 +148,7 @@ public class HomeFragment extends Fragment {
                 for(int i = totChance;i>=totChance-9;i--){
                     fragPutIn(i);
 
+
                 }
             }
             else{
@@ -158,7 +159,6 @@ public class HomeFragment extends Fragment {
             }
 
 
-            refreshFlag = true;
         }
     };
 
@@ -177,16 +177,19 @@ public class HomeFragment extends Fragment {
                     for (int i = curChance; i >= curChance - 9; i--) {
                         fragPutIn(i);
                     }
+                    loadmoreFlag = true;
                 } else {
                     for (int i = curChance; i >= 1; i--) {
                         fragPutIn(i);
                     }
+                    loadmoreFlag = true;
                 }
             }
             else{
+                loadmoreFlag = true;
 
             }
-            loadmoreFlag=true;
+            loadmoreFlag = true;
 
 
         }
