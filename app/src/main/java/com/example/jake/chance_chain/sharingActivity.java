@@ -72,9 +72,9 @@ public class sharingActivity extends AppCompatActivity {
         }
         else {
             if (chC.shareLink.size()>4) {
-                Picasso.get().load(chC.shareLink.get(4)).placeholder(R.drawable.fenxiang).into(sUimg);
+                Picasso.get().load(chC.shareLink.get(3)).placeholder(R.drawable.fenxiang).into(sUimg);
             }
-            sNei.setText(chC.shareLink.get(2)+"\n"+chC.shareLink.get(3));
+            sNei.setText(chC.shareLink.get(2)+"\n"+chC.shareLink.get(4));
             sUser.setText("@" + chC.shareLink.get(1));
         }
 
@@ -145,7 +145,7 @@ public class sharingActivity extends AppCompatActivity {
             shareLink.add(chC.cId);
             shareLink.add("@"+chC.userid);
             shareLink.add(chC.txtTitle);
-            if(!chC.touUri.isEmpty()){
+            if(chC.imageSet!=null){
             shareLink.add(chC.touUri);}
             chanceWithValueDO.setSharedFrom(shareLink);
             chanceWithValueDO.setShouFei(0.0);

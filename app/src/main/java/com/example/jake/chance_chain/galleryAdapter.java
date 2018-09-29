@@ -306,11 +306,11 @@ public class galleryAdapter extends
             if (!cList.get(i).touUri.isEmpty()) {
                 Picasso.get().load(cList.get(i).touUri).into(viewHolder.uImg);
             }
-            if(cList.get(i).shareLink.size()==4){
+            if(cList.get(i).shareLink.size()==5){
                 Picasso.get().load(cList.get(i).shareLink.get(3)).placeholder(R.drawable.fenxiang).into(viewHolder.fent);
             }
             viewHolder.fenUsr.setText(cList.get(i).shareLink.get(1));
-            viewHolder.fenTitle.setText(cList.get(i).shareLink.get(2));
+            viewHolder.fenTitle.setText(cList.get(i).shareLink.get(2)+"\n"+cList.get(i).shareLink.get(4));
             viewHolder.mTxt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
